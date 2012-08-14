@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Histone" default="dist">
+ 
+	<!-- Target: prepare                               -->
+	<target name="prepare">
+		<echo message="Delete a directory ./target" />
+		<delete dir="./target" includeemptydirs="true" verbose="true" failonerror="true" />
+		<echo message="Making directory ./target" />
+		<mkdir dir="./target" /> 
+		<mkdir dir="./target/reports" /> 
+		<mkdir dir="./target/distrib" /> 
+	</target>
+
+	<!-- Target create PHPUnit tests -->
+	<target name="createunit" >
+		<echo message="Creating PHPUnit test files..." />
+		<exec executable="php" outputProperty="op"  >
+			<arg line="-f ./createunittest.php " />
+		</exec>
+		<echo message="Creating PHPUnit test result: ${op}" />	
+
+	</target>
+
+	<!-- Target: test                                -->
+	<target name="test" depends="prepare,createunit">
+		<echo message="Testing..." />
+		<delete file="./TESTS-TestSuites.xml" />
+		<exec executable="php" outputProperty="op" >
+			<arg line="-f ./unittest.php " />
+		</exec>
+		<echo message="PHPUnitTest result: ${op}" />	
+		<condition property="isTestErrorProp">
+			<or>
+				<contains string="${op}" substring="failure" casesensitive="false" />
+			</or>
+		</condition>
+
+	</target>
+
+	<!-- target doc -->
+	<target name="doc">
+		<echo message="Creating PHP-documentation with ApiGen.." />
+		<exec executable="apigen" outputProperty="op" >
+			<arg line='--source="./main/php" --destination="./doc" --main="Histone" --title="Histone classes" --access-levels="public,private,protected"' />
+		</exec>
+
+	</target>
+
+	<!-- Target: dist                                 -->
+	<target name="dist" depends="test">
+		<fail if="isTestErrorProp" message="Detected PHPUnitTest error!" /> 
+		<echo message="Copying files to ./target directory..." />
+<!--
+		<junitreport todir="./reports">
+			<fileset dir="./">
+				<include name="TEST-*.xml"/>
+			</fileset>
+			<report format="frames" todir="./report/html"/>
+		</junitreport>
+			<phpunitreport infile="./TESTS-TestSuites.xml" 
+				 format="frames" 
+				 todir="reports" 
+				 styledir="${env.PHP_PEAR_DATA_DIR}/phing/etc"/>
+-->
+		<copy file="./TESTS-TestSuites.xml" tofile="./target/reports/TESTS-TestSuites.xml" />
+		<echo message="Creating archive..." />
+		<tar destfile="./target/distrib/histone.tar.gz" compression="gzip">
+			<fileset dir="./main/php">
+				<include name="*.php" />
+			</fileset>
+		</tar>
+		<echo message="Files copied and compressed in build directory OK!" />
+	</target>
+</project>

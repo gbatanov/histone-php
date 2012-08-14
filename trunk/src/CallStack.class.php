@@ -1,0 +1,129 @@
+<?php
+
+/**
+ * Project Histone
+ * 
+ * @package HistoneClasses
+ */
+
+/**
+ * class CallStack
+ * 
+ * @package HistoneClasses
+ */
+class CallStack {
+
+	private $context = '';
+	private $baseURI = '';
+	private $stackPointer = 0;
+	private $macros = array();
+	private $variables = array();
+
+	/**
+	 * 
+	 * @param string $context
+	 */
+	public function __construct($context) {
+		$this->baseURI = '';
+		$this->context = $context;
+		$this->macros = array(array());
+		$this->variables = array(array());
+	}
+
+	/**
+	 * 
+	 * @param string $baseURI
+	 */
+	public function setBaseURI($baseURI) {
+		$this->baseURI = $baseURI;
+	}
+
+	/**
+	 * 
+	 * @return string
+	 */
+	public function getBaseURI() {
+		return $this->baseURI;
+	}
+
+	/**
+	 * 
+	 * @param string $name
+	 * @param mixed $value
+	 */
+	public function putVar($name, $value) {
+		$this->variables[$this->stackPointer][$name] = $value;
+	}
+
+	/**
+	 * 
+	 * @param string $name
+	 * @param array $args
+	 * @param string $body
+	 * @param string $baseURI
+	 */
+	public function putMacro($name, $args, $body, $baseURI) {
+		$this->macros[$this->stackPointer][$name] = array($args, $body, $baseURI);
+	}
+
+	/**
+	 * 
+	 * @param string $name
+	 * @return mixed
+	 */
+	public function getMacro($name) {
+		$macros = $this->macros;
+		$index = $this->stackPointer;
+		do {
+			$stackFrame = $macros[$index];
+			if (isset($stackFrame[$name])) {
+				return $stackFrame[$name];
+			}
+		} while ($index--);
+	}
+
+	/**
+	 * 
+	 * @param string $name
+	 * @return mixed
+	 */
+	public function getVar($name) {
+		$variables = $this->variables;
+		$index = $this->stackPointer;
+		do {
+			$stackFrame = $variables[$index];
+			if (key_exists($name, (array) $stackFrame)) {
+				return $stackFrame[$name];
+			}
+		} while ($index--);
+		return new SpondeUndefined();
+	}
+
+	/**
+	 * @return void 
+	 */
+	public function save() {
+		$this->stackPointer++;
+		array_push($this->macros, array());
+		array_push($this->variables, array());
+	}
+
+	/**
+	 * @return void 
+	 */
+	public function restore() {
+		$this->stackPointer--;
+		array_pop($this->macros);
+		array_pop($this->variables);
+	}
+
+	/**
+	 * 
+	 * @return array
+	 */
+	public function getContext() {
+		return $this->context;
+	}
+
+}
+
