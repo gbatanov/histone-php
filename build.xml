@@ -1,33 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="Histone" default="dist">
+<project name="Histone-PHP" default="dist">
+
+	<property file="build.properties" />
  
+    <target name="clean">
+		<echo message="Delete a directory ./target" />
+		<delete dir="${basedir}/target" includeemptydirs="true" verbose="true" failonerror="true" />
+		<echo message="Delete a directory ./generated" />
+		<delete dir="${basedir}/generated" includeemptydirs="true" verbose="true" failonerror="true" />
+    </target>
+
 	<!-- Target: prepare                               -->
 	<target name="prepare">
-		<echo message="Delete a directory ./target" />
-		<delete dir="./target" includeemptydirs="true" verbose="true" failonerror="true" />
 		<echo message="Making directory ./target" />
-		<mkdir dir="./target" /> 
-		<mkdir dir="./target/reports" /> 
-		<mkdir dir="./target/distrib" /> 
+		<mkdir dir="${basedir}/target" /> 
+		<mkdir dir="${basedir}/target/reports" />
+		<mkdir dir="${basedir}/target/distrib" /> 
+		<mkdir dir="${basedir}/generated" /> 
+		<mkdir dir="${basedir}/generated/generated-tests" /> 
+		<mkdir dir="${basedir}/generated/test-cases-xml" /> 
 	</target>
 
 	<!-- Target create PHPUnit tests -->
-	<target name="createunit" >
+	<target name="generate-unit-tests" >
 		<echo message="Creating PHPUnit test files..." />
+		<copy file="${basedir}/src/test-templates/ParserAcceptanceTest.php" todir="${basedir}/generated/generated-tests/" overwrite="true"/>
 		<exec executable="php" outputProperty="op"  >
-			<arg line="-f ./createunittest.php " />
+			<arg line="-f ${basedir}/src/test-support/createunittest.php " />
 		</exec>
 		<echo message="Creating PHPUnit test result: ${op}" />	
 
 	</target>
 
 	<!-- Target: test                                -->
-	<target name="test" depends="prepare,createunit">
+	<target name="run-unit-tests">
 		<echo message="Testing..." />
-		<delete file="./TESTS-TestSuites.xml" />
+		<delete file="${basedir}/generated/generated-tests/ParserAcceptanceTestSuites.xml" />
 		<exec executable="php" outputProperty="op" >
-			<arg line="-f ./unittest.php " />
+			<arg line="-f ${basedir}/src/test-support/unittest.php " />
 		</exec>
 		<echo message="PHPUnitTest result: ${op}" />	
 		<condition property="isTestErrorProp">
@@ -35,20 +46,21 @@
 				<contains string="${op}" substring="failure" casesensitive="false" />
 			</or>
 		</condition>
-
 	</target>
+
+	<target name="test" depends="prepare,generate-unit-tests,run-unit-tests"/>
 
 	<!-- target doc -->
 	<target name="doc">
 		<echo message="Creating PHP-documentation with ApiGen.." />
 		<exec executable="apigen" outputProperty="op" >
-			<arg line='--source="./main/php" --destination="./doc" --main="Histone" --title="Histone classes" --access-levels="public,private,protected"' />
+			<arg line='--source="${basedir}/src/main" --destination="${basedir}/target/apidocs" --main="Histone" --title="Histone PHP API" --access-levels="public,private,protected"' />
 		</exec>
 
 	</target>
 
 	<!-- Target: dist                                 -->
-	<target name="dist" depends="test">
+	<target name="dist">
 		<fail if="isTestErrorProp" message="Detected PHPUnitTest error!" /> 
 		<echo message="Copying files to ./target directory..." />
 <!--
@@ -63,13 +75,14 @@
 				 todir="reports" 
 				 styledir="${env.PHP_PEAR_DATA_DIR}/phing/etc"/>
 -->
-		<copy file="./TESTS-TestSuites.xml" tofile="./target/reports/TESTS-TestSuites.xml" />
-		<echo message="Creating archive..." />
-		<tar destfile="./target/distrib/histone.tar.gz" compression="gzip">
-			<fileset dir="./main/php">
+		<!-- <copy file="./TESTS-TestSuites.xml" tofile="./target/reports/TESTS-TestSuites.xml" /> -->
+		<delete file="${basedir}/target/distrib/histone-php-${project.version}.zip" />
+		<echo message="Creating archives..." />
+		<zip destfile="${basedir}/target/distrib/histone-php-${project.version}.zip">
+			<fileset dir="${basedir}/src/main">
 				<include name="*.php" />
 			</fileset>
-		</tar>
+		</zip>
 		<echo message="Files copied and compressed in build directory OK!" />
 	</target>
 </project>

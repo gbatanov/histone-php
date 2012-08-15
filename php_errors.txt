@@ -1,5 +1,0 @@
-[14-Aug-2012 09:10:24 UTC] PHP Warning:  fopen(/Users/pit/Dropbox/Work/Histone/histone-php/main/tests/parser/cases.json): failed to open stream: No such file or directory in /Users/pit/Dropbox/Work/Histone/histone-php/createunittest.php on line 10
-[14-Aug-2012 09:10:24 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'badTestFile' in /Users/pit/Dropbox/Work/Histone/histone-php/createunittest.php:64
-Stack trace:
-#0 {main}
-  thrown in /Users/pit/Dropbox/Work/Histone/histone-php/createunittest.php on line 64

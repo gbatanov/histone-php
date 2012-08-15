@@ -1,12 +1,16 @@
 <?php
 
-ini_set('log_errors', 'on');
-ini_set('error_log', 'php_errors.txt');
+$WORK_DIR = implode('/', explode('/', str_replace('\\', '/', __DIR__), -2));
 
-$WORK_DIR = implode('/', explode('/', str_replace('\\', '/', __DIR__)));
+ini_set('log_errors', 'on');
+ini_set('error_log', $WORK_DIR . '/target/php_errors.txt');
+
+$TEST_CASES_XML_FOLDER = '/generated/test-cases-xml';
+
+
 /* load xml-describe tests for parser */
 
-$filename = $WORK_DIR . '/main/tests/parser/cases.json';
+$filename = $WORK_DIR . $TEST_CASES_XML_FOLDER . '/parser/cases.json';
 $f = fopen($filename, 'rb');
 if ($f) {
 	$xmlTestArray = array();
@@ -15,7 +19,7 @@ if ($f) {
 		$fstr = '';
 		foreach ($fileList as $fileTest) {
 			try {
-				$testFileContent = file_get_contents($WORK_DIR . '/main/tests/parser/' . $fileTest);
+				$testFileContent = file_get_contents($WORK_DIR . $TEST_CASES_XML_FOLDER . '/parser/' . $fileTest);
 				$testFileContent = preg_replace('/<!--.*-->/Us', '', $testFileContent);
 				$suites = array();
 				if (preg_match_all('/<suite\s.*>(.*)<\/suite\s*>/Uis', $testFileContent, $suites)) {
@@ -47,7 +51,7 @@ if ($f) {
 				throw new Exception('badTestFile');
 			}
 		}// end foreach 
-		$filename = $WORK_DIR . '/main/unittests/PHP/main/php/SpondeTest.php';
+		$filename = $WORK_DIR . '/generated/generated-tests/ParserAcceptanceTest.php';
 		if (file_exists($filename)) {
 			$origin = file_get_contents($filename);
 			$result = preg_replace('|/\*\s*module_start\s*\*/(.*)/\*\s*module_end\s*\*/|Uis', '/*module_start*/' . $fstr . '/*module_end*/', $origin);
