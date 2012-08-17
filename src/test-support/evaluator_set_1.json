@@ -1,0 +1,11 @@
+[
+	"node-string-functions.xml",
+	"basic.xml",
+	"var.xml",
+	"operators.xml",
+	"selectors.xml",
+	"macro.xml",
+	"other.xml",
+	"constructs.xml",
+	"self-scope.xml"
+]

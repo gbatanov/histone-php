@@ -25,14 +25,11 @@ ini_set('error_log', $WORK_DIR . '/generated/php_errors.txt');
 /* load xml-describe tests for evaluator */
 $modes = array('parser', 'evaluator');
 
-$listFile[$modes[0]] = 'cases.json';
-$listFile[$modes[1]] = 'set_1.json';
-
 foreach ($modes as $mode) {
 	$index = 0;
 	$ok = false;
-	$filename = $WORK_DIR . $TEST_CASES_XML_FOLDER . '/' . $mode . '/' . $listFile[$mode];
-	$dir = dirname($filename);
+	$filename = $WORK_DIR .  '/src/test-support/' . $mode.'_set_1.json';
+	$dir =$WORK_DIR .$TEST_CASES_XML_FOLDER.'/'.$mode;
 	$f = fopen($filename, 'rb');
 
 	if ($f) {

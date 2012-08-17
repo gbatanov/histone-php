@@ -1,0 +1,10 @@
+[
+	"global-scope.xml",
+	"node-object-functions.xml",
+	"node-to-functions.xml",
+	"global-builtin-functions.xml",
+ 	"node-array-functions.xml",
+	"node-is-functions.xml",
+	"node-number-functions.xml",
+	"external-resources.xml"
+]
