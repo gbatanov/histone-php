@@ -18,13 +18,14 @@
 <project name="Histone-PHP" default="dist">
 
 	<property file="build.properties" />
+	<property name="basedir" value="." />
  
-    <target name="clean">
+	<target name="clean">
 		<echo message="Delete a directory ./target" />
 		<delete dir="${basedir}/target" includeemptydirs="true" verbose="true" failonerror="true" />
 		<echo message="Delete a directory ./generated" />
 		<delete dir="${basedir}/generated" includeemptydirs="true" verbose="true" failonerror="true" />
-    </target>
+	</target>
 
 	<!-- Target: prepare                               -->
 	<target name="prepare">
@@ -32,15 +33,31 @@
 		<mkdir dir="${basedir}/target" /> 
 		<mkdir dir="${basedir}/target/reports" />
 		<mkdir dir="${basedir}/target/distrib" /> 
+		<echo message="Making directory ./generated" />
 		<mkdir dir="${basedir}/generated" /> 
 		<mkdir dir="${basedir}/generated/generated-tests" /> 
 		<mkdir dir="${basedir}/generated/test-cases-xml" /> 
 	</target>
 
+	<target name="copy-xml-tests" depends="prepare">
+		<echo message="Coping xml test files..." />
+		<copy todir="${basedir}/generated/test-cases-xml" overwrite="true">
+			<fileset dir="${basedir}/src/test">
+				<include name="parser/*.*" />
+				<include name="evaluator/*.*" />
+			</fileset>
+		</copy>
+	</target>
+
 	<!-- Target create PHPUnit tests -->
 	<target name="generate-unit-tests" >
 		<echo message="Creating PHPUnit test files..." />
-		<copy file="${basedir}/src/test-templates/ParserAcceptanceTest.php" todir="${basedir}/generated/generated-tests/" overwrite="true"/>
+		<copy  todir="${basedir}/generated/generated-tests/" overwrite="true">
+			<fileset dir="${basedir}/src/test-templates">
+				<include name="*.php" />
+			</fileset>
+		</copy>
+
 		<exec executable="php" outputProperty="op"  >
 			<arg line="-f ${basedir}/src/test-support/createunittest.php " />
 		</exec>
@@ -63,6 +80,7 @@
 		</condition>
 	</target>
 
+	<target name="pretest" depends="copy-xml-tests,generate-unit-tests,run-unit-tests"/>
 	<target name="test" depends="prepare,generate-unit-tests,run-unit-tests"/>
 
 	<!-- target doc -->
@@ -78,18 +96,6 @@
 	<target name="dist">
 		<fail if="isTestErrorProp" message="Detected PHPUnitTest error!" /> 
 		<echo message="Copying files to ./target directory..." />
-<!--
-		<junitreport todir="./reports">
-			<fileset dir="./">
-				<include name="TEST-*.xml"/>
-			</fileset>
-			<report format="frames" todir="./report/html"/>
-		</junitreport>
-			<phpunitreport infile="./TESTS-TestSuites.xml" 
-				 format="frames" 
-				 todir="reports" 
-				 styledir="${env.PHP_PEAR_DATA_DIR}/phing/etc"/>
--->
 		<!-- <copy file="./TESTS-TestSuites.xml" tofile="./target/reports/TESTS-TestSuites.xml" /> -->
 		<delete file="${basedir}/target/distrib/histone-php-${project.version}.zip" />
 		<echo message="Creating archives..." />

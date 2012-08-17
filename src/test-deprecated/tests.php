@@ -30,17 +30,20 @@
  */
 ini_set('log_errors', 'on');
 ini_set('error_log', 'php_errors.txt');
+//$WORK_DIR = implode('/', explode('/', str_replace('\\', '/', __DIR__),-1));
+$WORK_DIR = 'C:/work/Histone/histone-php';
 
-require_once('php/Sponde.class.php');
+require_once($WORK_DIR.'/src/main/Histone.class.php');
 //require_once('Stream.class.php');
 require_once('TestRunner.class.php');
 
 
 /* Test settings */
+
 //$type = 'parser';
 $type = 'evaluator';
-$filePath = 'tests' . "/$type/";
-$filename = $filePath . 'cases.json';
+$filePath = $WORK_DIR.'/src/test' . "/$type/";
+$filename = $filePath . 'set_1.json';
 $baseTestsUri = $filePath;
 
 /**
@@ -105,7 +108,7 @@ function testUriResolver($resourceURI, $baseURI, $args = null) {
 }
 
 /* * ******** implementation **************************************************** */
-//Sponde::setUriResolver('testUriResolver');
+//Histone::setUriResolver('testUriResolver');
 
 $tester = new TestRunner('web');
 
@@ -113,7 +116,8 @@ $tester->clearTest();
 
 $f = fopen($filename, 'rb');
 if ($f) {
-	$fileList = json_decode(fread($f, filesize($filename)));
+	$fileList = fread($f, filesize($filename));
+	$fileList = json_decode($fileList);
 	if ($fileList && is_array($fileList)) {
 		foreach ($fileList as $fileTest) {
 			try {

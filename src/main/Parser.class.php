@@ -87,7 +87,7 @@ class Parser {
 		$T_COMMENT_START, $T_COMMENT_END,
 		$T_LITERAL_START, $T_LITERAL_END,
 		$T_IS, $T_OR, $T_AND, $T_NOT, $T_MOD, $T_NULL, $T_THIS, $T_SELF, $T_GLOBAL,
-		$T_TRUE, $T_FALSE, $T_CALL, $T_ARRAY, $T_OBJECT, $T_IF,
+		$T_TRUE, $T_FALSE, $T_CALL, /*$T_ARRAY, $T_OBJECT,*/ $T_IF,
 		$T_ELSEIF, $T_ELSE, $T_FOR, $T_IN, $T_VAR, $T_MACRO,
 		$T_DOUBLE, $T_INT, $T_NOT_EQUAL, $T_LESS_OR_EQUAL,
 		$T_GREATER_OR_EQUAL, $T_LESS_THAN, $T_GREATER_THAN, $T_LBRACKET,
@@ -147,8 +147,8 @@ class Parser {
 		self::$T_SELF = self::$tokenizer->addLiteral('self\\b', self::$T_CTX_EXP);
 		self::$T_GLOBAL = self::$tokenizer->addLiteral('global\\b', self::$T_CTX_EXP);
 
-		self::$T_ARRAY = self::$tokenizer->addLiteral('array\\b', self::$T_CTX_EXP);
-		self::$T_OBJECT = self::$tokenizer->addLiteral('object\\b', self::$T_CTX_EXP);
+//		self::$T_ARRAY = self::$tokenizer->addLiteral('array\\b', self::$T_CTX_EXP);
+//		self::$T_OBJECT = self::$tokenizer->addLiteral('object\\b', self::$T_CTX_EXP);
 
 		self::$T_NULL = self::$tokenizer->addLiteral('null\\b', self::$T_CTX_EXP);
 		self::$T_TRUE = self::$tokenizer->addLiteral('true\\b', self::$T_CTX_EXP);

@@ -27,7 +27,7 @@
 ini_set('log_errors', 'on');
 ini_set('error_log', 'php_errors.txt');
 
-require_once('php/Sponde.class.php');
+require_once('php/Histone.class.php');
 //require_once('Stream.class.php');
 require_once('TestRunner.class.php');
 

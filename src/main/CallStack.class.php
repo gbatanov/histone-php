@@ -111,7 +111,7 @@ class CallStack {
 				return $stackFrame[$name];
 			}
 		} while ($index--);
-		return new SpondeUndefined();
+		return new HistoneUndefined();
 	}
 
 	/**

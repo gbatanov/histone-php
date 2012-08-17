@@ -1,4 +1,5 @@
 <?php
+
 /**
  *    Copyright 2012 MegaFon
  *
@@ -14,7 +15,6 @@
  *   See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 /**
  * Project Histone
  * 
@@ -22,19 +22,19 @@
  */
 
 /**
- * class SpondeType
+ * class HistoneType
  * 
  * @package HistoneClasses
  */
-class SpondeType {
+class HistoneType {
 
 	/**
 	 * 
-	 * @param SpondeUndefined $value
+	 * @param HistoneUndefined $value
 	 * @return type
 	 */
 	public static function isUndefined($value) {
-		return $value instanceof SpondeUndefined;
+		return $value instanceof HistoneUndefined;
 	}
 
 	/**
@@ -95,11 +95,11 @@ class SpondeType {
 		if (is_bool($value))
 			return ($value ? 'true' : 'false');
 		if (is_int($value))
-			return SpondeNumber::toString($value);
+			return HistoneNumber::toString($value);
 		if (is_double($value))
-			return SpondeNumber::toString($value);
+			return HistoneNumber::toString($value);
 		if (is_array($value))
-			return SpondeMap::toString($value);
+			return HistoneMap::toString($value);
 		return '';
 	}
 
@@ -109,7 +109,7 @@ class SpondeType {
 	 * @return string
 	 */
 	public static function toJSON($value) {
-		if ($value instanceof SpondeUndefined)
+		if ($value instanceof HistoneUndefined)
 			return 'null';
 		return json_encode($value);
 	}
@@ -117,38 +117,38 @@ class SpondeType {
 }
 
 /**
- * class SpondeUndefined
+ * class HistoneUndefined
  * 
  * @package HistoneClasses
  */
-class SpondeUndefined extends SpondeType {
+class HistoneUndefined extends HistoneType {
 	
 }
 
 /**
- * class SpondeNull
+ * class HistoneNull
  * 
  * @package HistoneClasses
  */
-class SpondeNull extends SpondeType {
+class HistoneNull extends HistoneType {
 	
 }
 
 /**
- * class SpondeBoolean
+ * class HistoneBoolean
  * 
  * @package HistoneClasses
  */
-class SpondeBoolean extends SpondeType {
+class HistoneBoolean extends HistoneType {
 	
 }
 
 /**
- * class SpondeNumber
+ * class HistoneNumber
  * 
  * @package HistoneClasses
  */
-class SpondeNumber extends SpondeType {
+class HistoneNumber extends HistoneType {
 
 	/**
 	 * 
@@ -259,18 +259,18 @@ class SpondeNumber extends SpondeType {
 }
 
 /**
- * class SpondeString
+ * class HistoneString
  * 
  * @package HistoneClasses
  */
-class SpondeString extends SpondeType {
+class HistoneString extends HistoneType {
 
 	/**
 	 * 
 	 * @param string $value
 	 * @return number
 	 */
-	public static function length($value) {
+	public static function size($value) {
 		return strlen($value);
 	}
 
@@ -278,12 +278,11 @@ class SpondeString extends SpondeType {
 	 * 
 	 * @param string $value
 	 * @param array $args
-	 * @param object $stack
 	 * @return array
 	 */
-	public static function split($value, $args, $stack) {
+	public static function split($value, $args) {
 		$separator = $args[0];
-		if (!SpondeType::isString($separator))
+		if (!HistoneType::isString($separator))
 			$separator = '';
 		if (strlen($separator) === 0)
 			return str_split($value);
@@ -304,7 +303,7 @@ class SpondeString extends SpondeType {
 		if ($index >= 0 && $index < strlen($value)) {
 			return ord($value[$index]);
 		} else
-			return new SpondeUndefined();
+			return new HistoneUndefined();
 	}
 
 	/**
@@ -319,7 +318,7 @@ class SpondeString extends SpondeType {
 			return -1;
 		if (strlen($search) === 0)
 			return -1;
-		if (!SpondeType::isNumber($start))
+		if (!HistoneType::isNumber($start))
 			$start = 0;
 		$strLen = strlen($value);
 		if ($start < 0)
@@ -348,7 +347,7 @@ class SpondeString extends SpondeType {
 			return -1;
 		if (strlen($search) === 0)
 			return -1;
-		if (SpondeType::isNumber($start)) {
+		if (HistoneType::isNumber($start)) {
 			if ($start <= 0) {
 				$start = strlen($value) + $start;
 				if ($start <= 0)
@@ -419,7 +418,7 @@ class SpondeString extends SpondeType {
 	public static function toNumber($value) {
 		if (is_numeric(trim($value)))
 			return floatval($value);
-		return new SpondeUndefined();
+		return new HistoneUndefined();
 	}
 
 	/**
@@ -457,18 +456,18 @@ class SpondeString extends SpondeType {
 }
 
 /**
- * class SpondeMap
+ * class HistoneMap
  * 
  * @package HistoneClasses
  */
-class SpondeMap extends SpondeType {
+class HistoneMap extends HistoneType {
 
 	/**
 	 * 
 	 * @param array $value
 	 * @return number
 	 */
-	public static function length($value) {
+	public static function size($value) {
 		return count($value);
 	}
 
@@ -480,7 +479,7 @@ class SpondeMap extends SpondeType {
 	public static function toString($value) {
 		$values = array();
 		foreach ($value as $value) {
-			$value = SpondeType::toString($value);
+			$value = HistoneType::toString($value);
 			if (strlen($value) === 0)
 				continue;
 			array_push($values, $value);
@@ -494,7 +493,7 @@ class SpondeMap extends SpondeType {
 	 * @return string
 	 */
 	public static function toJSON($value) {
-		if ($value instanceof SpondeUndefined)
+		if ($value instanceof HistoneUndefined)
 			return 'null';
 
 		return json_encode($value);
@@ -583,11 +582,11 @@ class SpondeMap extends SpondeType {
 }
 
 /**
- * class SpondeGlobal
+ * class HistoneGlobal
  * 
  * @package HistoneClasses
  */
-class SpondeGlobal extends SpondeType {
+class HistoneGlobal extends HistoneType {
 
 	private static $value = '';
 	public static $WEEK_DAYS_SHORT = array(1 => 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс');
@@ -625,7 +624,7 @@ class SpondeGlobal extends SpondeType {
 	public static function value() {
 		if (self::$value)
 			return self::$value;
-		self::$value = new SpondeGlobal();
+		self::$value = new HistoneGlobal();
 		return self::$value;
 	}
 
@@ -639,32 +638,32 @@ class SpondeGlobal extends SpondeType {
 	public static function include_internal($obj, $args, $stack) {
 		$href = $args[0];
 		$base = $stack->getBaseURI();
-		$uriResolver = Sponde::getUriResolver();
+		$uriResolver = Histone::getUriResolver();
 		if ($uriResolver) {
 			$resolve = @call_user_func($uriResolver, $href, $base);
 			if ($x === null)
-				return new SpondeUndefined();
+				return new HistoneUndefined();
 			else {
 				try {
-					$innerSponde = new Sponde($resolve['uri']);
-					$innerSponde->parseString($resolve['data']);
+					$innerHistone = new Histone($resolve['uri']);
+					$innerHistone->parseString($resolve['data']);
 				} catch (ParseError $e) {
-					return new SpondeUndefined();
+					return new HistoneUndefined();
 				} catch (Exception $e) {
-					return new SpondeUndefined();
+					return new HistoneUndefined();
 				}
 			}
 		} else {
-			$innerSponde = new Sponde($base);
-			$innerSponde->parseFile($href);
-			if (!$innerSponde->getTree())
-				return new SpondeUndefined();
+			$innerHistone = new Histone($base);
+			$innerHistone->parseFile($href);
+			if (!$innerHistone->getTree())
+				return new HistoneUndefined();
 		}
 
 		if (!isset($args[1])) {
-			return $innerSponde->process();
+			return $innerHistone->process();
 		} else {
-			return $innerSponde->process($args[1]);
+			return $innerHistone->process($args[1]);
 		}
 	}
 
@@ -698,10 +697,10 @@ class SpondeGlobal extends SpondeType {
 	 */
 	public static function min($obj, $args) {
 		$count = count($args);
-		$minValue = new SpondeUndefined();
+		$minValue = new HistoneUndefined();
 		for ($c = 0; $c < $count; $c++) {
-			if (SpondeType::isNumber($args[$c]) and (
-				SpondeType::isUndefined($minValue) or
+			if (HistoneType::isNumber($args[$c]) and (
+				HistoneType::isUndefined($minValue) or
 				$args[$c] < $minValue
 				))
 				$minValue = $args[$c];
@@ -717,10 +716,10 @@ class SpondeGlobal extends SpondeType {
 	 */
 	public static function max($obj, $args) {
 		$count = count($args);
-		$minValue = new SpondeUndefined();
+		$minValue = new HistoneUndefined();
 		for ($c = 0; $c < $count; $c++) {
-			if (SpondeType::isNumber($args[$c]) and (
-				SpondeType::isUndefined($minValue) or
+			if (HistoneType::isNumber($args[$c]) and (
+				HistoneType::isUndefined($minValue) or
 				$args[$c] > $minValue
 				))
 				$minValue = $args[$c];
@@ -739,7 +738,7 @@ class SpondeGlobal extends SpondeType {
 		$baseURI = $stack->getBaseURI();
 		if (is_file($baseURI))
 			$baseURI = dirname($baseURI);
-		$UriResolver = Sponde::getUriResolver();
+		$UriResolver = Histone::getUriResolver();
 		if (is_callable($UriResolver))
 			$result = call_user_func($UriResolver, $href, $baseURI, $args);
 		else {
@@ -768,11 +767,11 @@ class SpondeGlobal extends SpondeType {
 		if (isset($result['data'])) {
 			$result1 = json_decode($result['data']);
 			if ($result1 === null) {
-				return new SpondeUndefined();
+				return new HistoneUndefined();
 			}
 			return json_decode($result['data'], true);
 		}
-		return new SpondeUndefined();
+		return new HistoneUndefined();
 	}
 
 	/**
@@ -785,7 +784,7 @@ class SpondeGlobal extends SpondeType {
 	public static function loadText($obj, $args, $stack = null) {
 		$result = self::_loadFile($args, $stack);
 
-		return $result === null ? new SpondeUndefined() : (($obj instanceof SpondeGlobal) ? $result['data'] : $result);
+		return $result === null ? new HistoneUndefined() : (($obj instanceof HistoneGlobal) ? $result['data'] : $result);
 	}
 
 	/**
@@ -796,21 +795,21 @@ class SpondeGlobal extends SpondeType {
 	 */
 	public function dayOfWeek($obj, $args = array()) {
 		if (!is_array($args) || count($args) < 3)
-			return new SpondeUndefined();
+			return new HistoneUndefined();
 		$y = str_pad((int) $args[0], 4, '0', STR_PAD_LEFT);
 		$m = str_pad((int) $args[1], 2, '0', STR_PAD_LEFT);
 		$d = str_pad((int) $args[2], 2, '0', STR_PAD_LEFT);
 		if ($y < 0)
-			return new SpondeUndefined();
+			return new HistoneUndefined();
 		if ($m > 12 || $m < 1)
-			return new SpondeUndefined();
+			return new HistoneUndefined();
 		if ($d > self::daysInMonth(array($y, $m)) || $d < 1)
-			return new SpondeUndefined();
+			return new HistoneUndefined();
 
 		$time = strtotime("$m/$d/$y");
 		$new_dt = date("m/d/Y", $time);
 		if ($new_dt !== "$m/$d/$y")
-			return new SpondeUndefined();
+			return new HistoneUndefined();
 		$day = jddayofweek(GregorianToJD($m, $d, $y));
 		if ($day === 0)
 			$day = 7;
@@ -825,15 +824,15 @@ class SpondeGlobal extends SpondeType {
 	 */
 	public static function daysInMonth($obj, $args = array()) {
 		if (!is_array($args) || count($args) < 2)
-			return new SpondeUndefined();
+			return new HistoneUndefined();
 		$y = str_pad((int) $args[0], 4, '0', STR_PAD_LEFT);
 		$m = str_pad((int) $args[1], 2, '0', STR_PAD_LEFT);
 		if ($y < 0)
-			return new SpondeUndefined();
+			return new HistoneUndefined();
 		if ($m > 12 || $m < 1)
-			return new SpondeUndefined();
+			return new HistoneUndefined();
 		$new_dt = cal_days_in_month(CAL_GREGORIAN, $m, $y);
-		return (int) $new_dt > 0 ? (int) $new_dt : new SpondeUndefined();
+		return (int) $new_dt > 0 ? (int) $new_dt : new HistoneUndefined();
 	}
 
 	/**
@@ -844,7 +843,7 @@ class SpondeGlobal extends SpondeType {
 	 */
 	public static function range($obj, $args = array()) {
 		if (!is_array($args) || count($args) < 2 || preg_match('/[^\d-]/', $args[0]) || preg_match('/[^\d-]/', $args[1]))
-			return new SpondeUndefined();
+			return new HistoneUndefined();
 
 		$first = (int) $args[0];
 		$last = (int) $args[1];
@@ -871,7 +870,7 @@ class SpondeGlobal extends SpondeType {
 		if (isset($args[0]) && isset(self::$WEEK_DAYS_SHORT[(int) $args[0]]))
 			return self::$WEEK_DAYS_SHORT[(int) $args[0]];
 		else
-			return new SpondeUndefined();
+			return new HistoneUndefined();
 	}
 
 	/**
@@ -884,7 +883,7 @@ class SpondeGlobal extends SpondeType {
 		if (isset($args[0]) && isset(self::$WEEK_DAYS_LONG[(int) $args[0]]))
 			return self::$WEEK_DAYS_LONG[(int) $args[0]];
 		else
-			return new SpondeUndefined();
+			return new HistoneUndefined();
 	}
 
 	/**
@@ -897,7 +896,7 @@ class SpondeGlobal extends SpondeType {
 		if (isset($args[0]) && isset(self::$MONTH_NAMES_SHORT[(int) $args[0]]))
 			return self::$MONTH_NAMES_SHORT[(int) $args[0]];
 		else
-			return new SpondeUndefined();
+			return new HistoneUndefined();
 	}
 
 	/**
@@ -910,7 +909,7 @@ class SpondeGlobal extends SpondeType {
 		if (isset($args[0]) && isset(self::$MONTH_NAMES_LONG[(int) $args[0]]))
 			return self::$MONTH_NAMES_LONG[(int) $args[0]];
 		else
-			return new SpondeUndefined();
+			return new HistoneUndefined();
 	}
 
 	/**

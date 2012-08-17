@@ -40,7 +40,7 @@ $path_parts = pathinfo($argv[0]);
 $WORK_DIR = implode('/', explode('/', str_replace('\\', '/', __DIR__), -2));
 
 
-$command = 'php ' . '"' . $PHP_PEAR_BIN_DIR . '/phpunit"   --bootstrap "' . $WORK_DIR . '/src/test-support/tests-bootstrap.php" --log-junit "' . $WORK_DIR . '/target/reports/ParserAcceptanceTest.xml" "' . $WORK_DIR . '/generated/generated-tests/ParserAcceptanceTest.php"';
+$command = 'php ' . '"' . $PHP_PEAR_BIN_DIR . '/phpunit"   --bootstrap "' . $WORK_DIR . '/src/test-support/tests-bootstrap.php" --log-junit "' . $WORK_DIR . '/target/reports/ParserAcceptanceTest.xml" "' . $WORK_DIR . '/generated/generated-tests"';
 
 echo "Executing: $command \n";
 $res = `$command`;

@@ -32,7 +32,7 @@ exit();
 ini_set('log_errors', 'on');
 ini_set('error_log', 'php_errors.txt');
 
-require_once('trunk/src/Sponde.class.php');
+require_once('trunk/src/Histone.class.php');
 
 /**
  * URIResolver
@@ -68,7 +68,7 @@ function myUriResolver($resourceURI, $baseURI, $args = null)
 	}
 }
 
-Sponde::setUriResolver('myUriResolver');
+Histone::setUriResolver('myUriResolver');
 
 try
 {
@@ -116,8 +116,8 @@ try
 {{/for}}
 ";
 
-	$template = new Sponde('C:/work/Sponde/php/templates/');
-//	$template = new Sponde('http://developer/php/templates/tpl1.tpl');
+	$template = new Histone('C:/work/Histone/php/templates/');
+//	$template = new Histone('http://developer/php/templates/tpl1.tpl');
 	$template->parseString($templateStr);
 	$context = array(
 		'var1' => 111,

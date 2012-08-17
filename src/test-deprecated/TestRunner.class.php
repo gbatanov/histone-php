@@ -48,9 +48,9 @@ class TestRunner {
 			$this->clearTest();
 
 			if ($case->resourceResolver['type'] == "default")
-				Sponde::setUriResolver(null);
+				Histone::setUriResolver(null);
 			else
-				Sponde::setUriResolver('testUriResolver');
+				Histone::setUriResolver('testUriResolver');
 			$input = (string) $case->input;
 			$baseUrl = (isset($case->global['name']) && (strval($case->global['name']) == 'baseURI')) ? strval($case->global['value']) : '.';
 
@@ -118,7 +118,7 @@ namespace Outer
 
 					fclose($f);
 					if (is_array($res[0]))
-						Sponde::registerExternalFunction('./external/external_func.php');
+						Histone::registerExternalFunction('./external/external_func.php');
 				}
 			}
 
@@ -143,11 +143,11 @@ namespace Outer
 //}
 			}
 			else
-				$context = new SpondeUndefined();
+				$context = new HistoneUndefined();
 
 			$index++;
 			try {
-				$result = new Sponde($baseUrl);
+				$result = new Histone($baseUrl);
 				$result->parseString($input);
 				if (is_array($expected)) {
 					$expected = json_encode($expected);
@@ -185,7 +185,7 @@ namespace Outer
 				} else {
 					$this->_error($index, $input, 'NO_EXCEPTION', json_encode($thrownException));
 				}
-			} catch (SpondeError $spondeError) {
+			} catch (HistoneError $spondeError) {
 				$this->_error($index, $input, 'NO_EXCEPTION', json_encode($spondeError->getMessage()));
 			} catch (Exception $e) {
 				$this->_error($index, $input, 'NO_EXCEPTION', json_encode($e->getMessage()));
@@ -205,7 +205,7 @@ namespace Outer
 
 		$funcReturnType = isset($func['return']) ? strval($func['return']) : '';
 
-		$nodeType = 'Sponde' . (isset($func['node']) ? ucfirst(strtolower(strval($func['node']))) : 'Global');
+		$nodeType = 'Histone' . (isset($func['node']) ? ucfirst(strtolower(strval($func['node']))) : 'Global');
 
 		if (in_array($func_name, array('include'))) {
 			$func_name .= '_external';
