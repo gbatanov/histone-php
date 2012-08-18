@@ -1,0 +1,4925 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suites>
+
+	<suite name="-, *, /, mod, unary">
+		<case>
+			<input>a {{undefined - undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined * undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined / undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined mod undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{-undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined - null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined * null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined / null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined mod null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined - 'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined * 'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined / 'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined mod 'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined - true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined - false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined * true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined * false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined / true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined / false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined mod true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined mod false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined - 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined * 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined / 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined mod 42}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined - [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined * [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined / [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined mod [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined - ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined * ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined / ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined mod ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null - undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null * undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null / undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null mod undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{-null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null - null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null * null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null / null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null mod null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null - 'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null * 'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null / 'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null mod 'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null - true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null * true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null / true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null mod true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null - false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null * false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null / false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null mod false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null - 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null * 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null / 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null mod 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null - [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null * [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null / [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null mod [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null - ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null * ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null / ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null mod ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' - undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' * undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' / undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' mod undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{-'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' - null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' * null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' / null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' mod null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' - 'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' * 'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' / 'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' mod 'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' - true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' * true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' / true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' mod true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' - false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' * false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' / false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' mod false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' - 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' * 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' / 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' mod 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' - [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' * [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' / [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' mod [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' - ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' * ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' / ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' mod ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' - undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' * undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' / undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' mod undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{-'10'}} b</input>
+			<expected>a -10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' - null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' * null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' / null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' mod null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' - '10'}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' * '10'}} b</input>
+			<expected>a 100 b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' / '10'}} b</input>
+			<expected>a 1 b</expected>
+		</case>
+
+		<case>
+			<input>a {{'11' mod '2'}} b</input>
+			<expected>a 1 b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' - true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' * true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' / true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' mod true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' - false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' * false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' / false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' mod false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' - 10}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' * 10}} b</input>
+			<expected>a 100 b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' / 10}} b</input>
+			<expected>a 1 b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' mod 10}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' - [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' * [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' / [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' mod [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' - ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' * ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' / ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' mod ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true - undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true * undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true / undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true mod undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false - undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false * undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false / undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false mod undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true - null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true * null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true / null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true mod null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false - null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false * null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false / null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false mod null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true - '10'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true * '10'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true / '10'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true mod '10'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false - '10'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false * '10'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false / '10'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false mod '10'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true - true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true * true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true / true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true mod true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false - true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false * true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false / true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false mod true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true - false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true * false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true / false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true mod false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false - false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false * false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false / false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false mod false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true - 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true * 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true / 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true mod 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false - 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false * 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false / 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false mod 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true - [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true * [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true / [1,2,3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true mod [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false - [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false * [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false / [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false mod [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true - ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true * ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true / ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true mod ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false - ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false * ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false / ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false mod ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 - undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 * undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 / undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 mod undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{-10}} b</input>
+			<expected>a -10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 - null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 * null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 / null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 mod null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 - 'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 * 'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 / 'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 mod 'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 - '3'}} b</input>
+			<expected>a 7 b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 * '3'}} b</input>
+			<expected>a 30 b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 / '2'}} b</input>
+			<expected>a 5 b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 mod '3'}} b</input>
+			<expected>a 1 b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 - true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 * true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 / true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 mod true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 - false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 * false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 / false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 mod false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 - 3}} b</input>
+			<expected>a 7 b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 * 4}} b</input>
+			<expected>a 40 b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 / 5}} b</input>
+			<expected>a 2 b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 mod 6}} b</input>
+			<expected>a 4 b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 - [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 * [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 / [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 mod [1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 - ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 * ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 / ['foo':  'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 mod ['foo': 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3] - undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3] * undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3] / undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3] mod undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{-[1, 2, 3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3] - null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3] * null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3] / null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3] mod null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3] - 'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3] * 'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3] / 'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3] mod 'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3] - '10'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3] * '10'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3] / '10'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3] mod '10'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3] - true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3] * true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3] / true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3] mod true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3] - false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] * false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] / false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] mod false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] - 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] * 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] / 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] mod 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] - ['foo', 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] * ['foo', 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] / ['foo', 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] mod ['foo', 'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] - ['foo':  'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] * ['foo':  'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] / ['foo':  'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] mod ['foo':  'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] - undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] * undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] / undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] mod undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{-['foo':  'bar']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] - null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] * null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] / null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] mod null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] - 'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] * 'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] / 'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] mod 'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] - '10'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] * '10'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] / '10'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] mod '10'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] - true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] * true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] / true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] mod true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] - false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] * false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] / false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] mod false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] - 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] * 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] / 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] mod 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] - [1,2,3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] * [1,2,3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] / [1,2,3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] mod [1,2,3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+			<case>
+			<input>a {{['foo':  'bar'] - [1: '2']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] * [1: '2']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] / [1: '2']}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] mod [1: '2']}} b</input>
+			<expected>a  b</expected>
+		</case>
+	</suite>
+
+	<suite name="is, isNot">
+		<case>
+			<input>a {{undefined is undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined isNot undefined}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined is null}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined isNot null}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined is 'string'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined isNot 'string'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined is true}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined is false}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined isNot true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined isNot false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined is 10}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined isNot 10}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined is [1,2,3]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined isNot [1,2,3]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined is ['foo':  'bar']}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined isNot ['foo':  'bar']}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{null is undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{null isNot undefined}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null is null}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{null isNot null}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null is 'string'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null isNot 'string'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{null is true}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null isNot true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{null is false}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{null isNot false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null is 10}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null isNot 10}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{null is [1,2,3]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null isNot [1,2,3]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{null is ['foo':  'bar']}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null isNot ['foo':  'bar']}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' is undefined}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' isNot undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' is null}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' isNot null}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' is 'string'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' isNot 'string'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' is 'bla'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' isNot 'bla'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' is true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' isNot true}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' is false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' isNot false}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' is true}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' isNot true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' is false}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' isNot false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' is 10}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' isNot 10}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' is 10}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' isNot 10}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' is [1,2,3]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' isNot [1,2,3]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' is ['foo':  'bar']}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' isNot ['foo':  'bar']}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true is undefined}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false is undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true isNot undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false isNot undefined}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true is null}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false is null}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true isNot null}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false isNot null}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true is 'string'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false is 'string'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true is ''}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false is ''}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true isNot 'string'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false isNot 'string'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true isNot ''}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false isNot ''}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true is true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true is false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false is true}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false is false}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true isNot true}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true isNot false}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false isNot true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false isNot false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true is 1}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false is 1}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true is 0}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false is 0}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true is -1}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false is -1}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true isNot 1}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false isNot 1}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true isNot 0}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false isNot 0}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true isNot -1}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false isNot -1}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true is [1,2,3]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false is [1,2,3]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true isNot [1,2,3]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false isNot [1,2,3]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+			<case>
+			<input>a {{true is ['foo':  'bar']}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false is ['foo':  'bar']}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true isNot ['foo':  'bar']}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false isNot ['foo':  'bar']}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 is undefined}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 isNot undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 is null}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 isNot undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 is undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 isNot undefined}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 is null}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 isNot undefined}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-1 is undefined}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-1 isNot undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{-1 is null}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-1 isNot undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 is 'string'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 isNot 'string'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 is '10'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 isNot '10'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{1 is true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{1 is false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{1 isNot true}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{1 isNot false}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 is true}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 is false}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 isNot true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 isNot false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 is 10}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 is 30}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 isNot 10}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 isNot 30}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 is [1,2,3]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 isNot [1,2,3]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 is ['foo':  'bar']}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 isNot ['foo':  'bar']}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] is undefined}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] isNot undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] is null}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] isNot null}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] is 'string'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] isNot 'string'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] is true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] isNot true}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] is false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] isNot false}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] is 10}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] isNot 10}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] is [3, 4, 5]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] isNot [3, 4, 5]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] is ['foo':  'bar']}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] isNot ['foo':  'bar']}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] is undefined}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] isNot undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] is null}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] isNot null}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] is 'string'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] isNot 'string'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] is true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] isNot true}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] is false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] isNot false}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] is 10}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] isNot 10}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] is [1,2,3]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] isNot [1,2,3]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] is ['x': 'y']}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{['foo':  'bar'] isNot ['x': 'y']}} b</input>
+			<expected>a false b</expected>
+		</case>
+	</suite>
+
+	<suite name="relational operators">
+		<case>
+			<input>a {{'string' &lt; 10}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &lt; undefined}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &lt;= undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &gt; undefined}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &gt;= undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &lt; null}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &lt;= null}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &gt; null}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &gt;= null}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &lt; 'string'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &lt;= 'string'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &gt; 'string'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &gt;= 'string'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &lt; true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &lt;= true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &gt; true}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &gt;= true}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &lt; false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &lt;= false}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &gt; false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &gt;= false}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &lt; 10}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &lt;= 10}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &gt; 10}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &gt;= 10}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &lt; [1,2,3]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &lt;= [1,2,3]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &gt; [1,2,3]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &gt;= [1,2,3]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &lt; ['foo':  'bar']}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &lt;= ['foo':  'bar']}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &gt; ['foo':  'bar']}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined &gt;= ['foo':  'bar']}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &lt; undefined}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &lt;= undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &gt; undefined}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &gt;= undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &lt; null}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &lt;= null}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &gt; null}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &gt;= null}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &lt; 'string'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &lt;= 'string'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &gt; 'string'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &gt;= 'string'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &lt; true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &lt;= true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &gt; true}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &gt;= true}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &lt; false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &lt;= false}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &gt; false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &gt;= false}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &lt; 10}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &lt;= 10}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &gt; 10}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &gt;= 10}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &lt; [1,2,3]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &lt;= [1,2,3]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &gt; [1,2,3]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &gt;= [1,2,3]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &lt; ['foo':  'bar']}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &lt;= ['foo':  'bar']}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &gt; ['foo':  'bar']}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null &gt;= ['foo':  'bar']}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' &lt; undefined}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' &lt;= undefined}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' &gt; undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' &gt;= undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' &lt; null}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' &lt;= null}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' &gt; null}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' &gt;= null}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'a' &lt; 'bbbbb'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'aaaaa' &lt; 'b'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'a' &lt;= 'b'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'aaaaaa' &lt;= 'b'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'aaaaaa' &gt; 'a'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'aa' &gt; 'bbbbbbb'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'aa' &gt;= 'bb'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'aa' &gt;= 'baaaab'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' &lt; true}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' &lt;= true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' &gt; true}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' &gt;= true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' &lt; false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' &lt;= false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' &gt; false}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' &gt;= false}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' &lt; 5}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'3' &lt; 5}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'5' &lt;= 5}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'12' &lt;= 5}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' &gt; 5}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'3' &gt; 5}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'5' &gt;= 5}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'3' &gt;= 5}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' &lt; [1,2,3]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'5' &lt;= [1,2,3]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' &gt; [1,2,3]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'5' &gt;= [1,2,3]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' &lt; ['foo':  'bar']}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'5' &lt;= ['foo':  'bar']}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'10' &gt; ['foo':  'bar']}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'5' &gt;= ['foo':  'bar']}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &lt; undefined}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &lt; undefined}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &lt;= undefined}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &lt;= undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &gt; undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &gt; undefined}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &gt;= undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &gt;= undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &lt; null}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &lt; null}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &lt;= null}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &lt;= null}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &gt; null}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &gt; null}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &gt;= null}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &gt;= null}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &lt; 'string'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &lt; 'string'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &lt;= 'string'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &lt;= 'string'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &gt; 'string'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &gt; 'string'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &gt;= 'string'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &gt;= 'string'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &lt; true}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &lt; true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &lt;= true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &lt;= true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &gt; true}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &gt; true}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &gt;= true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &gt;= true}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &lt; false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &lt; false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &lt;= false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &lt;= false}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &gt; false}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &gt; false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &gt;= false}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &gt;= false}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &lt; 0}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &lt; 0}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &lt;= 0}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &lt;= 0}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &gt; 0}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &gt; 0}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &gt;= 0}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &gt;= 0}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &lt; 1}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &lt; 1}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &lt;= 1}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &lt;= 1}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &gt; 1}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &gt; 1}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &gt;= 1}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &gt;= 1}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &lt; [1,2,3]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &lt; [1,2,3]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &lt;= [1,2,3]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &lt;= [1,2,3]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &gt; [1,2,3]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &gt; [1,2,3]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &gt;= [1,2,3]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &gt;= [1,2,3]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &lt; ['foo':  'bar']}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &lt; ['foo':  'bar']}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &lt;= ['foo':  'bar']}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &lt;= ['foo':  'bar']}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &gt; ['foo':  'bar']}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &gt; ['foo':  'bar']}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true &gt;= ['foo':  'bar']}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false &gt;= ['foo':  'bar']}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &lt; undefined}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &lt;= undefined}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &gt; undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &gt;= undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &lt; null}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &lt;= null}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &gt; null}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &gt;= null}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &lt; 'string'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &lt;= 'string'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &gt; 'string'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &gt;= 'string'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &lt; '10'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &lt; '40'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &lt;= '4'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &lt;= '10'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &gt; '10'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &gt; '3'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &gt;= '30'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &gt;= '3'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 &lt; true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 &lt; false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &lt;= true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{1 &lt;= true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{1 &gt; true}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{1 &gt; false}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 &gt;= true}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{1 &gt;= true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &lt; 3}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &lt; 30}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &lt;= 3}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &lt;= 10}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &gt; 30}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &gt; 3}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &gt;= 30}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &gt;= 10}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &lt; [1,2,3]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &lt;= [1,2,3]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &gt; [1,2,3]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &gt;= [1,2,3]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &lt; [foo: 'bar']}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &lt;= [foo: 'bar']}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &gt; [foo: 'bar']}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 &gt;= [foo: 'bar']}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &lt; undefined}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &lt;= undefined}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &gt; undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &gt;= undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &lt; null}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &lt;= null}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &gt; null}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &gt;= null}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &lt; 'string'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &lt;= 'string'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &gt; 'string'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &gt;= 'string'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &lt; true}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &lt;= true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &gt; true}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &gt;= true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &lt; false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &lt;= false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &gt; false}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &gt;= false}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &lt; 10}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &lt;= 10}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &gt; 10}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &gt;= 10}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &lt; [1]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &lt; [1, 2, 3, 4, 5]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &lt;= [1, 2]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &lt;= [1,2,3]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &gt; [1, 2, 3, 4, 5]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &gt; [1]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &gt;= [1, 2, 3, 4]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &gt;= [1,2,3]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &lt; [1: 2]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &lt;= [1: 2]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &gt; [1: 2]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &gt;= [1: 2]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &lt; [1: 'x']}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &lt;= [1: 'x']}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &gt; [1: 'x']}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] &gt;= [1: 'x']}} b</input>
+			<expected>a true b</expected>
+		</case>
+	</suite>
+
+	<suite name="logical operators">
+		<case>
+			<input>a {{undefined or undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined or null}} b</input>
+			<expected>a null b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined or 'string'}} b</input>
+			<expected>a string b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined or ''}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined or true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined or false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined or 0}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined or 10}} b</input>
+			<expected>a 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined or [1,2,3]}} b</input>
+			<expected>a 1 2 3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined or [key: 42]}} b</input>
+			<expected>a 42 b</expected>
+		</case>
+
+		<case>
+			<input>a {{null or undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null or null}} b</input>
+			<expected>a null b</expected>
+		</case>
+
+		<case>
+			<input>a {{null or 'string'}} b</input>
+			<expected>a string b</expected>
+		</case>
+
+		<case>
+			<input>a {{null or ''}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null or true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{null or false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null or 0}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{null or 10}} b</input>
+			<expected>a 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{null or [1,2,3]}} b</input>
+			<expected>a 1 2 3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{null or [key: 42]}} b</input>
+			<expected>a 42 b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' or undefined}} b</input>
+			<expected>a string b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' or null}} b</input>
+			<expected>a string b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' or 'string'}} b</input>
+			<expected>a string b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' or 'strdfdsfing'}} b</input>
+			<expected>a string b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' or ''}} b</input>
+			<expected>a string b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' or true}} b</input>
+			<expected>a string b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' or false}} b</input>
+			<expected>a string b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' or 0}} b</input>
+			<expected>a string b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' or 10}} b</input>
+			<expected>a string b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' or [1,2,3]}} b</input>
+			<expected>a string b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' or [key: 42]}} b</input>
+			<expected>a string b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' or undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' or null}} b</input>
+			<expected>a null b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' or 'string'}} b</input>
+			<expected>a string b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' or 'strdfdsfing'}} b</input>
+			<expected>a strdfdsfing b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' or ''}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' or true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' or false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' or 0}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' or 10}} b</input>
+			<expected>a 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' or [1,2,3]}} b</input>
+			<expected>a 1 2 3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' or [key: 42]}} b</input>
+			<expected>a 42 b</expected>
+		</case>
+
+		<case>
+			<input>a {{true or undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true or null}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true or 'string'}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true or ''}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true or true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true or false}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true or 0}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true or 10}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true or [1,2,3]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true or [key: 42]}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false or undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false or null}} b</input>
+			<expected>a null b</expected>
+		</case>
+
+		<case>
+			<input>a {{false or 'string'}} b</input>
+			<expected>a string b</expected>
+		</case>
+
+		<case>
+			<input>a {{false or ''}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{false or true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false or false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false or 0}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{false or 10}} b</input>
+			<expected>a 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{false or [1,2,3]}} b</input>
+			<expected>a 1 2 3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{false or [key: 42]}} b</input>
+			<expected>a 42 b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 or undefined}} b</input>
+			<expected>a 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 or null}} b</input>
+			<expected>a 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 or 'string'}} b</input>
+			<expected>a 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 or ''}} b</input>
+			<expected>a 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 or true}} b</input>
+			<expected>a 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 or false}} b</input>
+			<expected>a 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 or 0}} b</input>
+			<expected>a 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 or 10}} b</input>
+			<expected>a 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 or 20}} b</input>
+			<expected>a 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 or [1,2,3]}} b</input>
+			<expected>a 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 or [key: 42]}} b</input>
+			<expected>a 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 or undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 or null}} b</input>
+			<expected>a null b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 or 'string'}} b</input>
+			<expected>a string b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 or ''}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 or true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 or false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 or 0}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 or 10}} b</input>
+			<expected>a 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 or [1,2,3]}} b</input>
+			<expected>a 1 2 3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 or [key: 42]}} b</input>
+			<expected>a 42 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 or undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 or 'string'}} b</input>
+			<expected>a string b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 or ''}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 or true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 or false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-10 or -10}} b</input>
+			<expected>a -10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 or [1,2,3]}} b</input>
+			<expected>a 1 2 3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 or [key: 42]}} b</input>
+			<expected>a 42 b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] or undefined}} b</input>
+			<expected>a 1 2 3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] or null}} b</input>
+			<expected>a 1 2 3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] or 'string'}} b</input>
+			<expected>a 1 2 3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] or ''}} b</input>
+			<expected>a 1 2 3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] or true}} b</input>
+			<expected>a 1 2 3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] or false}} b</input>
+			<expected>a 1 2 3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] or 0}} b</input>
+			<expected>a 1 2 3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] or 10}} b</input>
+			<expected>a 1 2 3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] or [1,2,3]}} b</input>
+			<expected>a 1 2 3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] or [key: 42]}} b</input>
+			<expected>a 1 2 3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{['my key': 'my value'] or undefined}} b</input>
+			<expected>a my value b</expected>
+		</case>
+
+		<case>
+			<input>a {{['my key': 'my value'] or null}} b</input>
+			<expected>a my value b</expected>
+		</case>
+
+		<case>
+			<input>a {{['my key': 'my value'] or 'string'}} b</input>
+			<expected>a my value b</expected>
+		</case>
+
+		<case>
+			<input>a {{['my key': 'my value'] or ''}} b</input>
+			<expected>a my value b</expected>
+		</case>
+
+		<case>
+			<input>a {{['my key': 'my value'] or true}} b</input>
+			<expected>a my value b</expected>
+		</case>
+
+		<case>
+			<input>a {{['my key': 'my value'] or false}} b</input>
+			<expected>a my value b</expected>
+		</case>
+
+		<case>
+			<input>a {{['my key': 'my value'] or 0}} b</input>
+			<expected>a my value b</expected>
+		</case>
+
+		<case>
+			<input>a {{['my key': 'my value'] or 10}} b</input>
+			<expected>a my value b</expected>
+		</case>
+
+		<case>
+			<input>a {{['my key': 'my value'] or [1,2,3]}} b</input>
+			<expected>a my value b</expected>
+		</case>
+
+		<case>
+			<input>a {{['my key': 'my value'] or [key: 42]}} b</input>
+			<expected>a my value b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined and undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined and null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined and 'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined and ''}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined and true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined and false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined and 0}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined and 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined and [1,2,3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined and [key: 42]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null and undefined}} b</input>
+			<expected>a null b</expected>
+		</case>
+
+		<case>
+			<input>a {{null and null}} b</input>
+			<expected>a null b</expected>
+		</case>
+
+		<case>
+			<input>a {{null and 'string'}} b</input>
+			<expected>a null b</expected>
+		</case>
+
+		<case>
+			<input>a {{null and ''}} b</input>
+			<expected>a null b</expected>
+		</case>
+
+		<case>
+			<input>a {{null and true}} b</input>
+			<expected>a null b</expected>
+		</case>
+
+		<case>
+			<input>a {{null and false}} b</input>
+			<expected>a null b</expected>
+		</case>
+
+		<case>
+			<input>a {{null and 0}} b</input>
+			<expected>a null b</expected>
+		</case>
+
+		<case>
+			<input>a {{null and 10}} b</input>
+			<expected>a null b</expected>
+		</case>
+
+		<case>
+			<input>a {{null and [1,2,3]}} b</input>
+			<expected>a null b</expected>
+		</case>
+
+		<case>
+			<input>a {{null and [key: 42]}} b</input>
+			<expected>a null b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' and undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' and null}} b</input>
+			<expected>a null b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' and 'string'}} b</input>
+			<expected>a string b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' and 'strdfdsfing'}} b</input>
+			<expected>a strdfdsfing b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' and ''}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' and true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' and false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' and 0}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' and 10}} b</input>
+			<expected>a 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' and [1,2,3]}} b</input>
+			<expected>a 1 2 3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' and [key: 42]}} b</input>
+			<expected>a 42 b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' and undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' and null}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' and 'string'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' and 'strdfdsfing'}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' and ''}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' and true}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' and false}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' and 0}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' and 10}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' and [1,2,3]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' and [key: 42]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true and undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true and null}} b</input>
+			<expected>a null b</expected>
+		</case>
+
+		<case>
+			<input>a {{true and 'string'}} b</input>
+			<expected>a string b</expected>
+		</case>
+
+		<case>
+			<input>a {{true and ''}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{true and true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true and false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true and 0}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{true and 10}} b</input>
+			<expected>a 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{true and [1,2,3]}} b</input>
+			<expected>a 1 2 3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{true and [key: 42]}} b</input>
+			<expected>a 42 b</expected>
+		</case>
+
+		<case>
+			<input>a {{false and undefined}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false and null}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false and 'string'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false and ''}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false and true}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false and false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false and 0}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false and 10}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false and [1,2,3]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false and [key: 42]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 and undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 and null}} b</input>
+			<expected>a null b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 and 'string'}} b</input>
+			<expected>a string b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 and ''}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 and true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 and false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 and 0}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 and 10}} b</input>
+			<expected>a 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 and 20}} b</input>
+			<expected>a 20 b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 and [1,2,3]}} b</input>
+			<expected>a 1 2 3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 and [key: 42]}} b</input>
+			<expected>a 42 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 and undefined}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 and null}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 and 'string'}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 and ''}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 and true}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 and false}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 and 0}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 and 10}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 and [1,2,3]}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 and [key: 42]}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 and undefined}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 and null}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 and 'string'}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 and ''}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 and true}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 and false}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{-10 and -10}} b</input>
+			<expected>a -10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 and [1,2,3]}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 and [key: 42]}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] and undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] and null}} b</input>
+			<expected>a null b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] and 'string'}} b</input>
+			<expected>a string b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] and ''}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] and true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] and false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] and 0}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] and 10}} b</input>
+			<expected>a 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] and [1,2,3]}} b</input>
+			<expected>a 1 2 3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] and [key: 42]}} b</input>
+			<expected>a 42 b</expected>
+		</case>
+
+		<case>
+			<input>a {{['my key': 'my value'] and undefined}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['my key': 'my value'] and null}} b</input>
+			<expected>a null b</expected>
+		</case>
+
+		<case>
+			<input>a {{['my key': 'my value'] and 'string'}} b</input>
+			<expected>a string b</expected>
+		</case>
+
+		<case>
+			<input>a {{['my key': 'my value'] and ''}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{['my key': 'my value'] and true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{['my key': 'my value'] and false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{['my key': 'my value'] and 0}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{['my key': 'my value'] and 10}} b</input>
+			<expected>a 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{['my key': 'my value'] and [1,2,3]}} b</input>
+			<expected>a 1 2 3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{['my key': 'my value'] and [key: 42]}} b</input>
+			<expected>a 42 b</expected>
+		</case>
+
+		<case>
+			<input>a {{not undefined}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{not null}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{not 'string'}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{not ''}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{not true}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{not false}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{not 0}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{not 1}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{not 10}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{not [1,2,3]}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{not [key: 42]}} b</input>
+			<expected>a false b</expected>
+		</case>
+	</suite>
+
+	<suite name="ternary operator">
+		<case>
+			<input>a {{undefined ? 'yes' : 'no'}} b</input>
+			<expected>a no b</expected>
+		</case>
+
+		<case>
+			<input>a {{null ? 'yes' : 'no'}} b</input>
+			<expected>a no b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string' ? 'yes' : 'no'}} b</input>
+			<expected>a yes b</expected>
+		</case>
+
+		<case>
+			<input>a {{'' ? 'yes' : 'no'}} b</input>
+			<expected>a no b</expected>
+		</case>
+
+		<case>
+			<input>a {{true ? 'yes' : 'no'}} b</input>
+			<expected>a yes b</expected>
+		</case>
+
+		<case>
+			<input>a {{false ? 'yes' : 'no'}} b</input>
+			<expected>a no b</expected>
+		</case>
+
+		<case>
+			<input>a {{0 ? 'yes' : 'no'}} b</input>
+			<expected>a no b</expected>
+		</case>
+
+		<case>
+			<input>a {{1 ? 'yes' : 'no'}} b</input>
+			<expected>a yes b</expected>
+		</case>
+
+		<case>
+			<input>a {{10 ? 'yes' : 'no'}} b</input>
+			<expected>a yes b</expected>
+		</case>
+
+		<case>
+			<input>a {{-10 ? 'yes' : 'no'}} b</input>
+			<expected>a yes b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1,2,3] ? 'yes' : 'no'}} b</input>
+			<expected>a yes b</expected>
+		</case>
+
+		<case>
+			<input>a {{[] ? 'yes' : 'no'}} b</input>
+			<expected>a yes b</expected>
+		</case>
+
+		<case>
+			<input>a {{[key: 42] ? 'yes' : 'no'}} b</input>
+			<expected>a yes b</expected>
+		</case>
+
+		<case>
+			<input>a {{[] ? 'yes' : 'no'}} b</input>
+			<expected>a yes b</expected>
+		</case>
+
+        <!-- Short form for ternary -->
+        <case>
+            <input>a {{true ? 'yes'}} b</input>
+            <expected>a yes b</expected>
+        </case>
+
+        <case>
+            <input>a {{false ? 'yes'}} b</input>
+            <expected>a  b</expected>
+        </case>
+
+	</suite>
+</suites>

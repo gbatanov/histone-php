@@ -47,18 +47,16 @@ class EvaluatorAcceptanceTest extends PHPUnit_Framework_TestCase {
 	 * @covers Histone::process
 	 * @dataProvider evalProvider
 	 */
-	public function testProcess($input, $expected = null, $exception = null, $context = null) {
+	public function testProcess($input, $expected = null, $exception = null, $context = null, $global = null, $function = null) {
 		$baseUrl = '.';
-
-//		$input = htmlspecialchars_decode($input);
-
-		if ($exception) {
-//			$exceptionS = $exception;
-	//		$exception = array();
-//			$exception['line'] = preg_replace('/(.*line.*>)(.*)(<\/line.*)$/Uis', "$2", $exceptionS);
-//			$exception['expected'] = preg_replace('/(.*expected.*>)(.*)(<\/expected.*)$/Uis', "$2", $exceptionS);
-//			$exception['found'] = preg_replace('/(.*found.*>)(.*)(<\/found.*)$/Uis', "$2", $exceptionS);
+		if (is_array($global)) {
+			if (isset($global['baseURI']))
+				$baseUrl = $global['baseURI'];
 		}
+		if ($function) {
+			require_once('generated/generated-tests/external/external_func.php');
+		}
+
 		if ($context)
 			$context = json_decode($context, true);
 
@@ -66,20 +64,8 @@ class EvaluatorAcceptanceTest extends PHPUnit_Framework_TestCase {
 			$cHistone = new Histone($baseUrl);
 			$cHistone->parseString($input);
 			$result = $cHistone->process($context);
-
-			if ($expected === $result) {
-				return $this->assertEquals($expected, $result);
-			} else {
-				if ($exception === null) {
-					return $this->assertEquals($expected, $result);
-				} else {
-					return $this->assertEquals(json_encode($exception), 'NO_EXCEPTION'); // TODO str'ing
-				}
-			}
+			return $this->assertEquals($expected, $result);
 		} catch (ParseError $thrownException) {
-			/* delete debugger messages */
-			if (isset($thrownException->xdebug_message))
-				unset($thrownException->xdebug_message);
 			if ($exception !== null) {
 				$resException = json_encode(array(
 					'line' => (string) $thrownException->line,
@@ -90,10 +76,11 @@ class EvaluatorAcceptanceTest extends PHPUnit_Framework_TestCase {
 			} else {
 				return $this->assertEquals('NO_EXCEPTION', json_encode(array((string) $thrownException->line, (string) $thrownException->expected, (string) $thrownException->found,)));
 			}
-		} catch (HistoneError $spondeError) {
-			return $this->assertEquals('NO_EXCEPTION', json_encode($spondeError->getMessage()));
+		} catch (HistoneError $histoneError) {
+			return $this->assertEquals('NO_EXCEPTION', $histoneError->getMessage());
 		} catch (Exception $e) {
-			return $this->assertEquals('NO_EXCEPTION', json_encode($e->getMessage()));
+			// формируется при невыполнении assert
+			return $this->assertEquals($expected, $result);
 		}
 	}
 
@@ -104,7 +91,7 @@ class EvaluatorAcceptanceTest extends PHPUnit_Framework_TestCase {
 	 * @return array
 	 */
 	public function evalProvider() {
-		return array(/* moduleEvaluator_start */array('zamena'), /* moduleEvaluator_end */);
+		return array(/* moduleEvaluator_start */array('CHANGE'), /* moduleEvaluator_end */);
 	}
 
 }

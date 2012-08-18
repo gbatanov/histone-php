@@ -16,6 +16,7 @@
  */
 
 /**
+ * Запускать, находясь в директории histone-php.
  * Запуск из командной строки Windows 
  * >unittest.php 
  * или (если расширение не зарегистрировано)
@@ -34,11 +35,7 @@ if (!$PHP_BIN_DIR)
 if (!$PHP_PEAR_BIN_DIR)
 	$PHP_PEAR_BIN_DIR = $PHP_BIN_DIR;
 
-$path_parts = pathinfo($argv[0]);
-//$WORK_DIR = str_replace('\\', '/', $path_parts['dirname']) . '/';
-
 $WORK_DIR = implode('/', explode('/', str_replace('\\', '/', __DIR__), -2));
-
 
 $command = 'php ' . '"' . $PHP_PEAR_BIN_DIR . '/phpunit"   --bootstrap "' . $WORK_DIR . '/src/test-support/tests-bootstrap.php" --log-junit "' . $WORK_DIR . '/target/reports/ParserAcceptanceTest.xml" "' . $WORK_DIR . '/generated/generated-tests"';
 

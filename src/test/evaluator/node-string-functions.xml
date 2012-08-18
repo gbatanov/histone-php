@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suites>
+
+	<suite name="strings">
+<!--
+		<case>
+			<input>a {{'string'[0]}} b</input>
+			<expected>a s b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string'[1]}} b</input>
+			<expected>a t b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string'[10]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string'[-1]}} b</input>
+			<expected>a g b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string'[-5]}} b</input>
+			<expected>a t b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string'[-15]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'hello world'}} b</input>
+			<expected>a hello world b</expected>
+		</case>
+
+		<case>
+			<input>a {{"hello world"}} b</input>
+			<expected>a hello world b</expected>
+		</case>
+
+		<case>
+			<input>a {{'hello\nworld'}} b</input>
+			<expected>a hello&#xA;world b</expected>
+		</case>
+
+		<case>
+			<input>a {{"string"[3]}} b</input>
+			<expected>a i b</expected>
+		</case>
+
+		<case>
+			<input>a {{"string"[0]}} b</input>
+			<expected>a s b</expected>
+		</case>
+
+		<case>
+			<input>a {{"string"[-150]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{"string"[250]}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{"string"['3']}} b</input>
+			<expected>a i b</expected>
+		</case>
+
+		<case>
+			<input>a {{"string"['0']}} b</input>
+			<expected>a s b</expected>
+		</case>
+-->
+        <case>
+            <input>a {{"string".length.isUndefined()}} b</input>
+            <expected>a true b</expected>
+        </case>
+
+        <case>
+			<input>a {{"string".size()}} b</input>
+			<expected>a 6 b</expected>
+		</case>
+
+		<case>
+			<input>a {{"STRING".toLowerCase()}} b</input>
+			<expected>a string b</expected>
+		</case>
+
+		<case>
+			<input>a {{"string".toUpperCase()}} b</input>
+			<expected>a STRING b</expected>
+		</case>
+	</suite>
+
+	<suite name="String.split">
+		<case>
+			<input>a {{"string".split('')}} b</input>
+			<expected>a s t r i n g b</expected>
+		</case>
+
+		<case>
+			<input>a {{"string".split('').isMap()}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{"string".split()}} b</input>
+			<expected>a s t r i n g b</expected>
+		</case>
+
+		<case>
+			<input>a {{"string".split('sdafdsafdsaf')}} b</input>
+			<expected>a string b</expected>
+		</case>
+
+		<case>
+			<input>a {{"s.t.r.i.n.g".split('.')}} b</input>
+			<expected>a s t r i n g b</expected>
+		</case>
+	</suite>
+
+	<suite name="String.charCodeAt">
+		<case>
+			<input>a {{"string".charCodeAt(3)}} b</input>
+			<expected>a 105 b</expected>
+		</case>
+
+		<case>
+			<input>a {{"string".charCodeAt(0)}} b</input>
+			<expected>a 115 b</expected>
+		</case>
+
+		<case>
+			<input>a {{"string".charCodeAt(-150)}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{"string".charCodeAt(5)}} b</input>
+			<expected>a 103 b</expected>
+		</case>
+
+		<case>
+			<input>a {{"string".charCodeAt(6)}} b</input>
+			<expected>a  b</expected>
+		</case>
+	</suite>
+
+	<suite name="String.strip">
+		<case>
+			<input>a {{" test".strip()}} b</input>
+			<expected>a test b</expected>
+		</case>
+
+		<case>
+			<input>a {{"test ".strip()}} b</input>
+			<expected>a test b</expected>
+		</case>
+
+		<case>
+			<input>a {{" test ".strip()}} b</input>
+			<expected>a test b</expected>
+		</case>
+
+		<case>
+			<input>a {{"\ntest\n".strip("\n")}} b</input>
+			<expected>a test b</expected>
+		</case>
+
+		<case>
+			<input>a {{"\n\r\ftest\n".strip("\n\r\f")}} b</input>
+			<expected>a test b</expected>
+		</case>
+
+        <case>
+            <input>a {{"\n\r\ttest\t\r\n".strip()}} b</input>
+            <expected>a test b</expected>
+        </case>
+
+		<case>
+			<input>a {{"\ntest\r\f\n".strip("\n\r\f")}} b</input>
+			<expected>a test b</expected>
+		</case>
+
+		<case>
+			<input>a {{"123t5es5t098".strip("1234567890")}} b</input>
+			<expected>a t5es5t b</expected>
+		</case>
+
+		<case>
+			<input>a {{" 121test212 ".strip('1','2')}} b</input>
+			<expected>a  121test212  b</expected>
+		</case>
+
+		<case>
+			<input>a {{"121test3212".strip('12',3)}} b</input>
+			<expected>a test3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{"121test212".strip('1','2')}} b</input>
+			<expected>a test b</expected>
+		</case>
+
+		<case>
+			<input>a {{"121test212".strip(1,'2')}} b</input>
+			<expected>a 121test21 b</expected>
+		</case>
+
+		<case>
+			<input>a {{"121test212".strip(['1','2'])}} b</input>
+			<expected>a 121test212 b</expected>
+		</case>
+
+		<case>
+			<input>a {{"121test212".strip([1,'2'])}} b</input>
+			<expected>a 121test212 b</expected>
+		</case>
+	</suite>
+
+	<suite name="String.slice">
+		<case>
+			<input>a {{"test".slice(0).isString()}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{"test".slice(100).isString()}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{"test".slice(-1).isString()}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{"test".slice(-100).isString()}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{"0123456".slice(0)}} b</input>
+			<expected>a 0123456 b</expected>
+		</case>
+
+		<case>
+			<input>a {{"0123456".slice(2)}} b</input>
+			<expected>a 23456 b</expected>
+		</case>
+
+		<case>
+			<input>a {{"0123456".slice(100)}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{"0123456".slice(-2)}} b</input>
+			<expected>a 56 b</expected>
+		</case>
+
+		<case>
+			<input>a {{"0123456".slice(-100)}} b</input>
+			<expected>a 0123456 b</expected>
+		</case>
+
+		<case>
+			<input>a {{"0123456".slice(0,2)}} b</input>
+			<expected>a 01 b</expected>
+		</case>
+
+		<case>
+			<input>a {{"0123456".slice(1,2)}} b</input>
+			<expected>a 12 b</expected>
+		</case>
+
+		<case>
+			<input>a {{"0123456".slice(0,100)}} b</input>
+			<expected>a 0123456 b</expected>
+		</case>
+
+		<case>
+			<input>a {{"0123456".slice(1,100)}} b</input>
+			<expected>a 123456 b</expected>
+		</case>
+
+		<case>
+			<input>a {{"0123456".slice(0,-2)}} b</input>
+			<expected>a 01234 b</expected>
+		</case>
+
+		<case>
+			<input>a {{"0123456".slice(1,-2)}} b</input>
+			<expected>a 1234 b</expected>
+		</case>
+
+		<case>
+			<input>a {{"0123456".slice(1,-100)}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{"0123456".slice(-4,3)}} b</input>
+			<expected>a 345 b</expected>
+		</case>
+
+		<case>
+			<input>a {{"0123456".slice(-5,-2)}} b</input>
+			<expected>a 234 b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string'.slice(1220,0)}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string'.slice(1220,0).isString()}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string'.slice(0,-10000)}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string'.slice(0,-10000).isString()}} b</input>
+			<expected>a true b</expected>
+		</case>
+	</suite>
+
+    <suite name="String.test">
+		
+        <case>
+            <input>a {{"test".test('[a-z]')}} b</input>
+            <expected>a true b</expected>
+        </case>
+		
+       <case>
+            <input>a {{"test".test('22')}} b</input>
+            <expected>a false b</expected>
+        </case>
+		
+    </suite>
+
+</suites>

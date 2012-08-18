@@ -28,8 +28,8 @@ $modes = array('parser', 'evaluator');
 foreach ($modes as $mode) {
 	$index = 0;
 	$ok = false;
-	$filename = $WORK_DIR .  '/src/test-support/' . $mode.'_set_1.json';
-	$dir =$WORK_DIR .$TEST_CASES_XML_FOLDER.'/'.$mode;
+	$filename = $WORK_DIR . '/src/test-support/' . $mode . '_set_1.json';
+	$dir = $WORK_DIR . $TEST_CASES_XML_FOLDER . '/' . $mode;
 	$f = fopen($filename, 'rb');
 
 	if ($f) {
@@ -38,10 +38,14 @@ foreach ($modes as $mode) {
 			try {
 				$estr = "";
 				foreach ($fileList as $fileTest) {
-					$xml = simplexml_load_file($dir . '/' . $fileTest);
+
+					$testFileContent = file_get_contents($dir . '/' . $fileTest);
+					$testFileContent = str_replace(':baseURI:', $dir . '/', $testFileContent);
+					$xml = simplexml_load_string($testFileContent);
+
 					foreach ($xml->suite as $suite) {
 						foreach ($suite->case as $case) {
-							$expected = $exception = $context = null;
+							$function = $global = $expected = $exception = $context = null;
 							$input = strval($case->input);
 							if (isset($case->expected)) {
 								$expected = strval($case->expected);
@@ -53,6 +57,22 @@ foreach ($modes as $mode) {
 							}
 							if (isset($case->context))
 								$context = strval($case->context);
+							if (isset($case->global)) {
+								$global = array();
+								$baseUrl = (isset($case->global['name']) && (strval($case->global['name']) == 'baseURI')) ? strval($case->global['value']) : '.';
+								$global['baseURI'] = $baseUrl;
+							}
+							if (isset($case->function)) {
+								$function = array();
+								$function['name'] = strval($case->function['name']);
+								$function['return'] = strval($case->function['return']);
+								$function['body'] = strval($case->function);
+								if (isset($case->function['node']))
+									$function['node'] = strval($case->function['node']);
+								else
+									$function['node'] = 'HistoneGlobal';
+							}
+
 							$estr.= 'array(';
 							$estr.='urldecode(\'' . urlencode($input) . '\'),';
 							if ($expected) {
@@ -61,23 +81,37 @@ foreach ($modes as $mode) {
 								$estr.='\'\',';
 							}
 							if ($exception) {
-								$estr.='array(\'line\'=>urldecode(\'' . urlencode($exception['line']) . '\'),';
+								$estr.='array(\'line\'=>\'' . $exception['line'] . '\',';
 								$estr.='\'expected\'=>urldecode(\'' . urlencode($exception['expected']) . '\'),';
 								$estr.='\'found\'=>urldecode(\'' . urlencode($exception['found']) . '\')),';
 							} else {
 								$estr.='\'\',';
 							}
 							if ($mode == 'evaluator') {
-								if ($context) {
+								if ($context)
 									$estr.='urldecode(\'' . urlencode($context) . '\'),';
-								} else {
+								else
 									$estr.='\'\',';
-								}
+
+								if ($global)
+									$estr.='array(\'baseURI\'=>urldecode(\'' . urlencode($global['baseURI']) . '\')),';
+
+								else
+									$estr.='\'\',';
+								if ($function) {
+									$estr.='array(\'name\'=>\'' . $function['name'] . '\',';
+									$estr.='\'return\'=>\'' . $function['return'] . '\',';
+									$estr.='\'node\'=>\'' . $function['node'] . '\',';
+									$estr.='\'body\'=>urldecode(\'' . urlencode($function['body']) . '\')),';
+								} else
+									$estr.='\'\',';
 							}
 							$estr.='),' . '/*' . $index++ . ' - input: ' . $input .
 								($expected ? ' | expected: ' . $expected : '') .
 								($exception ? ' | exception: ' . print_r($exception, true) : '') .
-								($mode == 'evaluator' ? ($context ? ' | context: ' . $context : '') : '') .
+								( $context ? ' | context: ' . $context : '' ) .
+								($global ? ' | global: ' . print_r($global, true) : '') .
+								($function ? ' | function: ' . print_r($function, true) : '') .
 								"*/\r\n";
 						}
 					} //suites
@@ -94,7 +128,7 @@ foreach ($modes as $mode) {
 }
 
 function saveGeneratedTest($mode, $estr) {
-	global $WORK_DIR;
+	global $WORK_DIR, $index;
 	$mode = ucfirst(strtolower($mode));
 	$filename = $WORK_DIR . '/generated/generated-tests/' . $mode . 'AcceptanceTest.php';
 	$result = '';
@@ -110,7 +144,7 @@ function saveGeneratedTest($mode, $estr) {
 			if ($f) {
 				fwrite($f, $result);
 				fclose($f);
-				return $mode . "Data Provider array created\r\n";
+				return $mode . "Data Provider array created - $index tests; | ";
 			}
 		}
 	}

@@ -1,0 +1,1 @@
+{{import 'test_for_import_recursive_2.tpl'}}{{macro macro1}}macro1 output{{/macro}}

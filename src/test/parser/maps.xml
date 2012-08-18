@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suites>
+
+    <suite name="maps like array">
+        <case>
+            <input>{{[]}}</input>
+            <expected type="json">[[107, []]]</expected>
+        </case>
+
+        <case>
+            <input>{{[1, '2', 3.14]}}</input>
+            <expected type="json">[[107, [[null,[101, 1]], [null,[103, "2"]],[null,[102, 3.14]]]]]</expected>
+        </case>
+
+        <case>
+            <input>{{[}}</input>
+            <exception>
+                <line>1</line>
+                <expected>expression</expected>
+                <found>}}</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>{{[1,]}}</input>
+            <exception>
+                <line>1</line>
+                <expected>expression</expected>
+                <found>]</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>{{[1,}}</input>
+            <exception>
+                <line>1</line>
+                <expected>expression</expected>
+                <found>}}</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>{{[1}}</input>
+            <exception>
+                <line>1</line>
+                <expected>]</expected>
+                <found>}}</found>
+            </exception>
+        </case>
+
+    </suite>
+
+    <suite name="map liek object">
+
+        <case>
+            <input>{{[foo: bar}}</input>
+            <exception>
+                <line>1</line>
+                <expected>]</expected>
+                <found>}}</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>{{[]}}</input>
+            <expected type="json">[[107, []]]</expected>
+        </case>
+
+        <case>
+            <input>{{[foo: 1, "str": '2', 12: 3.14]}}</input>
+            <expected type="json">[[107, [
+                ["foo", [101,1]],
+                ["str", [103,"2"]],
+                ["12", [102,3.14]]
+                ]]]
+            </expected>
+        </case>
+
+        <case>
+            <input>{{[1,]}}</input>
+            <exception>
+                <line>1</line>
+                <expected>expression</expected>
+                <found>]</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>{{[macro: 1}}</input>
+            <exception>
+                <line>1</line>
+                <expected>expression</expected>
+                <found>macro</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>{{[1:}}</input>
+            <exception>
+                <line>1</line>
+                <expected>expression</expected>
+                <found>}}</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>{{[1:'foo',}}</input>
+            <exception>
+                <line>1</line>
+                <expected>expression</expected>
+                <found>}}</found>
+            </exception>
+        </case>
+
+    </suite>
+</suites>

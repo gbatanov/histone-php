@@ -1,0 +1,1 @@
+inner_output{{var x = 10}}{{macro macro_name}}inner macro output{{/macro}}

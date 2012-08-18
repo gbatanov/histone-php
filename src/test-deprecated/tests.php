@@ -1,4 +1,5 @@
 <?php
+
 /**
  *    Copyright 2012 MegaFon
  *
@@ -14,7 +15,6 @@
  *   See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 /**
  * tests.php
  * 
@@ -30,21 +30,21 @@
  */
 ini_set('log_errors', 'on');
 ini_set('error_log', 'php_errors.txt');
-//$WORK_DIR = implode('/', explode('/', str_replace('\\', '/', __DIR__),-1));
-$WORK_DIR = 'C:/work/Histone/histone-php';
+$WORK_DIR = implode('/', explode('/', str_replace('\\', '/', __DIR__), -2));
+//$WORK_DIR = 'C:/work/Histone/histone-php';
 
-require_once($WORK_DIR.'/src/main/Histone.class.php');
+require_once($WORK_DIR . '/src/main/Histone.class.php');
 //require_once('Stream.class.php');
 require_once('TestRunner.class.php');
 
 
 /* Test settings */
 
-//$type = 'parser';
-$type = 'evaluator';
-$filePath = $WORK_DIR.'/src/test' . "/$type/";
-$filename = $filePath . 'set_1.json';
-$baseTestsUri = $filePath;
+//$mode = 'parser';
+$mode = 'evaluator';
+
+$filename = $WORK_DIR . '/src/test-support' . '/' . $mode . '_set_1.json';
+$baseTestsUri = $WORK_DIR . '/generated/test-cases-xml/' . $mode . '/';
 
 /**
  * URIResolver
@@ -116,12 +116,11 @@ $tester->clearTest();
 
 $f = fopen($filename, 'rb');
 if ($f) {
-	$fileList = fread($f, filesize($filename));
-	$fileList = json_decode($fileList);
+	$fileList = json_decode(fread($f, filesize($filename)));
 	if ($fileList && is_array($fileList)) {
 		foreach ($fileList as $fileTest) {
 			try {
-				$testFileContent = file_get_contents($filePath . $fileTest);
+				$testFileContent = file_get_contents($baseTestsUri . $fileTest);
 				$testFileContent = str_replace(':baseURI:', $baseTestsUri, $testFileContent);
 				$xmlTest = simplexml_load_string($testFileContent);
 				echo '<span style="color:blue;">' . $fileTest . "</span><br />";

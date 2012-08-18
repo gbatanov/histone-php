@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suites>
+
+    <suite name="self as it is">
+        <case>
+            <input>a {{self.isUndefined()}} b</input>
+            <expected>a true b</expected>
+        </case>
+    </suite>
+
+
+    <suite name="self in for">
+        <case>
+            <input>a {{for item in this}}{{self is []}}{{/for}} b</input>
+            <context>[1, 2, 3]</context>
+            <expected>a truetruetrue b</expected>
+        </case>
+
+        <case>
+            <input>a {{for key:item in this}}{{self.index is key}}{{/for}} b</input>
+            <context>[1, 2, 3]</context>
+            <expected>a truetruetrue b</expected>
+        </case>
+
+        <case>
+            <input>a {{for key:item in this}}{{self.index}}{{/for}} b</input>
+            <context>[1, 2, 3]</context>
+            <expected>a 012 b</expected>
+        </case>
+
+        <case>
+            <input>a {{for key:item in this}}{{self.index mod 2}}{{/for}} b</input>
+            <context>[1, 2, 3]</context>
+            <expected>a 010 b</expected>
+        </case>
+
+        <case>
+            <input>a {{for key:item in this}}{{self.last}}{{/for}} b</input>
+            <context>[1, 2, 3]</context>
+            <expected>a 222 b</expected>
+        </case>
+
+        <case>
+            <input>a {{for key:item in this}}{{key is self.last}}{{/for}} b</input>
+            <context>[1, 2, 3]</context>
+            <expected>a falsefalsetrue b</expected>
+        </case>
+
+        <case>
+            <input>a {{for key:item in this}}{{self.index is self.last}}{{/for}} b</input>
+            <context>[1, 2, 3]</context>
+            <expected>a falsefalsetrue b</expected>
+        </case>
+
+        <case>
+            <input>a {{for key:item in this}}{{key + '-' + value + '-' + self.index + '-' + self.last}}{{/for}} b</input>
+            <context>[1, 2, 3]</context>
+            <expected>a 0--0-21--1-22--2-2 b</expected>
+        </case>
+
+        <case>
+            <input>a {{for item in this}}{{self is []}}{{/for}} b</input>
+            <context>{"foo": "bar", "bar": "foo", "x": "y"}</context>
+            <expected>a truetruetrue b</expected>
+        </case>
+
+        <case>
+            <input>a {{for key:item in this}}{{self.index is key}}{{/for}} b</input>
+            <context>{"foo": "bar", "bar": "foo", "x": "y"}</context>
+            <expected>a falsefalsefalse b</expected>
+        </case>
+
+        <case>
+            <input>a {{for key:item in this}}{{self.index}}{{/for}} b</input>
+            <context>{"foo": "bar", "bar": "foo", "x": "y"}</context>
+            <expected>a 012 b</expected>
+        </case>
+
+        <case>
+            <input>a {{for key:item in this}}{{self.index mod 2}}{{/for}} b</input>
+            <context>{"foo": "bar", "bar": "foo", "x": "y"}</context>
+            <expected>a 010 b</expected>
+        </case>
+
+        <case>
+            <input>a {{for key:item in this}}{{self.last}}{{/for}} b</input>
+            <context>{"foo": "bar", "bar": "foo", "x": "y"}</context>
+            <expected>a 222 b</expected>
+        </case>
+
+        <case>
+            <input>a {{for key:item in this}}{{key is self.last}}{{/for}} b</input>
+            <context>{"foo": "bar", "bar": "foo", "x": "y"}</context>
+            <expected>a falsefalsefalse b</expected>
+        </case>
+
+        <case>
+            <input>a {{for key:item in this}}{{self.index is self.last}}{{/for}} b</input>
+            <context>{"foo": "bar", "bar": "foo", "x": "y"}</context>
+            <expected>a falsefalsetrue b</expected>
+        </case>
+
+        <case>
+            <input>a {{for key:item in this}}{{key + '-' + value + '-' + self.index + '-' + self.last}}{{/for}} b</input>
+            <context>{"foo": "bar", "bar": "foo", "x": "y"}</context>
+            <expected>a foo--0-2bar--1-2x--2-2 b</expected>
+        </case>
+    </suite>
+
+    <suite name="self nested">
+        <case>
+            <input>a {{for key:item in [1, 2, 3]}}{{for key:item in [9,8,7,6]}}{{self.last}}{{/for}}{{/for}} b</input>
+            <expected>a 333333333333 b</expected>
+        </case>
+
+        <case>
+            <input>a {{macro myMacro}}{{macro innerMacro}}{{self.arguments}}{{/macro}}{{innerMacro(9,8,7)}}{{/macro}}{{call myMacro(1, 3, 4)}}foo{{/call}} b</input>
+            <expected>a 9 8 7 b</expected>
+        </case>
+    </suite>
+
+    <suite name="self in macro">
+        <case>
+            <input>a {{macro myMacro}}{{self.arguments}}{{/macro}}{{myMacro(undefined, null, true, false, 10, "string", [1, 2, 3], ["foo": "bar"])}} b</input>
+            <expected>a null true false 10 string 1 2 3 bar b</expected>
+        </case>
+
+        <case>
+            <input>a {{macro myMacro}}{{self.arguments}}{{/macro}}{{call myMacro(1, 3, 4)}}foo{{/call}} b</input>
+            <expected>a 1 3 4 foo b</expected>
+        </case>
+    </suite>
+
+</suites>

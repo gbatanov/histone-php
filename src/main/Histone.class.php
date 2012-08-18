@@ -428,9 +428,9 @@ class Histone {
 			} elseif (is_array($subject) && is_numeric($fragment)) {
 				$length = count($subject);
 				if ($fragment < 0) {
-					if ($length + $fragment >= 0)
-						$subject = $subject[$length + $fragment];
-					else
+//					if ($length + $fragment >= 0)
+//						$subject = $subject[$length + $fragment];
+//					else
 						return new HistoneUndefined();
 				}
 				elseif ($fragment > 0) {

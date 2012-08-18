@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suites>
+
+    <suite name="constructions">
+        <case>
+            <input>{{if true</input>
+            <exception>
+                <line>1</line>
+                <expected>}}</expected>
+                <found>EOF</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>{{if true}}{{else</input>
+            <exception>
+                <line>1</line>
+                <expected>}}</expected>
+                <found>EOF</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>{{for x in items</input>
+            <exception>
+                <line>1</line>
+                <expected>}}</expected>
+                <found>EOF</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>{{for x in items}}{{else</input>
+            <exception>
+                <line>1</line>
+                <expected>}}</expected>
+                <found>EOF</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>a {{10 is 10 ? true is true ? '1' : '2' : '3'}} b</input>
+            <expected type="json">["a ",[104,[3,[101,10],[101,10]],[104,[3,[16],[16]],[103,"1"],[103,"2"]],[103,"3"]]," b"]
+            </expected>
+        </case>
+
+        <case>
+            <input>a {{10 is 10 ? true is false ? '1' : '2' : '3'}} b</input>
+            <expected type="json">["a ",[104,[3,[101,10],[101,10]],[104,[3,[16],[17]],[103,"1"],[103,"2"]],[103,"3"]]," b"]
+            </expected>
+        </case>
+
+        <case>
+            <input>a {{10 is 11 ? true is false ? '1' : '2' : '3'}} b</input>
+            <expected type="json">["a ",[104,[3,[101,10],[101,11]],[104,[3,[16],[17]],[103,"1"],[103,"2"]],[103,"3"]]," b"]
+            </expected>
+        </case>
+
+        <case>
+            <input>a {{if 10 is 10}} b {{/if}} c</input>
+            <expected type="json">["a ",[1000,[[[3,[101,10],[101,10]],[" b "]]]]," c"]</expected>
+        </case>
+
+        <case>
+            <input>a {{if 10 is 20}} b {{elseif true}} c {{/if}} d</input>
+            <expected type="json">["a ",[1000,[[[3,[101,10],[101,20]],[" b "]],[[16],[" c "]]]]," d"]</expected>
+        </case>
+
+        <case>
+            <input>a {{if 10 is 20}} b {{else}} c {{/if}} d</input>
+            <expected type="json">["a ",[1000,[[[3,[101,10],[101,20]],[" b "]],[[16],[" c "]]]]," d"]</expected>
+        </case>
+
+        <case>
+            <input>a {{if 10 is 20}} b {{elseif true is false}} c {{else}} d {{/if}}</input>
+            <expected type="json">["a ",[1000,[[[3,[101,10],[101,20]],[" b "]],[[3,[16],[17]],[" c "]],[[16],[" d "]]]]]
+            </expected>
+        </case>
+
+        <case>
+            <input>a {{for item in items}} b {{item.foo}} c {{/for}} d</input>
+            <expected type="json">["a ",[1002,["item"],[105,["items"]],[[" b ",[105,["item","foo"]]," c "]]]," d"]
+            </expected>
+        </case>
+
+        <case>
+            <input>a {{for key:item in foo}} b {{key}} c {{item}} d {{/for}} e</input>
+            <expected type="json">["a ",[1002,["item","key"],[105,["foo"]],[[" b ",[105,["key"]]," c ",[105,["item"]]," d "]]]," e"]
+            </expected>
+        </case>
+
+        <case>
+            <input>a {{for item in itemsX}} b {{else}} c {{/for}} d</input>
+            <expected type="json">["a ",[1002,["item"],[105,["itemsX"]],[[" b "],[" c "]]]," d"]</expected>
+        </case>
+        <case>
+            <input>a {{for items in arr}} b {{/for}} c</input>
+            <expected type="json">["a ",[1002,["items"],[105,["arr"]],[[" b "]]]," c"]</expected>
+        </case>
+
+        <case>
+            <input>a {{for}}</input>
+            <exception>
+                <line>1</line>
+                <expected>identifier</expected>
+                <found>}}</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>a {{for test}}</input>
+            <exception>
+                <line>1</line>
+                <expected>in</expected>
+                <found>}}</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>a {{for test:}}</input>
+            <exception>
+                <line>1</line>
+                <expected>identifier</expected>
+                <found>}}</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>a {{for key:value}}</input>
+            <exception>
+                <line>1</line>
+                <expected>in</expected>
+                <found>}}</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>a {{for key:value in}}</input>
+            <exception>
+                <line>1</line>
+                <expected>expression</expected>
+                <found>}}</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>a {{for key:value in items}}</input>
+            <exception>
+                <line>1</line>
+                <expected>{{/for}}</expected>
+                <found>EOF</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>a {{for key:value in items}} b {{else}}</input>
+            <exception>
+                <line>1</line>
+                <expected>{{/for}}</expected>
+                <found>EOF</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>a {{for items in arr}} b {{else}} c {{/for}} d</input>
+            <expected type="json">["a ",[1002,["items"],[105,["arr"]],[[" b "],[" c "]]]," d"]</expected>
+        </case>
+
+        <case>
+            <input>a {{for key:items in arr}} b {{else}} c {{/for}} d</input>
+            <expected type="json">["a ",[1002,["items","key"],[105,["arr"]],[[" b "],[" c "]]]," d"]</expected>
+        </case>
+
+        <case>
+            <input>a {{for key:value in items}} b {{else}} c {{/mmm}}</input>
+            <exception>
+                <line>1</line>
+                <expected>{{/for}}</expected>
+                <found>mmm</found>
+            </exception>
+        </case>
+        <case>
+            <input>frag{{if true}}frag{{/if}}frag</input>
+            <expected type="json">[
+                "frag",
+                [1000, [[[16],["frag"]]]],
+                "frag"
+                ]
+            </expected>
+        </case>
+
+        <case>
+            <input>frag{{if}}frag{{/if}}frag</input>
+            <exception>
+                <line>1</line>
+                <expected>expression</expected>
+                <found>}}</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>frag{{if true}}frag</input>
+            <exception>
+                <line>1</line>
+                <expected>{{/if}}</expected>
+                <found>EOF</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>frag{{if true}}frag{{/fff}}</input>
+            <exception>
+                <line>1</line>
+                <expected>{{/if}}</expected>
+                <found>fff</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>a {{if true}} b {{else}} c {{/if}} d</input>
+            <expected type="json">[
+                "a ",
+                [1000, [[
+                [16],
+                [" b "]
+                ], [[16],
+                [" c "]
+                ]]],
+                " d"
+                ]
+            </expected>
+        </case>
+
+        <case>
+            <input>frag{{if true}}frag{{else}} bla</input>
+            <exception>
+                <line>1</line>
+                <expected>{{/if}}</expected>
+                <found>EOF</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>a {{if true}} b {{elseif false}} c {{else}} d {{/if}} e</input>
+            <expected type="json">["a ",[1000,[[[16],[" b "]],[[17],[" c "]],[[16],[" d "]]]]," e"]</expected>
+        </case>
+
+        <case>
+            <input>frag{{if true}}frag{{elseif}} bla</input>
+            <exception>
+                <line>1</line>
+                <expected>expression</expected>
+                <found>}}</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>a {{if true}} b {{elseif false}} c {{elseif 43}} d {{else}} e {{/if}} f</input>
+            <expected type="json">["a ",[1000,[[[16],[" b "]],[[17],[" c "]],[[101,43],[" d "]],[[16],[" e "]]]]," f"]
+            </expected>
+        </case>
+
+        <case>
+            <input>frag{{if true}}frag{{elseif false}} bla</input>
+            <exception>
+                <line>1</line>
+                <expected>{{/if}}</expected>
+                <found>EOF</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>frag{{if true}}frag{{elseif false}} bla {{else}}</input>
+            <exception>
+                <line>1</line>
+                <expected>{{/if}}</expected>
+                <found>EOF</found>
+            </exception>
+        </case>
+
+
+    </suite>
+</suites>

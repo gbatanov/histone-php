@@ -1,0 +1,1 @@
+A{{global.baseURI}}B

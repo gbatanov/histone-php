@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suites>
+
+	<suite name="this">
+		<case>
+			<input>a {{this}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{this}} b</input>
+			<context>null</context>
+			<expected>a null b</expected>
+		</case>
+
+		<case>
+			<input>a {{this}} b</input>
+			<context>true</context>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{this}} b</input>
+			<context>false</context>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{this}} b</input>
+			<context>123</context>
+			<expected>a 123 b</expected>
+		</case>
+
+		<case>
+			<input>a {{this}} b</input>
+			<context>"hey"</context>
+			<expected>a hey b</expected>
+		</case>
+
+		<case>
+			<input>a {{this}} b</input>
+			<context>[1, 2, 3]</context>
+			<expected>a 1 2 3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{this}} b</input>
+			<context>{"foo": "bar"}</context>
+			<expected>a bar b</expected>
+		</case>
+
+		<case>
+			<input>a {{this}} b</input>
+			<context>{"this": "bar", "m": 10}</context>
+			<expected>a bar 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{this['this']}} b</input>
+			<context>{"this": "bar", "m": 10}</context>
+			<expected>a bar b</expected>
+		</case>
+
+		<case>
+			<input>a {{this.foo}} b</input>
+			<context>{"foo": "bar"}</context>
+			<expected>a bar b</expected>
+		</case>
+	</suite>
+
+
+	<suite name="various testcases">
+		<case>
+			<input>{{x}}{{var x = 1}}{{x}}{{var x = 3}}{{x}}</input>
+			<expected>13</expected>
+		</case>
+
+		<case>
+			<input>{{o}}{{var o = 1}}{{o}}{{if true}}{{o}}{{var o = 2}}{{o}}{{var o = 3}}{{o}}{{/if}}{{o}}</input>
+			<expected>11231</expected>
+		</case>
+
+		<case>
+			<input>a {{var x = uniqueId()}}{{var y = uniqueId()}}{{x isNot y}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{foo['isUndefined']()}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{foo['00']()}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{evdsfent()}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string'.evdsfent()}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+	    <case>
+	    	<input>a {{var x = 10}}{{macro myMacro}}{{x}}{{/macro}} {{call myMacro()}}{{/call}} {{x}}</input>
+	    	<expected>a  10 10</expected>
+	    </case>
+
+	    <case>
+	    	<input>a {{var x = 10}}{{macro myMacro(x)}}{{x}}{{/macro}} {{call myMacro(x)}}{{/call}} {{x}}</input>
+	    	<expected>a  10 10</expected>
+	    </case>
+
+	    <case>
+	    	<input>a {{var x = 10}}{{macro myMacro(x)}}{{x}}{{/macro}} {{call myMacro()}}body{{/call}} {{x}}</input>
+	    	<expected>a  body 10</expected>
+	    </case>
+
+	    <case>
+	    	<input>a {{x}}{{macro myMacro}}{{var x = 10}}{{x}}{{/macro}} b {{x}} {{call myMacro()}}{{/call}} {{x}}</input>
+	    	<expected>a  b  10 </expected>
+	    </case>
+
+	    <case>
+	    	<input>a {{var x = 10}}{{macro myMacro(x)}}{{x}}{{/macro}} {{call myMacro('no-body')}}body{{/call}} {{x}}</input>
+	    	<expected>a  no-body 10</expected>
+	    </case>
+
+	    <case>
+	    	<input>a {{var x = 10}}{{macro myMacro(x, y)}}{{x + '-' + y}}{{/macro}} {{call myMacro('no-body')}}{{/call}} {{x}}</input>
+	    	<expected>a  no-body- 10</expected>
+	    </case>
+
+	    <case>
+	    	<input>a {{var x = 10}}{{macro myMacro(x, y, z)}}{{x + '-' + y + '-' + (z is undefined)}}{{/macro}} {{call myMacro('no-body')}}body{{/call}} {{x}}</input>
+	    	<expected>a  no-body-body-true 10</expected>
+	    </case>
+
+		<case>
+			<input>{{var x = '?'}}{{macro generator(i)}}{{var x = '.'}}{{x}}{{macro foo}},{{/macro}}{{if i &gt; 0}}{{i}}{{generator(i - 1)}}{{/if}}{{/macro}}{{generator(10)}}{{x}}</input>
+			<expected>.10.9.8.7.6.5.4.3.2.1.?</expected>
+		</case>
+
+		<case>
+			<input>{{var x = "|"}}{{x}}{{if true}}{{x}}{{/if}}{{x}}</input>
+			<expected>|||</expected>
+		</case>
+
+		<case>
+			<input>{{var x = "|"}}{{x}}{{if false}}{{x}}{{var x = "#"}}{{x}}{{/if}}{{x}}</input>
+			<expected>||</expected>
+		</case>
+
+		<case>
+			<input>{{var x = "|"}}{{x}}{{if true}}{{x}}{{var x = "#"}}{{x}}{{/if}}{{x}}</input>
+			<expected>||#|</expected>
+		</case>
+
+		<case>
+			<input>{{if true}}{{var x = "#"}}{{/if}}{{x}}</input>
+			<expected/>
+		</case>
+
+		<case>
+			<input>a {{var foo = 10}}{{foo}} b</input>
+			<context>{"foo": "bar"}</context>
+			<expected>a 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{var foo = 10}}{{this.foo}} b</input>
+			<context>{"foo": "bar"}</context>
+			<expected>a bar b</expected>
+		</case>
+
+		<case>
+			<input>a {{foo}} {{var foo = 10}}{{if true}}{{foo}}{{/if}} b</input>
+			<context>{"foo": "bar"}</context>
+			<expected>a bar 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{foo}} {{var foo = 10}}{{if true}}{{this.foo}}{{/if}} b</input>
+			<context>{"foo": "bar"}</context>
+			<expected>a bar bar b</expected>
+		</case>
+
+		<case>
+			<input>a {{foo}} {{if true}}{{var foo = 10}}{{foo}}{{/if}} b</input>
+			<context>{"foo": "bar"}</context>
+			<expected>a bar 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{foo}} {{if true}}{{var foo = 10}}{{this.foo}}{{/if}} b</input>
+			<context>{"foo": "bar"}</context>
+			<expected>a bar bar b</expected>
+		</case>
+
+	</suite>
+
+</suites>

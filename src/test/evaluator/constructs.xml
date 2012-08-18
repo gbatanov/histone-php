@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suites>
+
+    <suite name="if statement">
+        <case>
+            <input>a {{if dfds}} true {{/if}} b</input>
+            <expected>a  b</expected>
+        </case>
+
+        <case>
+            <input>a {{if null}} true {{/if}} b</input>
+            <expected>a  b</expected>
+        </case>
+
+        <case>
+            <input>a {{if true}} true {{/if}} b</input>
+            <expected>a  true  b</expected>
+        </case>
+
+        <case>
+            <input>a {{if false}} true {{/if}} b</input>
+            <expected>a  b</expected>
+        </case>
+
+        <case>
+            <input>a {{if -10}} true {{/if}} b</input>
+            <expected>a  true  b</expected>
+        </case>
+
+        <case>
+            <input>a {{if 0}} true {{/if}} b</input>
+            <expected>a  b</expected>
+        </case>
+
+        <case>
+            <input>a {{if 10}} true {{/if}} b</input>
+            <expected>a  true  b</expected>
+        </case>
+
+        <case>
+            <input>a {{if ''}} true {{/if}} b</input>
+            <expected>a  b</expected>
+        </case>
+
+        <case>
+            <input>a {{if 'string'}} true {{/if}} b</input>
+            <expected>a  true  b</expected>
+        </case>
+
+        <case>
+            <input>a {{if []}} true {{/if}} b</input>
+            <expected>a  true  b</expected>
+        </case>
+
+        <case>
+            <input>a {{if [1, 2, 3]}} true {{/if}} b</input>
+            <expected>a  true  b</expected>
+        </case>
+
+        <case>
+            <input>a {{if []}} true {{/if}} b</input>
+            <expected>a  true  b</expected>
+        </case>
+
+        <case>
+            <input>a {{if [foo: 1]}} true {{/if}} b</input>
+            <expected>a  true  b</expected>
+        </case>
+
+        <case>
+            <input>a {{if dfds}} true {{else}} false {{/if}} b</input>
+            <expected>a  false  b</expected>
+        </case>
+
+        <case>
+            <input>a {{if null}} true {{else}} false {{/if}} b</input>
+            <expected>a  false  b</expected>
+        </case>
+
+        <case>
+            <input>a {{if true}} true {{else}} false {{/if}} b</input>
+            <expected>a  true  b</expected>
+        </case>
+
+        <case>
+            <input>a {{if false}} true {{else}} false {{/if}} b</input>
+            <expected>a  false  b</expected>
+        </case>
+
+        <case>
+            <input>a {{if -10}} true {{else}} false {{/if}} b</input>
+            <expected>a  true  b</expected>
+        </case>
+
+        <case>
+            <input>a {{if 0}} true {{else}} false {{/if}} b</input>
+            <expected>a  false  b</expected>
+        </case>
+
+        <case>
+            <input>a {{if 10}} true {{else}} false {{/if}} b</input>
+            <expected>a  true  b</expected>
+        </case>
+
+        <case>
+            <input>a {{if ''}} true {{else}} false {{/if}} b</input>
+            <expected>a  false  b</expected>
+        </case>
+
+        <case>
+            <input>a {{if 'string'}} true {{else}} false {{/if}} b</input>
+            <expected>a  true  b</expected>
+        </case>
+
+        <case>
+            <input>a {{if []}} true {{else}} false {{/if}} b</input>
+            <expected>a  true  b</expected>
+        </case>
+
+        <case>
+            <input>a {{if [1, 2, 3]}} true {{else}} false {{/if}} b</input>
+            <expected>a  true  b</expected>
+        </case>
+
+        <case>
+            <input>a {{if []}} true {{else}} false {{/if}} b</input>
+            <expected>a  true  b</expected>
+        </case>
+
+        <case>
+            <input>a {{if [foo: 1]}} true {{else}} false {{/if}} b</input>
+            <expected>a  true  b</expected>
+        </case>
+    </suite>
+
+    <suite name="for statement">
+		<case>
+			<input>a {{for x in sfgsag}}{{x}}{{/for}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{for x in items}}{{x}}{{/for}} b</input>
+			<context>{"items": null}</context>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{for x in items}}{{x}}{{/for}} b</input>
+			<context>{"items": true}</context>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{for x in items}}{{x}}{{/for}} b</input>
+			<context>{"items": false}</context>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{for x in items}}{{x}}{{/for}} b</input>
+			<context>{"items": -10}</context>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{for x in items}}{{x}}{{/for}} b</input>
+			<context>{"items": 0}</context>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{for x in items}}{{x}}{{/for}} b</input>
+			<context>{"items": 10}</context>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{for x in items}}{{x}}{{/for}} b</input>
+			<context>{"items": "string"}</context>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{for x in items}}{{x}}{{/for}} b</input>
+			<context>{"items": [1, 2, 3]}</context>
+			<expected>a 123 b</expected>
+		</case>
+
+		<case>
+			<input>a {{for x in items}}{{x}}{{/for}} b</input>
+			<context>{"items": {"foo": 1, "bar": 2, "x": 3}}</context>
+			<expected>a 123 b</expected>
+		</case>
+
+		<case>
+			<input>a {{for key:x in sfgsag}}{{key}}:{{x}}{{/for}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{for key:x in items}}{{key}}:{{x}}{{/for}} b</input>
+			<context>{"items": null}</context>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{for key:x in items}}{{key}}:{{x}}{{/for}} b</input>
+			<context>{"items": true}</context>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{for key:x in items}}{{key}}:{{x}}{{/for}} b</input>
+			<context>{"items": false}</context>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{for key:x in items}}{{key}}:{{x}}{{/for}} b</input>
+			<context>{"items": -10}</context>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{for key:x in items}}{{key}}:{{x}}{{/for}} b</input>
+			<context>{"items": 0}</context>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{for key:x in items}}{{key}}:{{x}}{{/for}} b</input>
+			<context>{"items": 10}</context>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{for key:x in items}}{{key}}:{{x}}{{/for}} b</input>
+			<context>{"items": "string"}</context>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{for key:x in items}}{{key}}:{{x}}{{/for}} b</input>
+			<context>{"items": [1, 2, 3]}</context>
+			<expected>a 0:11:22:3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{for key:x in items}}{{key}}:{{x}}{{/for}} b</input>
+			<context>{"items": {"foo": 1, "bar": 2, "x": 3}}</context>
+			<expected>a foo:1bar:2x:3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{for x in sfgsag}}{{x}}{{else}}#{{/for}} b</input>
+			<expected>a # b</expected>
+		</case>
+
+		<case>
+			<input>a {{for x in items}}{{x}}{{else}}#{{/for}} b</input>
+			<context>{"items": null}</context>
+			<expected>a # b</expected>
+		</case>
+
+		<case>
+			<input>a {{for x in items}}{{x}}{{else}}#{{/for}} b</input>
+			<context>{"items": true}</context>
+			<expected>a # b</expected>
+		</case>
+
+		<case>
+			<input>a {{for x in items}}{{x}}{{else}}#{{/for}} b</input>
+			<context>{"items": false}</context>
+			<expected>a # b</expected>
+		</case>
+
+		<case>
+			<input>a {{for x in items}}{{x}}{{else}}#{{/for}} b</input>
+			<context>{"items": -10}</context>
+			<expected>a # b</expected>
+		</case>
+
+		<case>
+			<input>a {{for x in items}}{{x}}{{else}}#{{/for}} b</input>
+			<context>{"items": 0}</context>
+			<expected>a # b</expected>
+		</case>
+
+		<case>
+			<input>a {{for x in items}}{{x}}{{else}}#{{/for}} b</input>
+			<context>{"items": 10}</context>
+			<expected>a # b</expected>
+		</case>
+
+		<case>
+			<input>a {{for x in items}}{{x}}{{else}}#{{/for}} b</input>
+			<context>{"items": "string"}</context>
+			<expected>a # b</expected>
+		</case>
+
+		<case>
+			<input>a {{for x in items}}{{x}}{{else}}#{{/for}} b</input>
+			<context>{"items": [1, 2, 3]}</context>
+			<expected>a 123 b</expected>
+		</case>
+
+		<case>
+			<input>a {{for x in items}}{{x}}{{else}}#{{/for}} b</input>
+			<context>{"items": {"foo": 1, "bar": 2, "x": 3}}</context>
+			<expected>a 123 b</expected>
+		</case>
+
+		<case>
+			<input>a {{for key:x in sfgsag}}{{key}}:{{x}}{{else}}#{{/for}} b</input>
+			<expected>a # b</expected>
+		</case>
+
+		<case>
+			<input>a {{for key:x in items}}{{key}}:{{x}}{{else}}#{{/for}} b</input>
+			<context>{"items": null}</context>
+			<expected>a # b</expected>
+		</case>
+
+		<case>
+			<input>a {{for key:x in items}}{{key}}:{{x}}{{else}}#{{/for}} b</input>
+			<context>{"items": true}</context>
+			<expected>a # b</expected>
+		</case>
+
+		<case>
+			<input>a {{for key:x in items}}{{key}}:{{x}}{{else}}#{{/for}} b</input>
+			<context>{"items": false}</context>
+			<expected>a # b</expected>
+		</case>
+
+		<case>
+			<input>a {{for key:x in items}}{{key}}:{{x}}{{else}}#{{/for}} b</input>
+			<context>{"items": -10}</context>
+			<expected>a # b</expected>
+		</case>
+
+		<case>
+			<input>a {{for key:x in items}}{{key}}:{{x}}{{else}}#{{/for}} b</input>
+			<context>{"items": 0}</context>
+			<expected>a # b</expected>
+		</case>
+
+		<case>
+			<input>a {{for key:x in items}}{{key}}:{{x}}{{else}}#{{/for}} b</input>
+			<context>{"items": 10}</context>
+			<expected>a # b</expected>
+		</case>
+
+		<case>
+			<input>a {{for key:x in items}}{{key}}:{{x}}{{else}}#{{/for}} b</input>
+			<context>{"items": "string"}</context>
+			<expected>a # b</expected>
+		</case>
+
+		<case>
+			<input>a {{for key:x in items}}{{key}}:{{x}} {{else}}#{{/for}} b</input>
+			<context>{"items": [1, 2, 3]}</context>
+			<expected>a 0:1 1:2 2:3  b</expected>
+		</case>
+
+        <case>
+            <input>a {{for key:x in items}}{{key}}:{{x}} {{else}}#{{/for}} b</input>
+			<context>{"items": {"foo": 1, "bar": 2, "x": 3}}</context>
+			<expected>a foo:1 bar:2 x:3  b</expected>
+        </case>
+
+        <!-- Test cases for 'self' special object are moved to self-scope.xml -->
+	</suite>
+</suites>

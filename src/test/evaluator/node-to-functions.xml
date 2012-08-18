@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suites>
+
+	<suite name=".toNumber">
+		<case>
+			<input>a {{"string".toNumber()}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{"string".toNumber().isUndefined()}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{"12E+3".toNumber()}} b</input>
+			<expected>a 12000 b</expected>
+		</case>
+
+		<case>
+			<input>a {{"12E-3".toNumber().isNumber()}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{"\r\n\t 1 \n\t\r".toNumber()}} b</input>
+			<expected>a 1 b</expected>
+		</case>
+	</suite>
+
+	<suite name=".toString">
+		<case>
+			<input>a {{null}} b</input>
+			<expected>a null b</expected>
+		</case>
+
+		<case>
+			<input>a {{true}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined.toString()}} b</input>
+			<expected>a  b</expected>
+		</case>
+
+		<case>
+			<input>a {{null.toString()}} b</input>
+			<expected>a null b</expected>
+		</case>
+
+		<case>
+			<input>a {{10.toString()}} b</input>
+			<expected>a 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{-10.toString()[0]}} b</input>
+			<expected>a - b</expected>
+		</case>
+
+		<case>
+			<input>a {{'string'.toString()}} b</input>
+			<expected>a string b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3].toString()}} b</input>
+			<expected>a 1 2 3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{["foo": "bar"].toString()}} b</input>
+			<expected>a bar b</expected>
+		</case>
+	</suite>
+
+	<suite name=".toJSON">
+
+		<case>
+			<input>a {{[foo: null].toJSON()}} b</input>
+			<expected>a {"foo":null} b</expected>
+		</case>
+
+		<case>
+			<input>a {{null.toJSON()}} b</input>
+			<expected>a null b</expected>
+		</case>
+
+		<case>
+			<input>a {{sdfdsa.toJSON()}} b</input>
+			<expected>a null b</expected>
+		</case>
+
+		<case>
+			<input>a {{null.toJSON()}} b</input>
+			<expected>a null b</expected>
+		</case>
+
+		<case>
+			<input>a {{true.toJSON()}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false.toJSON()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{10.toJSON()}} b</input>
+			<expected>a 10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0.toJSON()}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{-10.toJSON()}} b</input>
+			<expected>a -10 b</expected>
+		</case>
+
+		<case>
+			<input>a {{10.3.toJSON()}} b</input>
+			<expected>a 10.3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0.3.toJSON()}} b</input>
+			<expected>a 0.3 b</expected>
+		</case>
+
+		<case>
+			<input>a {{-10.3.toJSON()}} b</input>
+			<expected>a -10.3 b</expected>
+		</case>
+
+        <!-- Following test cases disabled until STE-49 will be implemented -->
+        <!--
+		<case>
+			<input>a {{10E3.toJSON()}} b</input>
+			<expected>a 10000 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0E3.toJSON()}} b</input>
+			<expected>a 0 b</expected>
+		</case>
+
+		<case>
+			<input>a {{-10E3.toJSON()}} b</input>
+			<expected>a -10000 b</expected>
+		</case>
+
+		<case>
+			<input>a {{10.3E3.toJSON()}} b</input>
+			<expected>a 10300 b</expected>
+		</case>
+
+		<case>
+			<input>a {{0.3E4.toJSON()}} b</input>
+			<expected>a 3000 b</expected>
+		</case>
+
+		<case>
+			<input>a {{-10.3E3.toJSON()}} b</input>
+			<expected>a -10300 b</expected>
+		</case>
+		-->
+
+		<case>
+			<input>a {{'string'.toJSON()}} b</input>
+			<expected>a "string" b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3].toJSON()}} b</input>
+			<expected>a [1,2,3] b</expected>
+		</case>
+
+        <case>
+            <input>a {{[1:1, 3:3, 10:10].toJSON()}} b</input>
+            <expected>a {"1":1,"3":3,"10":10} b</expected>
+        </case>
+
+        <case>
+			<input>a {{["foo": "bar"].toJSON()}} b</input>
+			<expected>a {"foo":"bar"} b</expected>
+		</case>
+
+		<case>
+			<input>a {{["foo": "bar"].toJSON()}} b</input>
+			<expected>a {"foo":"bar"} b</expected>
+		</case>
+	</suite>
+
+</suites>

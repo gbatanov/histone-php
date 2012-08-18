@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suites>
+
+	<suite name="constructions">
+		<case>
+			<input>{{}}</input>
+			<expected/>
+		</case>
+
+		<case>
+			<input>a{{}}b</input>
+			<expected>ab</expected>
+		</case>
+	</suite>
+
+</suites>

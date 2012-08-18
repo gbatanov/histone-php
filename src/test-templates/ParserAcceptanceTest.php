@@ -50,20 +50,10 @@ class ParserAcceptanceTest extends PHPUnit_Framework_TestCase {
 	public function testParseString($input, $expected = '', $exception = '') {
 		$baseUrl = '.';
 
-//		$input = htmlspecialchars_decode($input);
 		if ($expected)
 			$expected = json_decode($expected);
 		else
 			$expected = null;
-		if ($exception) {
-//			$exceptionS = $exception;
-//			$exception = array();
-//			$exception['line'] = preg_replace('/(.*line.*>)(.*)(<\/line.*)$/Uis', "$2", $exceptionS);
-//			$exception['expected'] = preg_replace('/(.*expected.*>)(.*)(<\/expected.*)$/Uis', "$2", $exceptionS);
-//			$exception['found'] = preg_replace('/(.*found.*>)(.*)(<\/found.*)$/Uis', "$2", $exceptionS);
-		} else {
-			$exception = null;
-		}
 
 		try {
 			$cHistone = new Histone($baseUrl);
@@ -77,13 +67,10 @@ class ParserAcceptanceTest extends PHPUnit_Framework_TestCase {
 				if ($exception === null) {
 					return $this->assertEquals($expected, $result);
 				} else {
-					return $this->assertEquals(json_encode($exception), 'NO_EXCEPTION'); // TODO str'ing
+					return $this->assertEquals(json_encode($exception), 'NO_EXCEPTION'); 
 				}
 			}
 		} catch (ParseError $thrownException) {
-			// delete debugger messages
-			if (isset($thrownException->xdebug_message))
-				unset($thrownException->xdebug_message);
 			if ($exception !== null) {
 				$resException = json_encode(array(
 					'line' => (string) $thrownException->line,
@@ -108,7 +95,7 @@ class ParserAcceptanceTest extends PHPUnit_Framework_TestCase {
 	 * @return array
 	 */
 	public function parserProvider() {
-		return array(/* moduleParser_start */array('zamena'), /* moduleParser_end */);
+		return array(/* moduleParser_start */array('CHANGE'), /* moduleParser_end */);
 	}
 
 }

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suites>
+
+    <!-- Rules to parse and treat function body code -->
+    <!-- :args: -  if several args were passed print them all joined with '-' symbol and with '[' in the beginning and ']' at the end -->
+    <!-- :exception: - text in function body means that this function should throw exception -->
+
+    <suite name="register new node functions">
+        <!-- test is it works -->
+        <case>
+            <function name="test_func1" node="string" return="string">test function</function>
+            <input>a {{'string'.test_func1()}} b</input>
+            <expected>a test function b</expected>
+        </case>
+
+        <case>
+            <function name="test_func1" node="number" return="string">test number function</function>
+            <input>a {{123.test_func1()}} b</input>
+            <expected>a test number function b</expected>
+        </case>
+
+        <!-- test is it works -->
+        <case>
+            <function name="test_func2" node="string" return="number">123.45</function>
+            <input>a {{'string'.test_func2()}} b</input>
+            <expected>a 123.45 b</expected>
+        </case>
+
+        <!-- check target is passed to function -->
+        <case>
+            <function name="test_func3" node="string" return="string">test function :target: eof</function>
+            <input>a {{'test'.test_func3()}} b</input>
+            <expected>a test function (string(test)) eof b</expected>
+        </case>
+
+        <!-- check no args passed to function -->
+        <case>
+            <function name="test_func4" node="string" return="string">test function :args: eof</function>
+            <input>a {{'test'.test_func4()}} b</input>
+            <expected>a test function [] eof b</expected>
+        </case>
+
+        <!-- check single argument passed to function -->
+        <case>
+            <function name="test_func4" node="string" return="string">test function :args: eof</function>
+            <input>a {{'test'.test_func4('test')}} b</input>
+            <expected>a test function [string(test)] eof b</expected>
+        </case>
+
+        <!-- check args passed into function -->
+        <case>
+            <function name="test_func4" node="string" return="string">test function :args: eof</function>
+            <input>a {{'test'.test_func4('test','abcd',1234)}} b</input>
+            <expected>a test function [string(test)-string(abcd)-number(1234)] eof b</expected>
+        </case>
+
+        <!-- check for correct return type -->
+        <case>
+            <function name="f1" node="string" return="number">123.45</function>
+            <function name="f2" node="string" return="string">123.45</function>
+            <input>a {{'aaa'.f1().isNumber()}} b {{'aaa'.f2().isString()}} c</input>
+            <expected>a true b true c</expected>
+        </case>
+
+        <!-- check if result will be Undefined if function throws some exception -->
+        <case>
+            <function name="test_func" node="string" return="number">:exception:</function>
+            <input>a {{'aaa'.test_func().isUndefined()}} b</input>
+            <expected>a true b</expected>
+        </case>
+    </suite>
+
+</suites>

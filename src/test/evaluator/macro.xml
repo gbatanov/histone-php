@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suites>
+
+    <suite name="macro statement">
+        <case>
+            <input>a {{macro myMacro}}{{/macro}} b</input>
+            <expected>a  b</expected>
+        </case>
+
+        <case>
+            <input>a {{macro myMacro}}hello{{/macro}} b</input>
+            <expected>a  b</expected>
+        </case>
+
+        <case>
+            <input>a {{macro myMacro(a, b, c)}}hello{{/macro}} b</input>
+            <expected>a  b</expected>
+        </case>
+
+        <case>
+            <input>a {{macro myMacro}}{{/macro}} b {{myMacro()}}</input>
+            <expected>a  b </expected>
+        </case>
+
+        <case>
+            <input>a {{macro myMacro}}hello{{/macro}} b {{myMacro()}}</input>
+            <expected>a  b hello</expected>
+        </case>
+
+        <case>
+            <input>a {{macro myMacro(a, b, c)}}hello{{/macro}} b {{myMacro()}}</input>
+            <expected>a  b hello</expected>
+        </case>
+
+        <case>
+            <input>a {{macro myMacro(a, b, c)}}hello:{{a}},{{b}},{{c}}{{/macro}} b {{myMacro()}}</input>
+            <expected>a  b hello:,,</expected>
+        </case>
+
+        <case>
+            <input>a {{macro myMacro(a, b, c)}}hello:{{a}},{{b}},{{c}}{{/macro}} b {{myMacro(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)}}</input>
+            <expected>a  b hello:1,2,3</expected>
+        </case>
+
+        <case>
+            <input>a {{macro myMacro(a, b, c)}}hello:{{a}},{{b is undefined}},{{c is undefined}}{{/macro}} b {{myMacro(1)}}</input>
+            <expected>a  b hello:1,true,true</expected>
+        </case>
+
+        <case>
+            <input>a {{macro myMacro(a, b, c)}}hello:{{a}},{{b}},{{c}}{{/macro}} b {{myMacro('x')}}</input>
+            <expected>a  b hello:x,,</expected>
+        </case>
+
+        <case>
+            <input>a {{macro myMacro(a, b, c)}}hello:{{a}},{{b}},{{c}}{{/macro}} b {{myMacro('x', 'y')}}</input>
+            <expected>a  b hello:x,y,</expected>
+        </case>
+
+        <case>
+            <input>a {{macro myMacro(a, b, c)}}hello:{{a}},{{b}},{{c}}{{/macro}} b {{myMacro('x', 'y', 'z')}}</input>
+            <expected>a  b hello:x,y,z</expected>
+        </case>
+
+        <case>
+            <input>a {{x}}{{macro myMacro}}{{var x = 10}}{{/macro}} b {{x}} {{myMacro()}} {{x}}</input>
+            <expected>a  b   </expected>
+        </case>
+
+        <case>
+            <input>a {{x}}{{macro myMacro}}{{var x = 10}}{{x}}{{/macro}} b {{x}} {{myMacro()}} {{x}}</input>
+            <expected>a  b  10 </expected>
+        </case>
+
+        <case>
+            <input>a {{var myMacro = 10}}{{macro myMacro}}HELLO WORLD{{/macro}} - {{myMacro}} - {{myMacro()}} c</input>
+            <expected>a  - 10 - HELLO WORLD c</expected>
+        </case>
+
+        <!-- test cases for 'self' special object moved to self-scope.xml -->
+
+        <case>
+            <input>a {{var x = 10}}{{macro myMacro}}{{x}}{{/macro}} {{myMacro()}} {{x}}</input>
+            <expected>a  10 10</expected>
+        </case>
+
+        <case>
+            <input>a {{var x = 10}}{{macro myMacro(x)}}{{x}}{{/macro}} {{myMacro(x)}} {{x}}</input>
+            <expected>a  10 10</expected>
+        </case>
+
+        <case>
+            <input>a {{macro myMacro}}{{/macro}} b {{call myMacro()}}{{/call}}</input>
+            <expected>a  b </expected>
+        </case>
+
+        <case>
+            <input>a {{macro myMacro}}hello{{/macro}} b {{call myMacro()}}{{/call}}</input>
+            <expected>a  b hello</expected>
+        </case>
+
+        <case>
+            <input>a {{macro myMacro(a, b, c)}}hello{{/macro}} b {{call myMacro()}}{{/call}}</input>
+            <expected>a  b hello</expected>
+        </case>
+
+        <case>
+            <input>a {{macro myMacro(a, b, c)}}hello:{{a}},{{b}},{{c}}{{/macro}} b {{call myMacro()}}{{/call}}</input>
+            <expected>a  b hello:,,</expected>
+        </case>
+
+        <case>
+            <input>a {{macro myMacro(a, b, c)}}hello:{{a}},{{b}},{{c}}{{/macro}} b {{call myMacro('x')}}{{/call}}</input>
+            <expected>a  b hello:x,,</expected>
+        </case>
+
+        <case>
+            <input>a {{macro myMacro(a, b, c)}}hello:{{a}},{{b}},{{c}}{{/macro}} b {{call myMacro('x', 'y')}}{{/call}}</input>
+            <expected>a  b hello:x,y,</expected>
+        </case>
+
+        <case>
+            <input>a {{macro myMacro(a, b, c)}}hello:{{a}},{{b}},{{c}}{{/macro}} b {{call myMacro('x', 'y', 'z')}}{{/call}}</input>
+            <expected>a  b hello:x,y,z</expected>
+        </case>
+
+        <case>
+            <input>a {{x}}{{macro myMacro}}{{var x = 10}}{{/macro}} b {{x}} {{call myMacro()}}{{/call}} {{x}}</input>
+            <expected>a  b   </expected>
+        </case>
+    </suite>
+
+    <suite name="macro overrides global function">
+        <case>
+            <input>a {{macro max(x,y)}}555{{/macro}} b {{max(1,2)}} c</input>
+            <expected>a  b 555 c</expected>
+        </case>
+    </suite>
+
+</suites>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suites>
+
+	<!-- Rules to parse and treat function body code -->
+	<!-- :args: -  if several args were passed print them all joined with '-' symbol and with '[' in the beginning and ']' at the end -->
+	<!-- :exception: - text in function body means that this function should throw exception -->
+
+	<suite name="rewrite existent global functions">
+		<!-- Check global min function work properly - moved in global-scope.xml
+		<case>
+			<input>a {{min(1,2)}} b</input>
+			<expected>a 1 b</expected>
+		</case>
+ -->
+		<!-- user registered global function should override predefined sponde function-->
+		<case>
+			<function name="max" return="number">555</function>
+			<input>a {{global.max(1,2)}} b {{max(1,2)}} c</input>
+			<expected>a 555 b 555 c</expected>
+		</case>
+
+		<!-- rewrite global min function with our own -->
+		<case>
+			<function name="min" return="number">555</function>
+			<input>a {{min(1,2)}} b</input>
+			<expected>a 555 b</expected>
+		</case>
+
+		<!-- check if global include function works - moved in global-scope.xml
+		<case>
+            <resourceResolver type="default"/>
+            <input>a {{include(':baseURI:testresources/tpl/test_for_include.tpl')}} b</input>
+			<expected>a include file contents b</expected>
+		</case>
+-->
+		<!-- rewrite global include function with our own -->
+		<case>
+			<function name="include" return="string">include :args: result</function>
+            <resourceResolver type="default"/>
+            <input>a {{include(':baseURI:testresources/tpl/test_for_include.tpl')}} b</input>
+            <expected>a include [string(:baseURI:testresources/tpl/test_for_include.tpl)] result b</expected>
+		</case>
+	</suite>
+
+	<suite name="register new global functions">
+        <!-- test if we have deleted old event() fucntionality -->
+        <case>
+            <input>a {{event().isUndefined()}} b</input>
+            <expected>a true b</expected>
+        </case>
+
+		<!-- test is it works -->
+		<case>
+			<function name="test_func1" return="string">test function</function>
+			<input>a {{test_func1()}} b</input>
+			<expected>a test function b</expected>
+		</case>
+		
+		<!-- test is it works -->
+		<case>
+			<function name="test_func2" return="number">123.45</function>
+			<input>a {{test_func2()}} b</input>
+			<expected>a 123.45 b</expected>
+		</case>
+		
+		<!-- check no args passed to function -->
+		<case>
+			<function name="test_func3" return="string">test function :args: eof</function>
+			<input>a {{test_func3()}} b</input>
+			<expected>a test function [] eof b</expected>
+		</case>
+		
+		<!-- check single argument passed to function -->
+		<case>
+			<function name="test_func3" return="string">test function :args: eof</function>
+			<input>a {{test_func3('test')}} b</input>
+			<expected>a test function [string(test)] eof b</expected>
+		</case>
+		
+		<!-- check args passed into function -->
+		<case>
+			<function name="test_func3" return="string">test function :args: eof</function>
+			<input>a {{test_func3('test','abcd',1234)}} b</input>
+			<expected>a test function [string(test)-string(abcd)-number(1234)] eof b</expected>
+		</case>
+		
+		<!-- check for correct return type -->
+		<case>
+			<function name="test_func2" return="number">123.45</function>
+			<input>{{test_func2().isNumber()}}</input>
+			<expected>true</expected>
+		</case>
+		<case>
+			<function name="test_func2" return="number">123.45</function>
+			<input>a {{test_func2()}} b {{test_func2().isNumber()}} c</input>
+			<expected>a 123.45 b true c</expected>
+		</case>
+
+		<!-- check if result will be Undefined if function throws some exception -->
+		<case>
+			<function name="test_func7" return="number">:exception:</function>
+			<input>a {{test_func7().isUndefined()}} b</input>
+			<expected>a true b</expected>
+		</case>
+	</suite>
+
+
+</suites>

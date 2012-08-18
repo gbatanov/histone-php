@@ -39,12 +39,16 @@
 		<mkdir dir="${basedir}/generated/test-cases-xml" /> 
 	</target>
 
-	<target name="copy-xml-tests" depends="prepare">
+	<target name="copy-xml-tests" depends="clean,prepare">
 		<echo message="Coping xml test files..." />
 		<copy todir="${basedir}/generated/test-cases-xml" overwrite="true">
 			<fileset dir="${basedir}/src/test">
 				<include name="parser/*.*" />
 				<include name="evaluator/*.*" />
+				<include name="evaluator/testresources/json/*.*" />
+				<include name="evaluator/testresources/tpl/*.*" />
+				<include name="evaluator/testresources/tpl/subfolder/*.*" />
+				<include name="evaluator/testresources/txt/*.*" />
 			</fileset>
 		</copy>
 	</target>
@@ -55,6 +59,7 @@
 		<copy  todir="${basedir}/generated/generated-tests/" overwrite="true">
 			<fileset dir="${basedir}/src/test-templates">
 				<include name="*.php" />
+				<include name="external/*.php" />
 			</fileset>
 		</copy>
 
@@ -76,8 +81,12 @@
 		<condition property="isTestErrorProp">
 			<or>
 				<contains string="${op}" substring="failure" casesensitive="false" />
+				<not>
+					<contains string="${op}" substring=" assertions" casesensitive="true" />
+				</not>
 			</or>
 		</condition>
+		<fail if="isTestErrorProp" message="Detected PHPUnitTest error!" /> 
 	</target>
 
 	<target name="pretest" depends="copy-xml-tests,generate-unit-tests,run-unit-tests"/>

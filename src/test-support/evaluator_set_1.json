@@ -1,5 +1,4 @@
 [
-	"node-string-functions.xml",
 	"basic.xml",
 	"var.xml",
 	"operators.xml",
@@ -7,5 +6,15 @@
 	"macro.xml",
 	"other.xml",
 	"constructs.xml",
-	"self-scope.xml"
+	"self-scope.xml",	
+	"node-string-functions.xml",
+	"node-object-functions.xml",
+	"node-number-functions.xml",
+	"node-to-functions.xml",
+	"node-is-functions.xml",
+	"global-builtin-functions.xml",	
+	"global-scope.xml",
+	"external-resources.xml",
+	"global-functions-registration.xml",
+	"node-functions-registration.xml"
 ]

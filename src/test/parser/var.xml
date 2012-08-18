@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suites>
+
+    <suite name="variable defenition">
+        <case>
+            <input>{{var name = 10</input>
+            <exception>
+                <line>1</line>
+                <expected>}}</expected>
+                <found>EOF</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>{{var name 10</input>
+            <exception>
+                <line>1</line>
+                <expected>}}</expected>
+                <found>10</found>
+            </exception>
+        </case>
+		
+        <case>
+            <input>a {{var x = 10}} f</input>
+            <expected type="json">["a ",[1001,"x",[101,10]]," f"]</expected>
+        </case>
+
+       <case>
+            <input>a {{var x = -10}} f</input>
+            <expected type="json">["a ",[1001,"x",[14,[101,10]]]," f"]</expected>
+        </case>
+
+        <case>
+            <input>a {{var this = 10}} f</input>
+            <exception>
+                <line>1</line>
+                <expected>identifier</expected>
+                <found>this</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>a {{var self = 10}} f</input>
+            <exception>
+                <line>1</line>
+                <expected>identifier</expected>
+                <found>self</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>a {{var global = 10}} f</input>
+            <exception>
+                <line>1</line>
+                <expected>identifier</expected>
+                <found>global</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>frag{{var}}</input>
+            <exception>
+                <line>1</line>
+                <expected>identifier</expected>
+                <found>}}</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>frag{{var $a}}</input>
+            <exception>
+                <line>1</line>
+                <expected>{{/var}}</expected>
+                <found>EOF</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>frag{{var $a =}}</input>
+            <exception>
+                <line>1</line>
+                <expected>expression</expected>
+                <found>}}</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>a {{var x}} b {{/var}} c</input>
+            <expected type="json">["a ",[1001,"x",[109,[" b "]]]," c"]</expected>
+        </case>
+
+        <case>
+            <input>frag{{var $a}} bla {{/www}}</input>
+            <exception>
+                <line>1</line>
+                <expected>{{/var}}</expected>
+                <found>www</found>
+            </exception>
+        </case>
+
+        <case>
+            <input>a {{var simple = 10}} b {{simple}} c</input>
+            <expected type="json">["a ",[1001,"simple",[101,10]]," b ",[105,["simple"]]," c"]</expected>
+        </case>
+
+       <case>
+            <input>a {{var simple = -10}} b {{simple}} c</input>
+            <expected type="json">["a ",[1001,"simple",[14,[101,10]]]," b ",[105,["simple"]]," c"]</expected>
+        </case>
+
+        <case>
+            <input>a {{var extended}} b {{/var}} c {{extended}} d</input>
+            <expected type="json">["a ",[1001,"extended",[109,[" b "]]]," c ",[105,["extended"]]," d"]</expected>
+        </case>
+
+    </suite>
+</suites>

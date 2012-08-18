@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suites>
+
+	<suite name=".isUndefined">
+		<case>
+			<input>a {{undefined.isUndefined()}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{null.isUndefined()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true.isUndefined()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false.isUndefined()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{"string".isUndefined()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{123.isUndefined()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{123.8.isUndefined()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{.123.isUndefined()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{0.123.isUndefined()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{123E-3.isUndefined()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-123.8.isUndefined()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-.123.isUndefined()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-0.123.isUndefined()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-123E-3.isUndefined()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3].isUndefined()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{["foo": "bar"].isUndefined()}} b</input>
+			<expected>a false b</expected>
+		</case>
+	</suite>
+
+	<suite name=".isNull">
+		<case>
+			<input>a {{undefined.isNull()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null.isNull()}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{true.isNull()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false.isNull()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{"string".isNull()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{123.isNull()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{123.8.isNull()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{.123.isNull()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{0.123.isNull()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{123E-3.isNull()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-123.8.isNull()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-.123.isNull()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-0.123.isNull()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-123E-3.isNull()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3].isNull()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{["foo": "bar"].isNull()}} b</input>
+			<expected>a false b</expected>
+		</case>
+	</suite>
+
+	<suite name=".isBoolean">
+		<case>
+			<input>a {{undefined.isBoolean()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null.isBoolean()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true.isBoolean()}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{false.isBoolean()}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{"string".isBoolean()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{123.isBoolean()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{123.8.isBoolean()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{.123.isBoolean()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{0.123.isBoolean()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{123E-3.isBoolean()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-123.8.isBoolean()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-.123.isBoolean()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-0.123.isBoolean()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-123E-3.isBoolean()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3].isBoolean()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{["foo": "bar"].isBoolean()}} b</input>
+			<expected>a false b</expected>
+		</case>
+	</suite>
+
+	<suite name=".isString">
+		<case>
+			<input>a {{undefined.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{undefined.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{"string".isString()}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{123.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{123.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{123.8.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{123.8.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{.123.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{.123.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{0.123.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{0.123.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{123E-3.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{123E-3.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-123.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-123.8.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-123.8.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-.123.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-.123.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-0.123.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-0.123.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-123E-3.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-123E-3.isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3].isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{["foo": "bar"].isString()}} b</input>
+			<expected>a false b</expected>
+		</case>
+	</suite>
+
+	<suite name=".isNumber">
+		<case>
+			<input>a {{undefined.isNumber()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null.isNumber()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true.isNumber()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false.isNumber()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{"string".isNumber()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{123.isNumber()}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{123.8.isNumber()}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{.123.isNumber()}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{0.123.isNumber()}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{123E-3.isNumber()}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{-123.isNumber()}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{-123.8.isNumber()}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{-.123.isNumber()}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{-0.123.isNumber()}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{-123E-3.isNumber()}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3].isNumber()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{["foo": "bar"].isNumber()}} b</input>
+			<expected>a false b</expected>
+		</case>
+	</suite>
+
+	<suite name=".isMap">
+		<case>
+			<input>a {{undefined.isMap()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{null.isMap()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{true.isMap()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{false.isMap()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{"string".isMap()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{123.isMap()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{123.8.isMap()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{.123.isMap()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{0.123.isMap()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{123E-3.isMap()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-123.isMap()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-123.8.isMap()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-.123.isMap()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-0.123.isMap()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{-123E-3.isMap()}} b</input>
+			<expected>a false b</expected>
+		</case>
+
+		<case>
+			<input>a {{[1, 2, 3].isMap()}} b</input>
+			<expected>a true b</expected>
+		</case>
+
+		<case>
+			<input>a {{["foo": "bar"].isMap()}} b</input>
+			<expected>a true b</expected>
+		</case>
+	</suite>
+</suites>
