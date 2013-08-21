@@ -1,4 +1,4 @@
-Histone PHP
+﻿Histone PHP
 ============
 
 PHP реализация шаблонного движка Histone
@@ -22,5 +22,5 @@ PHP реализация шаблонного движка Histone
 	|- generated/ папка с временными и сгенерированными файлами
 	     |- test-cases-xml/ папка в которую будут распакованы приёмоные тесты Histone
 	     |- generated-tests/ папка в которой будут сложены сгенерированные phpunit тесты Histone
-	|- build.xml файл сос криптом сборки Histone-php
+	|- build.xml файл со скриптом сборки Histone-php
 	|- build.peoperties файл со настройками/свойствами проекта/скрипта сборки
