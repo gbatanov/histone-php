@@ -1,1 +1,0 @@
-{{import 'subfolder/file_for_import.tpl'}}{{macro macro1}}macro1 {{global.baseURI}} output{{/macro}}

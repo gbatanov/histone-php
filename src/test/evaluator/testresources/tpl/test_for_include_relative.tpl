@@ -1,1 +1,0 @@
-relative file {{global.baseURI}} content

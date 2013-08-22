@@ -1,1 +1,0 @@
-{{macro macro2}}macro2 {{global.baseURI}} output{{/macro}}
