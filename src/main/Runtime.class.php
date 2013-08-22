@@ -641,10 +641,12 @@ class HistoneGlobal extends HistoneType {
 		$uriResolver = Histone::getUriResolver();
 		if ($uriResolver) {
 			$resolve = @call_user_func($uriResolver, $href, $base);
-			if ($x === null)
+			if (!isset($x))
 				return new HistoneUndefined();
 			else {
 				try {
+					if (!isset($resolve['uri']) || !isset($resolve['data']))
+						throw new Exception('UriResolveError');
 					$innerHistone = new Histone($resolve['uri']);
 					$innerHistone->parseString($resolve['data']);
 				} catch (ParseError $e) {
@@ -916,7 +918,7 @@ class HistoneGlobal extends HistoneType {
 	 * 
 	 * @return boolean
 	 */
-	public static function isMap() {
+	public static function isMap($value) {
 		return true;
 	}
 

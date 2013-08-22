@@ -26,6 +26,7 @@ ini_set('log_errors', 'on');
 ini_set('error_log', 'php_errors.txt');
 
 require_once(realpath(dirname(__FILE__) . '/../main/Histone.class.php'));
+
 /**
  * URIResolver
  * 
@@ -42,31 +43,25 @@ require_once(realpath(dirname(__FILE__) . '/../main/Histone.class.php'));
  *      <li>    "data": "content of the resource as a string"</li>
  * </ul>
  */
-function myUriResolver($resourceURI, $baseURI, $args = null)
-{
+function myUriResolver($resourceURI, $baseURI, $args = null) {
 	$fileName = rtrim($baseURI, '/') . '/' . trim($resourceURI, '/');
-	try
-	{
+	try {
 		$template = file_get_contents($fileName);
-		if ($template)
-		{
+		if ($template) {
 			return $template;
 		}
 		return '';
-	}
-	catch (Exception $e)
-	{
+	} catch (Exception $e) {
 		return '';
 	}
 }
 
 Histone::setUriResolver('myUriResolver');
 
-try
-{
-
+try {
+// Простейший шаблон-строка 
 	$templateStr = '{{var tr=[1,7,-12]}}{{for x in tr}}{{x}}{{else}}77{{/for}} 2 * 2 = {{2 * (2 + 1)}}{{include ("tpl1.tpl")}}';
-/*
+
 	$templateStr = "{{* значения используемые для тестирования *}}
 	  {{var values = [
 	  undefined,
@@ -105,24 +100,22 @@ try
 	  {{/for}}
 	  {{/for}}
 	  ";
-*/	
+
 	//
 	$templateDir = 'C:/work/histone-php/test-deprecated/';
 	$template = new Histone($templateDir);
 	// Парсим строку в качестве шаблона
 	$template->parseString($templateStr);
 	// или парсим файл шаблона
-	//$template->parseFile("tpl1.tpl");
+	$template->parseFile("tpl1.tpl");
 	$context = array(
 		'var1' => 111,
 		'var2' => 222,
 	);
-//	$context = (111);
+//	$context = (211);
 //	$context = (string) json_decode(json_encode($context));
 	echo $template->process($context);
-}
-catch (Exception $e)
-{
+} catch (Exception $e) {
 	// На devel выводим, на production пишем в лог
 	echo 'PHP says: ' . $e->getMessage() . '<table>' . $e->xdebug_message . '</table>';
 }

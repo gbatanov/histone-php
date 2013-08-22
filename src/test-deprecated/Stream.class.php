@@ -16,15 +16,10 @@
  */
 
 /**
- * Эмулятор схем
- * 
- * 
- * @version $Id: Stream.class.php 1298 2012-08-07 17:42:00Z gsb $
- */
-
-/**
  * Класс эмуляции схем
  * 
+ * @author gbatanov MegaFon
+ * @version v.2013
  * @package testClasses
  */
 class VariableStream
