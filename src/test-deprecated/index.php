@@ -1,4 +1,5 @@
 <?php
+
 /**
  *    Copyright 2012 MegaFon
  *
@@ -14,26 +15,17 @@
  *   See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 /**
  * index.php
  * 
  * @package index
- * @version $Id: index.php 1298 2012-08-07 17:42:00Z gsb $
+ * @version v.2013
+ * @author gbatanov, MegaFon
  */
-/**
- * index.php
- * 
- * @package index
- */
-phpinfo();
-exit();
-
 ini_set('log_errors', 'on');
 ini_set('error_log', 'php_errors.txt');
 
-require_once('trunk/src/Histone.class.php');
-
+require_once(realpath(dirname(__FILE__) . '/../main/Histone.class.php'));
 /**
  * URIResolver
  * 
@@ -52,7 +44,7 @@ require_once('trunk/src/Histone.class.php');
  */
 function myUriResolver($resourceURI, $baseURI, $args = null)
 {
-	$fileName = rtrim($baseURI, '/') . '/' . trim($href, '/');
+	$fileName = rtrim($baseURI, '/') . '/' . trim($resourceURI, '/');
 	try
 	{
 		$template = file_get_contents($fileName);
@@ -73,63 +65,65 @@ Histone::setUriResolver('myUriResolver');
 try
 {
 
-	$templateStr = '{{var tr=array()}}{{for x in tr}}{{x}}12{{else}}77{{/for}} 2 * 2 = {{2 * (2 + 1)}}{{include ("tpl1.tpl")}}';
+	$templateStr = '{{var tr=[1,7,-12]}}{{for x in tr}}{{x}}{{else}}77{{/for}} 2 * 2 = {{2 * (2 + 1)}}{{include ("tpl1.tpl")}}';
+/*
 	$templateStr = "{{* значения используемые для тестирования *}}
-{{var values = array(
-    undefined,
-    null,
-    true,
-    false,
-    0,
-    10,
-    \"\",
-    \"string\",
-    array(),
-    array(1),
-    object(),
-    object(foo: 'bar')
-)}}
- 
-{{* операторы используемые для тестирования *}}
-{{var operators = array('is', 'isNot', '>', '<', '>=', '<=')}}
-{{for operator in operators}}
-    {{for op1 in values}}
-        {{for op2 in values}}
-            <div>
-                <strong>{{op1.toJSON()}} {{operator}} {{op2.toJSON()}}</strong>
-                {{if operator is 'is'}}
-                    <span> = {{(op1 is op2).toJSON()}}</span>
-                {{elseif operator is 'isNot'}}
-                    <span> = {{(op1 isNot op2).toJSON()}}</span>
-                {{elseif operator is '>'}}
-                    <span> = {{(op1 > op2).toJSON()}}</span>
-                {{elseif operator is '<'}}
-                    <span> = {{(op1 < op2).toJSON()}}</span>
-                {{elseif operator is '>='}}
-                    <span> = {{(op1 >= op2).toJSON()}}</span>
-                {{elseif operator is '<='}}
-                    <span> = {{(op1 <= op2).toJSON()}}</span>
-                {{/if}}
-            </div>
-        {{/for}}
-    {{/for}}
-{{/for}}
-";
+	  {{var values = [
+	  undefined,
+	  true,
+	  false,
+	  0,
+	  10,
+	  \"\",
+	  \"string\",
+	  [],
+	  [1]
+	  ]}}
 
-	$template = new Histone('C:/work/Histone/php/templates/');
-//	$template = new Histone('http://developer/php/templates/tpl1.tpl');
+	  {{* операторы используемые для тестирования *}}
+	  {{var operators = ['is', 'isNot', '>', '<', '>=', '<=']}}
+	  {{for operator in operators}}
+	  {{for op1 in values}}
+	  {{for op2 in values}}
+	  <div>
+	  <strong>{{op1.toJSON()}} {{operator}} {{op2.toJSON()}}</strong>
+	  {{if operator is 'is'}}
+	  <span> = {{(op1 is op2).toJSON()}}</span>
+	  {{elseif operator is 'isNot'}}
+	  <span> = {{(op1 isNot op2).toJSON()}}</span>
+	  {{elseif operator is '>'}}
+	  <span> = {{(op1 > op2).toJSON()}}</span>
+	  {{elseif operator is '<'}}
+	  <span> = {{(op1 < op2).toJSON()}}</span>
+	  {{elseif operator is '>='}}
+	  <span> = {{(op1 >= op2).toJSON()}}</span>
+	  {{elseif operator is '<='}}
+	  <span> = {{(op1 <= op2).toJSON()}}</span>
+	  {{/if}}
+	  </div>
+	  {{/for}}
+	  {{/for}}
+	  {{/for}}
+	  ";
+*/	
+	//
+	$templateDir = 'C:/work/histone-php/test-deprecated/';
+	$template = new Histone($templateDir);
+	// Парсим строку в качестве шаблона
 	$template->parseString($templateStr);
+	// или парсим файл шаблона
+	//$template->parseFile("tpl1.tpl");
 	$context = array(
 		'var1' => 111,
 		'var2' => 222,
 	);
 //	$context = (111);
-//	$context = (string)json_decode(json_encode($context));
+//	$context = (string) json_decode(json_encode($context));
 	echo $template->process($context);
 }
 catch (Exception $e)
 {
-	// При отладке выводим, на бою пишем в лог
+	// На devel выводим, на production пишем в лог
 	echo 'PHP says: ' . $e->getMessage() . '<table>' . $e->xdebug_message . '</table>';
 }
 ?>

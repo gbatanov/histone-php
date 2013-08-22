@@ -1,2 +1,4 @@
 /generated/
 /target/
+/nbproject/private/
+/src/test-deprecated/php_errors.txt
