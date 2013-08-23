@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-   Copyright 2012 MegaFon
+   Copyright 2012, 2013 MegaFon
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -37,11 +37,25 @@
 		<mkdir dir="${basedir}/generated" /> 
 		<mkdir dir="${basedir}/generated/generated-tests" /> 
 		<mkdir dir="${basedir}/generated/test-cases-xml" /> 
+		<mkdir dir="${basedir}/generated/test-cases-xml/testresources" /> 
 	</target>
 
+	<!-- Target: copy-xml-tests check acceptance json-based tests and make xml-based tests -->
 	<target name="copy-xml-tests" depends="clean,prepare">
-		<echo message="Coping xml test files..." />
-		<copy todir="${basedir}/generated/test-cases-xml" overwrite="true">
+		<echo message="Creating and coping xml test files..." />
+		<exec executable="php" outputProperty="copyres"  >
+			<arg line="-f ${basedir}/src/test-support/create-xml-test.php " />
+		</exec>
+		<echo message="Creating PHPUnit test result: ${copyres}" />	
+		
+		<condition property="isCopyXmlErrorProp">
+			<or>
+				<contains string="${copyres}" substring="Error" casesensitive="true" />
+			</or>
+		</condition>
+		<fail if="isCopyXmlErrorProp" message="Detected PHPUnitTest error!" /> 
+
+		<!--	<copy todir="${basedir}/generated/test-cases-xml" overwrite="true">
 			<fileset dir="${basedir}/src/test">
 				<include name="parser/*.*" />
 				<include name="evaluator/*.*" />
@@ -51,6 +65,7 @@
 				<include name="evaluator/testresources/txt/*.*" />
 			</fileset>
 		</copy>
+		-->
 	</target>
 
 	<!-- Target create PHPUnit tests -->

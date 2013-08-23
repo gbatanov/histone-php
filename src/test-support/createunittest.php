@@ -28,7 +28,7 @@ $modes = array('parser', 'evaluator');
 foreach ($modes as $mode) {
 	$index = 0;
 	$ok = false;
-	$filename = $WORK_DIR . '/src/test-support/' . $mode . '_set_1.json';
+	$filename = $WORK_DIR . '/src/test-support/' . $mode . '_set.json';
 	$dir = $WORK_DIR . $TEST_CASES_XML_FOLDER . '/' . $mode;
 	$f = fopen($filename, 'rb');
 
