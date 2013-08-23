@@ -17,7 +17,8 @@
  */
 
 /**
- *
+ * Class-template to generate a class test.
+ * 
  * @package unittest
  */
 class ParserAcceptanceTest extends PHPUnit_Framework_TestCase {
@@ -63,14 +64,17 @@ class ParserAcceptanceTest extends PHPUnit_Framework_TestCase {
 
 			if ($expected === $result) {
 				return $this->assertEquals($expected, $result);
-			} else {
+			}
+			else {
 				if ($exception === null) {
 					return $this->assertEquals($expected, $result);
-				} else {
-					return $this->assertEquals(json_encode($exception), 'NO_EXCEPTION'); 
+				}
+				else {
+					return $this->assertEquals(json_encode($exception), 'NO_EXCEPTION');
 				}
 			}
-		} catch (ParseError $thrownException) {
+		}
+		catch (ParseError $thrownException) {
 			if ($exception !== null) {
 				$resException = json_encode(array(
 					'line' => (string) $thrownException->line,
@@ -78,12 +82,15 @@ class ParserAcceptanceTest extends PHPUnit_Framework_TestCase {
 					'found' => (string) $thrownException->found,));
 				$exception = json_encode($exception);
 				return $this->assertEquals($exception, $resException);
-			} else {
+			}
+			else {
 				return $this->assertEquals('NO_EXCEPTION', json_encode(array((string) $thrownException->line, (string) $thrownException->expected, (string) $thrownException->found,)));
 			}
-		} catch (HistoneError $spondeError) {
+		}
+		catch (HistoneError $spondeError) {
 			return $this->assertEquals('NO_EXCEPTION', json_encode($spondeError->getMessage()));
-		} catch (Exception $e) {
+		}
+		catch (Exception $e) {
 			return $this->assertEquals('NO_EXCEPTION', json_encode($e->getMessage()));
 		}
 	}

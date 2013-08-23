@@ -74,15 +74,15 @@
 	<target name="run-unit-tests">
 		<echo message="Testing..." />
 		<delete file="${basedir}/generated/generated-tests/ParserAcceptanceTestSuites.xml" />
-		<exec executable="php" outputProperty="op" >
+		<exec executable="php" outputProperty="op2" >
 			<arg line="-f ${basedir}/src/test-support/unittest.php " />
 		</exec>
-		<echo message="PHPUnitTest result: ${op}" />	
+		<echo message="PHPUnitTest result: ${op2}" />	
 		<condition property="isTestErrorProp">
 			<or>
-				<contains string="${op}" substring="failure" casesensitive="false" />
+				<contains string="${op2}" substring="failure" casesensitive="false" />
 				<not>
-					<contains string="${op}" substring=" assertions" casesensitive="true" />
+					<contains string="${op2}" substring=" assertions" casesensitive="true" />
 				</not>
 			</or>
 		</condition>
@@ -95,7 +95,7 @@
 	<!-- target doc -->
 	<target name="doc">
 		<echo message="Creating PHP-documentation with ApiGen.." />
-		<exec executable="apigen" outputProperty="op" >
+		<exec executable="apigen" outputProperty="op3" >
 			<arg line='--source="${basedir}/src/main" --destination="${basedir}/target/apidocs" --main="Histone" --title="Histone PHP API" --access-levels="public,private,protected"' />
 		</exec>
 

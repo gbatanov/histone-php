@@ -18,9 +18,9 @@
 /**
  * Запускать, находясь в директории histone-php.
  * Запуск из командной строки Windows 
- * >unittest.php 
+ * >./src/test-support/unittest.php 
  * или (если расширение не зарегистрировано)
- * >php -f unittest.php 
+ * >php -f ./src/test-support/unittest.php 
  * 
  * Путь к php и phpunit должен быть зарегистрирован в системе
  * 

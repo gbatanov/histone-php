@@ -17,7 +17,8 @@
  */
 
 /**
- *
+ * Class-template to generate a class test.
+ * 
  * @package unittest
  */
 class EvaluatorAcceptanceTest extends PHPUnit_Framework_TestCase {
@@ -65,7 +66,8 @@ class EvaluatorAcceptanceTest extends PHPUnit_Framework_TestCase {
 			$cHistone->parseString($input);
 			$result = $cHistone->process($context);
 			return $this->assertEquals($expected, $result);
-		} catch (ParseError $thrownException) {
+		}
+		catch (ParseError $thrownException) {
 			if ($exception !== null) {
 				$resException = json_encode(array(
 					'line' => (string) $thrownException->line,
@@ -73,12 +75,15 @@ class EvaluatorAcceptanceTest extends PHPUnit_Framework_TestCase {
 					'found' => (string) $thrownException->found,));
 				$exception = json_encode($exception);
 				return $this->assertEquals($exception, $resException);
-			} else {
+			}
+			else {
 				return $this->assertEquals('NO_EXCEPTION', json_encode(array((string) $thrownException->line, (string) $thrownException->expected, (string) $thrownException->found,)));
 			}
-		} catch (HistoneError $histoneError) {
+		}
+		catch (HistoneError $histoneError) {
 			return $this->assertEquals('NO_EXCEPTION', $histoneError->getMessage());
-		} catch (Exception $e) {
+		}
+		catch (Exception $e) {
 			// формируется при невыполнении assert
 			return $this->assertEquals($expected, $result);
 		}
