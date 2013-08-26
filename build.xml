@@ -37,16 +37,15 @@
 		<mkdir dir="${basedir}/generated" /> 
 		<mkdir dir="${basedir}/generated/generated-tests" /> 
 		<mkdir dir="${basedir}/generated/test-cases-xml" /> 
-		<mkdir dir="${basedir}/generated/test-cases-xml/testresources" /> 
 	</target>
 
-	<!-- Target: copy-xml-tests check acceptance json-based tests and make xml-based tests -->
-	<target name="copy-xml-tests" depends="clean,prepare">
-		<echo message="Creating and coping xml test files..." />
+	<!-- Target: copy-src-tests check acceptance json-based tests in target tests folder  -->
+	<target name="copy-src-tests" depends="clean,prepare">
+		<echo message="Coping sources test files..." />
 		<exec executable="php" outputProperty="copyres"  >
-			<arg line="-f ${basedir}/src/test-support/create-xml-test.php " />
+			<arg line="-f ${basedir}/src/test-support/copy-src-test.php " />
 		</exec>
-		<echo message="Creating PHPUnit test result: ${copyres}" />	
+		<echo message="Coping sources test files result: ${copyres}" />	
 		
 		<condition property="isCopyXmlErrorProp">
 			<or>
@@ -104,8 +103,8 @@
 		<fail if="isTestErrorProp" message="Detected PHPUnitTest error!" /> 
 	</target>
 
-	<target name="pretest" depends="copy-xml-tests,generate-unit-tests,run-unit-tests"/>
-	<target name="test" depends="prepare,generate-unit-tests,run-unit-tests"/>
+	<target name="pretest" depends="generate-unit-tests,run-unit-tests"/>
+	<target name="test" depends="copy-src-tests,generate-unit-tests,run-unit-tests"/>
 
 	<!-- target doc -->
 	<target name="doc">

@@ -6,3 +6,5 @@
 /src/test
 /ErrorList.txt
 /CreateTests.txt
+/src/test-support/parser_set.json
+/src/test-support/evaluator_set.json

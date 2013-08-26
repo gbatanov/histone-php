@@ -100,14 +100,14 @@ try {
 	  {{/for}}
 	  {{/for}}
 	  ";
-
+ $templateStr ="hello {{}} world";
 	//
 	$templateDir = 'C:/work/histone-php/test-deprecated/';
 	$template = new Histone($templateDir);
 	// Парсим строку в качестве шаблона
 	$template->parseString($templateStr);
 	// или парсим файл шаблона
-	$template->parseFile("tpl1.tpl");
+//	$template->parseFile("tpl1.tpl");
 	$context = array(
 		'var1' => 111,
 		'var2' => 222,

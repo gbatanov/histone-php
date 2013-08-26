@@ -23,7 +23,7 @@ ini_set('log_errors', 'on');
 ini_set('error_log', $WORK_DIR . '/generated/php_errors.txt');
 
 /* load xml-describe tests for evaluator */
-$modes = array('parser', 'evaluator');
+$modes = array('parser'/*, 'evaluator'*/);
 
 foreach ($modes as $mode) {
 	$index = 0;
@@ -41,34 +41,36 @@ foreach ($modes as $mode) {
 
 					$testFileContent = file_get_contents($dir . '/' . $fileTest);
 					$testFileContent = str_replace(':baseURI:', $dir . '/', $testFileContent);
-					$xml = simplexml_load_string($testFileContent);
-
-					foreach ($xml->suite as $suite) {
-						foreach ($suite->case as $case) {
+					$Suites = json_decode($testFileContent, true);
+					foreach ($Suites as $xml) {
+						foreach ($xml['cases'] as $case) {
 							$function = $global = $expected = $exception = $context = null;
-							$input = strval($case->input);
-							if (isset($case->expected)) {
-								$expected = strval($case->expected);
+							$input = strval($case['input']);
+							if (isset($case['expectedResult'])) {
+								$expected = strval($case['expectedResult']);
 							}
-							if (isset($case->exception)) {
-								$exception['line'] = strval($case->exception->line);
-								$exception['expected'] = strval($case->exception->expected);
-								$exception['found'] = strval($case->exception->found);
+							if (isset($case['expectedAST'])) {
+								$expected = json_encode($case['expectedAST']);
 							}
-							if (isset($case->context))
-								$context = strval($case->context);
+							if (isset($case['expectedException'])) {
+								$exception['line'] = $case['expectedException']['line']; //strval($case->exception->line);
+								$exception['expected'] = $case['expectedException']['expected']; //strval($case->exception->expected);
+								$exception['found'] = $case['expectedException']['found']; //strval($case->exception->found);
+							}
+							if (isset($case['context']))
+								$context = $case['context'];
 							if (isset($case->global)) {
 								$global = array();
-								$baseUrl = (isset($case->global['name']) && (strval($case->global['name']) == 'baseURI')) ? strval($case->global['value']) : '.';
+								$baseUrl = (isset($case['global']['name']) && (strval($case['global']['name']) == 'baseURI')) ? $case['global']['value'] : '.';
 								$global['baseURI'] = $baseUrl;
 							}
-							if (isset($case->function)) {
+							if (isset($case['function'])) {
 								$function = array();
-								$function['name'] = strval($case->function['name']);
-								$function['return'] = strval($case->function['return']);
-								$function['body'] = strval($case->function);
-								if (isset($case->function['node']))
-									$function['node'] = strval($case->function['node']);
+								$function['name'] = isset($case['function']['name']) ? $case['function']['name'] : null; //strval($case->function['name']);
+								$function['return'] = isset($case['function']['return']) ? $case['function']['return'] : null; //strval($case->function['return']);
+								$function['body'] = isset($case['function']['body']) ? $case['function']['body'] : null; //strval($case->function);
+								if (isset($case['function']['node']))
+									$function['node'] = $case['function']['node'];
 								else
 									$function['node'] = 'HistoneGlobal';
 							}
@@ -88,14 +90,16 @@ foreach ($modes as $mode) {
 								$estr.='\'\',';
 							}
 							if ($mode == 'evaluator') {
-								if ($context)
+								if ($context && is_string($context))
 									$estr.='urldecode(\'' . urlencode($context) . '\'),';
+								elseif ($context && is_array($context)) {
+									$a=$context;
+								}
 								else
 									$estr.='\'\',';
 
 								if ($global)
 									$estr.='array(\'baseURI\'=>urldecode(\'' . urlencode($global['baseURI']) . '\')),';
-
 								else
 									$estr.='\'\',';
 								if ($function) {
@@ -103,7 +107,8 @@ foreach ($modes as $mode) {
 									$estr.='\'return\'=>\'' . $function['return'] . '\',';
 									$estr.='\'node\'=>\'' . $function['node'] . '\',';
 									$estr.='\'body\'=>urldecode(\'' . urlencode($function['body']) . '\')),';
-								} else
+								}
+								else
 									$estr.='\'\',';
 							}
 							$estr.='),' . '/*' . $index++ . ' - input: ' . $input .
@@ -126,7 +131,6 @@ foreach ($modes as $mode) {
 	if (!$ok)
 		throw new Exception('badTestFile');
 }
-
 function saveGeneratedTest($mode, $estr) {
 	global $WORK_DIR, $index;
 	$mode = ucfirst(strtolower($mode));

@@ -29,13 +29,14 @@ require_once('CallStack.class.php');
  * 
  * @package HistoneClasses
  */
-class HistoneError extends Exception {
-
+class HistoneError extends Exception
+{
 	/**
 	 * 
 	 * @param string $message
 	 */
-	public function __construct($message) {
+	public function __construct($message)
+	{
 		parent::__construct();
 		$this->message = __CLASS__ . ': ' . $message;
 	}
@@ -47,7 +48,8 @@ class HistoneError extends Exception {
  * 
  * @package HistoneClasses
  */
-class Histone {
+class Histone
+{
 
 	private $baseURI = null;
 	private $template = null;
@@ -56,20 +58,27 @@ class Histone {
 	/**
 	 * @param string $baseURI
 	 */
-	public function __construct($baseURI = '') {
+	public function __construct($baseURI = '')
+	{
 		$this->baseURI = trim($baseURI);
 	}
 
 	/**
 	 * @param string $filename
 	 */
-	public static function registerExternalFunction($filename) {
-		if (is_file($filename)) {
+	public static function registerExternalFunction($filename)
+	{
+		if (is_file($filename))
+		{
 			$res = include_once $filename;
-		} elseif (is_dir($filename)) {
+		}
+		elseif (is_dir($filename))
+		{
 			$files = scandir(trim($filename, '/\\'));
-			foreach ($files as $file) {
-				if (strpos($file, '.php') !== false) {
+			foreach ($files as $file)
+			{
+				if (strpos($file, '.php') !== false)
+				{
 					$res = include_once $filename . '/' . $file;
 				}
 			}
@@ -79,16 +88,27 @@ class Histone {
 	/**
 	 * @param string $template
 	 */
-	public function parseString($template = null) {
-		if ($template && is_string($template)) {
-			try {
+	public function parseString($template = null)
+	{
+		if ($template && is_string($template))
+		{
+			try
+			{
+				$template = preg_replace('/{{(\s)*}}/', '', $template);
+				$template = preg_replace('/{{\*.*\*}}/', '', $template);
 				$template = Parser::parse($template, $this->baseURI);
-			} catch (ParseError $e) {
+			}
+			catch (ParseError $e)
+			{
 				throw $e;
-			} catch (Exception $e) {
+			}
+			catch (Exception $e)
+			{
 				self::internalError($e->getMessage());
 			}
-		} elseif (!is_array($template)) {
+		}
+		elseif (!is_array($template))
+		{
 			$template = HistoneType::toString($template);
 			self::internalError('"' . $template . '" is not a string');
 		}
@@ -100,35 +120,49 @@ class Histone {
 	 * @param string $fileName
 	 * @return string
 	 */
-	public function parseFile($fileName = '') {
+	public function parseFile($fileName = '')
+	{
 		if (!$fileName)
 			self::internalError('filename  is empty string');
 
-		try {
+		try
+		{
 			if (is_file($this->baseURI))
 				$dir = dirname($this->baseURI);
 			else
 				$dir = $this->baseURI;
-			if (file_exists($fileName)) {
+			if (file_exists($fileName))
+			{
 				$this->baseURI = $fileName;
 				$path = $fileName;
-			} elseif (file_exists(rtrim($dir, '/') . '/' . $fileName)) {
+			}
+			elseif (file_exists(rtrim($dir, '/') . '/' . $fileName))
+			{
 				$path = rtrim($dir, '/') . '/' . $fileName;
 				$this->baseURI = $path;
-			} else {
+			}
+			else
+			{
 				$this->template = '';
 				return;
 			}
 			$template = file_get_contents($path);
-			if ($template) {
+			if ($template)
+			{
 				$this->parseString($template);
-			} else {
+			}
+			else
+			{
 				$this->template = '';
 			}
 			return;
-		} catch (ParseError $e) {
+		}
+		catch (ParseError $e)
+		{
 			$this->template = '';
-		} catch (Exception $e) {
+		}
+		catch (Exception $e)
+		{
 			$this->template = '';
 		}
 	}
@@ -138,7 +172,8 @@ class Histone {
 	 * @param string $message
 	 * @throws HistoneError
 	 */
-	public static function internalError($message) {
+	public static function internalError($message)
+	{
 		throw new HistoneError($message);
 	}
 
@@ -147,7 +182,8 @@ class Histone {
 	 * @param number $value
 	 * @return boolean
 	 */
-	private static function is_number($value) {
+	private static function is_number($value)
+	{
 		return (is_int($value) || is_float($value));
 	}
 
@@ -156,7 +192,8 @@ class Histone {
 	 * @param mixed $node
 	 * @return string
 	 */
-	private static function getNodeClass($node) {
+	private static function getNodeClass($node)
+	{
 		if (is_string($node))
 			return 'HistoneString';
 		if (is_null($node))
@@ -177,7 +214,8 @@ class Histone {
 	 * @param mixed $value
 	 * @return boolean
 	 */
-	private static function nodeToBoolean($value) {
+	private static function nodeToBoolean($value)
+	{
 		if (is_bool($value))
 			return $value;
 		if (is_null($value))
@@ -197,14 +235,19 @@ class Histone {
 	 * @param object $stack
 	 * @return array
 	 */
-	private static function processMap($items, $stack) {
+	private static function processMap($items, $stack)
+	{
 		$result = array();
-		foreach ($items as $item) {
+		foreach ($items as $item)
+		{
 			$key = $item[0];
 			$value = self::processNode($item[1], $stack);
-			if ($key === null) {
+			if ($key === null)
+			{
 				$result[] = $value;
-			} else {
+			}
+			else
+			{
 				$result[$key] = $value;
 			}
 		}
@@ -217,7 +260,8 @@ class Histone {
 	 * @param object $stack
 	 * @return boolean
 	 */
-	private static function processNot($value, $stack) {
+	private static function processNot($value, $stack)
+	{
 		$value = self::processNode($value, $stack);
 		return (!self::nodeToBoolean($value));
 	}
@@ -229,7 +273,8 @@ class Histone {
 	 * @param object $stack
 	 * @return mixed
 	 */
-	private static function processOr($left, $right, $stack) {
+	private static function processOr($left, $right, $stack)
+	{
 		$left = self::processNode($left, $stack);
 		if (self::nodeToBoolean($left))
 			return $left;
@@ -243,7 +288,8 @@ class Histone {
 	 * @param object $stack
 	 * @return mixed
 	 */
-	private static function processAnd($left, $right, $stack) {
+	private static function processAnd($left, $right, $stack)
+	{
 		$left = self::processNode($left, $stack);
 		if (!self::nodeToBoolean($left))
 			return $left;
@@ -258,13 +304,18 @@ class Histone {
 	 * @param object $stack
 	 * @return mixed
 	 */
-	private static function processTernary($condition, $left, $right, $stack) {
+	private static function processTernary($condition, $left, $right, $stack)
+	{
 		$condition = self::processNode($condition, $stack);
-		if (self::nodeToBoolean($condition)) {
+		if (self::nodeToBoolean($condition))
+		{
 			return self::processNode($left, $stack);
-		} elseif ($right) {
+		}
+		elseif ($right)
+		{
 			return self::processNode($right, $stack);
-		} else
+		}
+		else
 			return new HistoneUndefined();
 	}
 
@@ -275,25 +326,36 @@ class Histone {
 	 * @param object $stack
 	 * @return boolean
 	 */
-	private static function processEquality($left, $right, $stack) {
+	private static function processEquality($left, $right, $stack)
+	{
 		$left = self::processNode($left, $stack);
 		$right = self::processNode($right, $stack);
-		if (is_string($left) and self::is_number($right)) {
-			if (is_numeric($left)) {
+		if (is_string($left) and self::is_number($right))
+		{
+			if (is_numeric($left))
+			{
 				$left = floatval($left);
-			} else
+			}
+			else
 				$right = (string) $right;
-		} elseif (self::is_number($left) and is_string($right)) {
-			if (is_numeric($right)) {
+		} elseif (self::is_number($left) and is_string($right))
+		{
+			if (is_numeric($right))
+			{
 				$right = floatval($right);
-			} else
+			}
+			else
 				$left = (string) $left;
 		}
-		if (!(is_string($left) and is_string($right))) {
-			if (self::is_number($left) and self::is_number($right)) {
+		if (!(is_string($left) and is_string($right)))
+		{
+			if (self::is_number($left) and self::is_number($right))
+			{
 				$left = floatval($left);
 				$right = floatval($right);
-			} else {
+			}
+			else
+			{
 				$left = self::nodeToBoolean($left);
 				$right = self::nodeToBoolean($right);
 			}
@@ -309,31 +371,42 @@ class Histone {
 	 * @param object $stack
 	 * @return boolean
 	 */
-	private static function processRelational($nodeType, $left, $right, $stack) {
+	private static function processRelational($nodeType, $left, $right, $stack)
+	{
 		$left = self::processNode($left, $stack);
 		$right = self::processNode($right, $stack);
-		if (is_string($left) and self::is_number($right)) {
-			if (is_numeric($left)) {
+		if (is_string($left) and self::is_number($right))
+		{
+			if (is_numeric($left))
+			{
 				$left = floatval($left);
 			}
 			else
 				$right = (string) $right;
-		} elseif (self::is_number($left) and is_string($right)) {
-			if (is_numeric($right)) {
+		} elseif (self::is_number($left) and is_string($right))
+		{
+			if (is_numeric($right))
+			{
 				$right = floatval($right);
-			} else
+			}
+			else
 				$left = (string) $left;
 		}
-		if (!(self::is_number($left) and self::is_number($right))) {
-			if (is_string($left) and is_string($right)) {
+		if (!(self::is_number($left) and self::is_number($right)))
+		{
+			if (is_string($left) and is_string($right))
+			{
 				$left = strlen($left);
 				$right = strlen($right);
-			} else {
+			}
+			else
+			{
 				$left = self::nodeToBoolean($left);
 				$right = self::nodeToBoolean($right);
 			}
 		}
-		switch ($nodeType) {
+		switch ($nodeType)
+		{
 			case Parser::$TN_LESS_OR_EQUAL: return ($left <= $right);
 			case Parser::$TN_LESS_THAN: return ($left < $right);
 			case Parser::$TN_GREATER_OR_EQUAL: return ($left >= $right);
@@ -348,11 +421,14 @@ class Histone {
 	 * @param object $stack
 	 * @return mixed
 	 */
-	private static function processAddition($left, $right, $stack) {
+	private static function processAddition($left, $right, $stack)
+	{
 		$left = self::processNode($left, $stack);
 		$right = self::processNode($right, $stack);
-		if (!(is_string($left) or is_string($right))) {
-			if (is_numeric($left) or is_numeric($right)) {
+		if (!(is_string($left) or is_string($right)))
+		{
+			if (is_numeric($left) or is_numeric($right))
+			{
 				if (is_numeric($left))
 					$left = floatval($left);
 				if (!self::is_number($left))
@@ -363,7 +439,8 @@ class Histone {
 					return new HistoneUndefined();
 				return $left + $right;
 			}
-			if (is_array($left) && is_array($right)) {
+			if (is_array($left) && is_array($right))
+			{
 				return array_merge($left, $right);
 			}
 		}
@@ -380,7 +457,8 @@ class Histone {
 	 * @param mixed $stack
 	 * @return number
 	 */
-	private static function processArithmetical($nodeType, $left, $right, $stack) {
+	private static function processArithmetical($nodeType, $left, $right, $stack)
+	{
 		$left = self::processNode($left, $stack);
 		if (is_numeric($left))
 			$left = floatval($left);
@@ -393,7 +471,8 @@ class Histone {
 			$right = floatval($right);
 		if (!self::is_number($right))
 			return new HistoneUndefined();
-		switch ($nodeType) {
+		switch ($nodeType)
+		{
 			case Parser::$TN_ADD: return ($left + $right);
 			case Parser::$TN_SUB: return ($left - $right);
 			case Parser::$TN_MUL: return ($left * $right);
@@ -409,46 +488,65 @@ class Histone {
 	 * @param object $stack
 	 * @return mixed
 	 */
-	private static function evalSelector($subject, $selector, $stack) {
-		for ($c = 0; $c < sizeof($selector); $c++) {
+	private static function evalSelector($subject, $selector, $stack)
+	{
+		for ($c = 0; $c < sizeof($selector); $c++)
+		{
 			$prevSubj = $subject;
 			$fragment = self::processNode($selector[$c], $stack);
-			if (is_string($subject) && is_numeric($fragment)) {
+			if (is_string($subject) && is_numeric($fragment))
+			{
 				$length = strlen($subject);
 				$index = floatval($fragment);
 				if ($index < 0)
 					$index = $length + $index;
-				if ($index % 1 !== 0 || $index < 0 || $index >= $length) {
+				if ($index % 1 !== 0 || $index < 0 || $index >= $length)
+				{
 					return new HistoneUndefined();
-				} else
+				}
+				else
 					$subject = $subject[$index];
 			}
-			elseif (is_array($subject) && @array_key_exists($fragment, $subject)) {
+			elseif (is_array($subject) && @array_key_exists($fragment, $subject))
+			{
 				$subject = $subject[$fragment];
-			} elseif (is_array($subject) && is_numeric($fragment)) {
+			}
+			elseif (is_array($subject) && is_numeric($fragment))
+			{
 				$length = count($subject);
-				if ($fragment < 0) {
+				if ($fragment < 0)
+				{
 //					if ($length + $fragment >= 0)
 //						$subject = $subject[$length + $fragment];
 //					else
-						return new HistoneUndefined();
-				}
-				elseif ($fragment > 0) {
 					return new HistoneUndefined();
 				}
-			} else if ($fragment instanceof HistoneUndefined) {
+				elseif ($fragment > 0)
+				{
+					return new HistoneUndefined();
+				}
+			}
+			else if ($fragment instanceof HistoneUndefined)
+			{
 				return new HistoneUndefined();
-			} else {
+			}
+			else
+			{
 				$typeName = self::getNodeClass($subject);
-				if (method_exists($typeName, $fragment)) {
+				if (method_exists($typeName, $fragment))
+				{
 					$subject = call_user_func(
 						Array($typeName, $fragment), $prevSubj, $stack
 					);
-				} elseif (property_exists($typeName, $fragment)) {
+				}
+				elseif (property_exists($typeName, $fragment))
+				{
 					$subject = call_user_func(
 						Array($typeName, $fragment), $prevSubj, $stack
 					);
-				} else {
+				}
+				else
+				{
 					$subject = new HistoneUndefined();
 				}
 				if (($subject instanceof HistoneUndefined) || ($subject === false))
@@ -464,38 +562,45 @@ class Histone {
 	 * @param object $stack
 	 * @return mixed
 	 */
-	private static function processSelector($path, $stack) {
+	private static function processSelector($path, $stack)
+	{
 		$selector = array_slice($path, 1);
 		$fragment = $path[0];
-		if (!is_string($fragment)) {
+		if (!is_string($fragment))
+		{
 			$fragment = self::processNode($fragment, $stack);
 			return self::evalSelector($fragment, $selector, $stack);
 		}
-		if ($fragment === 'global') {
+		if ($fragment === 'global')
+		{
 			return self::evalSelector(
 					HistoneGlobal::value(), $selector, $stack
 			);
 		}
-		if ($fragment === 'this') {
+		if ($fragment === 'this')
+		{
 			return self::evalSelector(
 					$stack->getContext(), $selector, $stack
 			);
 		}
 		$value = $stack->getVar($fragment);
-		if (!HistoneType::isUndefined($value)) {
+		if (!HistoneType::isUndefined($value))
+		{
 			return self::evalSelector(
 					$value, $selector, $stack
 			);
 		}
 		if (method_exists('HistoneGlobal', $fragment) ||
-			property_exists('HistoneGlobal', $fragment)) {
+			property_exists('HistoneGlobal', $fragment))
+		{
 			return self::evalSelector(
 					HistoneGlobal::value(), array_merge(array($fragment), $selector), $stack
 			);
 		}
 
 		if (is_array($context = $stack->getContext()) &&
-			array_key_exists($fragment, $context)) {
+			array_key_exists($fragment, $context))
+		{
 			return self::evalSelector(
 					$context, array_merge(array($fragment), $selector), $stack
 			);
@@ -511,13 +616,17 @@ class Histone {
 	 * @param object $stack
 	 * @return mixed
 	 */
-	public static function processCall($target, $name, $args, $stack) {
+	public static function processCall($target, $name, $args, $stack)
+	{
 		$name = self::processNode($name, $stack);
-		for ($c = 0; $c < sizeof($args); $c++) {
+		for ($c = 0; $c < sizeof($args); $c++)
+		{
 			$args[$c] = self::processNode($args[$c], $stack);
 		}
-		if ($target === null) {
-			if ($handler = $stack->getMacro($name)) {
+		if ($target === null)
+		{
+			if ($handler = $stack->getMacro($name))
+			{
 				$macroArgs = $handler[0];
 				$macroBody = $handler[1];
 				$newBaseURI = $handler[2];
@@ -526,7 +635,8 @@ class Histone {
 				$stack->setBaseURI($newBaseURI);
 				$stack->putVar('self', array('arguments' => $args));
 				$arity = min(sizeof($args), sizeof($macroArgs));
-				for ($c = 0; $c < $arity; $c++) {
+				for ($c = 0; $c < $arity; $c++)
+				{
 					$stack->putVar($macroArgs[$c], $args[$c]);
 				}
 				$result = self::processNodes($macroBody, $stack);
@@ -540,28 +650,44 @@ class Histone {
 				property_exists('HistoneGlobal', $name) ||
 				method_exists('Outer\\HistoneGlobal', $name) ||
 				method_exists('Outer\\HistoneGlobal', $name . '_external')
-			) {
+			)
+			{
 				$target = HistoneGlobal::value();
-			} else {
+			}
+			else
+			{
 				return new HistoneUndefined();
 			}
-		} else {
+		}
+		else
+		{
 			$target = self::processNode($target, $stack);
 		}
 
 		$typeName = self::getNodeClass($target);
 		$typeNameOuter = 'Outer\\' . $typeName;
-		if (method_exists($typeNameOuter, $name)) {
+		if (method_exists($typeNameOuter, $name))
+		{
 			return call_user_func(Array($typeNameOuter, $name), $target, $args, $stack);
-		} elseif (method_exists($typeNameOuter, $name . '_external')) {
+		}
+		elseif (method_exists($typeNameOuter, $name . '_external'))
+		{
 			return call_user_func(Array($typeNameOuter, $name . '_external'), $target, $args, $stack);
-		} elseif (method_exists($typeName, $name)) {
+		}
+		elseif (method_exists($typeName, $name))
+		{
 			return call_user_func(Array($typeName, $name), $target, $args, $stack);
-		} elseif (method_exists($typeName, $name . '_internal')) {
+		}
+		elseif (method_exists($typeName, $name . '_internal'))
+		{
 			return call_user_func(Array($typeName, $name . '_internal'), $target, $args, $stack);
-		} elseif (property_exists($typeName, $name)) {
+		}
+		elseif (property_exists($typeName, $name))
+		{
 			return $typeName::$$name;
-		} else {
+		}
+		else
+		{
 			return new HistoneUndefined();
 		}
 	}
@@ -573,7 +699,8 @@ class Histone {
 	 * @param object $stack
 	 * @return void
 	 */
-	private static function processVar($name, $value, $stack) {
+	private static function processVar($name, $value, $stack)
+	{
 		$stack->save();
 		$value = self::processNode($value, $stack);
 		$stack->restore();
@@ -587,11 +714,14 @@ class Histone {
 	 * @param object $stack
 	 * @return mixed
 	 */
-	private static function processIf($conditions, $stack) {
+	private static function processIf($conditions, $stack)
+	{
 		$result = '';
-		for ($c = 0; $c < count($conditions); $c++) {
+		for ($c = 0; $c < count($conditions); $c++)
+		{
 			$condition = $conditions[$c];
-			if (self::nodeToBoolean(self::processNode($condition[0], $stack))) {
+			if (self::nodeToBoolean(self::processNode($condition[0], $stack)))
+			{
 				$stack->save();
 				$result = self::processNodes($condition[1], $stack);
 				$stack->restore();
@@ -609,14 +739,17 @@ class Histone {
 	 * @param object $stack
 	 * @return mixed
 	 */
-	private static function processFor($iterator, $collection, $statements, $stack) {
+	private static function processFor($iterator, $collection, $statements, $stack)
+	{
 		$result = '';
 		$index = 0;
 		$last = 0;
 		$collection = self::processNode($collection, $stack);
-		if (is_array($collection) && count($collection)) {
+		if (is_array($collection) && count($collection))
+		{
 			$last = count($collection) - 1;
-			foreach ($collection as $key => $value) {
+			foreach ($collection as $key => $value)
+			{
 				$stack->save();
 				$stack->putVar($iterator[0], $collection[$key]);
 				$stack->putVar('self', array('last' => $last, 'index' => $index++));
@@ -625,7 +758,8 @@ class Histone {
 				$result .= self::processNodes($statements[0], $stack);
 				$stack->restore();
 			}
-		} elseif (array_key_exists(1, $statements)) {
+		} elseif (array_key_exists(1, $statements))
+		{
 			$stack->save();
 			$result .= self::processNodes($statements[1], $stack);
 			$stack->restore();
@@ -641,7 +775,8 @@ class Histone {
 	 * @param object $stack
 	 * @return void
 	 */
-	private static function processMacro($name, $args, $statements, $stack) {
+	private static function processMacro($name, $args, $statements, $stack)
+	{
 		$stack->putMacro($name, $args, $statements, $stack->getBaseURI());
 		return '';
 	}
@@ -652,7 +787,8 @@ class Histone {
 	 * @param object $stack
 	 * @return string
 	 */
-	public static function processImport($importURI, $stack) {
+	public static function processImport($importURI, $stack)
+	{
 		if (!isset($stack->imports))
 			$stack->imports = array();
 		if (in_array($importURI, $stack->imports))
@@ -661,27 +797,38 @@ class Histone {
 		$stack->imports[] = $importURI;
 		$uriResolver = self::getUriResolver();
 		$baseURI = $stack->getBaseURI();
-		if (is_callable($uriResolver)) {
+		if (is_callable($uriResolver))
+		{
 			$resolve = call_user_func($uriResolver, $importURI, $baseURI);
-		} else {
+		}
+		else
+		{
 			$args = array($importURI, $baseURI);
 			$resolve = HistoneGlobal::loadText(null, $args, $stack);
 		}
 
-		if ($resolve === null || $resolve instanceof HistoneUndefined) {
+		if ($resolve === null || $resolve instanceof HistoneUndefined)
+		{
 			$result = new HistoneUndefined();
-		} else {
+		}
+		else
+		{
 			if ($resolve == null)
 				return '';
-			try {
+			try
+			{
 				$innerHistone = new Histone($resolve['uri']);
 				$innerHistone->parseString($resolve['data']);
 				$stack->setBaseURI($resolve['uri']);
 				$result = $innerHistone->processNodes($innerHistone->getTree(), $stack);
 				$stack->setBaseURI($baseURI);
-			} catch (ParseError $e) {
+			}
+			catch (ParseError $e)
+			{
 				return '';
-			} catch (Exception $e) {
+			}
+			catch (Exception $e)
+			{
 				return '';
 			}
 		}
@@ -694,11 +841,13 @@ class Histone {
 	 * @param object $stack
 	 * @return string
 	 */
-	private static function processNode($node, $stack) {
+	private static function processNode($node, $stack)
+	{
 		if (!is_array($node))
 			return $node;
 		$nodeType = $node[0];
-		switch ($nodeType) {
+		switch ($nodeType)
+		{
 			case Parser::$TN_NULL: return null;
 			case Parser::$TN_TRUE: return true;
 			case Parser::$TN_FALSE: return false;
@@ -760,17 +909,22 @@ class Histone {
 	 * @param object $stack
 	 * @return string
 	 */
-	private static function processNodes($nodes, $stack) {
+	private static function processNodes($nodes, $stack)
+	{
 //		$m = microtime(1);
 		$result = '';
 		$index = 0;
 		$length = count($nodes);
-		while ($index < $length) {
+		while ($index < $length)
+		{
 			$node = $nodes[$index++];
-			if (!is_string($node)) {
+			if (!is_string($node))
+			{
 				$node = self::processNode($node, $stack);
 				$result .= HistoneType::toString($node);
-			} else {
+			}
+			else
+			{
 				$result .= $node;
 			}
 		}
@@ -781,7 +935,8 @@ class Histone {
 	 * 
 	 * @return mixed (string or array)
 	 */
-	public function getTree() {
+	public function getTree()
+	{
 		return $this->template;
 	}
 
@@ -790,7 +945,8 @@ class Histone {
 	 * @param array $context
 	 * @return string
 	 */
-	public function process($context = null) {
+	public function process($context = null)
+	{
 		$stack = new CallStack($context);
 		$stack->setBaseURI($this->baseURI);
 		return $this->processNodes($this->template, $stack);
@@ -801,7 +957,8 @@ class Histone {
 	 * @param string $uriResolver
 	 * @return void 
 	 */
-	public static function setUriResolver($uriResolver) {
+	public static function setUriResolver($uriResolver)
+	{
 		self::$uriResolver = $uriResolver;
 	}
 
@@ -809,7 +966,8 @@ class Histone {
 	 * 
 	 * @return string
 	 */
-	public static function getUriResolver() {
+	public static function getUriResolver()
+	{
 		return self::$uriResolver;
 	}
 

@@ -807,12 +807,12 @@ class Parser {
 					self::$tokenizer->next();
 				}
 				if (!self::$tokenizer->next(self::$T_COMMENT_END)) {
-					//self::syntaxError('*}}');
 					self::syntaxError('*}}');
 				}
 			}
 
 			// parse literals
+			// TODO: противоречит текщей версии приемочных тестов
 			while (self::$tokenizer->next(self::$T_LITERAL_START)) {
 				$literalStr = '';
 				while (!self::$tokenizer->test(self::$T_LITERAL_END) &&
