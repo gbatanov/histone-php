@@ -94,8 +94,8 @@ class Histone
 		{
 			try
 			{
-				$template = preg_replace('/{{(\s)*}}/', '', $template);
-				$template = preg_replace('/{{\*.*\*}}/', '', $template);
+				$template = preg_replace('/{{(\s)*}}/U', '', $template);
+				$template = preg_replace('/{{\*.*\*}}/U', '', $template);
 				$template = Parser::parse($template, $this->baseURI);
 			}
 			catch (ParseError $e)

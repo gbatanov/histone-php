@@ -1,4 +1,5 @@
 <?php
+
 /**
  *    Copyright 2012 MegaFon
  *
@@ -14,7 +15,6 @@
  *   See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 /**
  * Project Histone
  * 
@@ -68,6 +68,8 @@ class CallStack {
 	 */
 	public function putVar($name, $value) {
 		$this->variables[$this->stackPointer][$name] = $value;
+		if (isset($this->macros[$this->stackPointer][$name]))
+			unset($this->macros[$this->stackPointer][$name]);
 	}
 
 	/**
@@ -79,6 +81,8 @@ class CallStack {
 	 */
 	public function putMacro($name, $args, $body, $baseURI) {
 		$this->macros[$this->stackPointer][$name] = array($args, $body, $baseURI);
+		if (isset($this->variables[$this->stackPointer][$name]))
+			unset($this->variables[$this->stackPointer][$name]);
 	}
 
 	/**

@@ -27,7 +27,6 @@
  * @package HistoneClasses
  */
 class HistoneType {
-
 	/**
 	 * 
 	 * @param HistoneUndefined $value
@@ -149,7 +148,6 @@ class HistoneBoolean extends HistoneType {
  * @package HistoneClasses
  */
 class HistoneNumber extends HistoneType {
-
 	/**
 	 * 
 	 * @param number $value
@@ -166,11 +164,13 @@ class HistoneNumber extends HistoneType {
 		$exponentSign = $exponentPart[0];
 		if ($numericSign === '+' || $numericSign === '-') {
 			$numericPart = substr($numericPart, 1);
-		} else
+		}
+		else
 			$numericSign = '';
 		if ($exponentSign === '+' || $exponentSign === '-') {
 			$exponentPart = substr($exponentPart, 1);
-		} else
+		}
+		else
 			$exponentSign = '+';
 		$decPos = strpos($numericPart, '.');
 		if ($decPos === -1) {
@@ -264,7 +264,6 @@ class HistoneNumber extends HistoneType {
  * @package HistoneClasses
  */
 class HistoneString extends HistoneType {
-
 	/**
 	 * 
 	 * @param string $value
@@ -302,7 +301,8 @@ class HistoneString extends HistoneType {
 			$index = 0;
 		if ($index >= 0 && $index < strlen($value)) {
 			return ord($value[$index]);
-		} else
+		}
+		else
 			return new HistoneUndefined();
 	}
 
@@ -461,7 +461,6 @@ class HistoneString extends HistoneType {
  * @package HistoneClasses
  */
 class HistoneMap extends HistoneType {
-
 	/**
 	 * 
 	 * @param array $value
@@ -500,16 +499,15 @@ class HistoneMap extends HistoneType {
 	}
 
 	/**
-	 * 
+	 * @deprecated
 	 * @param array $value
 	 * @param array $args
 	 * @return boolean
 	 */
 	public static function hasIndex($value, $args) {
-		$index = $args[0];
-		if (!is_int($index))
+		if (!is_int($args[0]))
 			return false;
-		return ($index >= 0 && $index < count($value));
+		return ($args[0] >= 0 && $args[0] < count($value));
 	}
 
 	/**
@@ -519,10 +517,7 @@ class HistoneMap extends HistoneType {
 	 * @return array
 	 */
 	public static function join($value, $args) {
-		$separator = $args[0];
-		if (!is_string($separator))
-			$separator = '';
-		return implode($separator, $value);
+		return implode(is_string($args[0]) ? $args[0] : '', $value);
 	}
 
 	/**
@@ -532,22 +527,7 @@ class HistoneMap extends HistoneType {
 	 * @return array
 	 */
 	public static function slice($value, $args) {
-		$start = (int) @$args[0];
-		$length = (int) @$args[1];
-		$arrLen = count($value);
-		if ($start < 0)
-			$start = $arrLen + $start;
-		if ($start < 0)
-			$start = 0;
-		if ($start > $arrLen)
-			return array();
-		if ($length === 0)
-			$length = $arrLen - $start;
-		if ($length < 0)
-			$length = $arrLen - $start + $length;
-		if ($length <= 0)
-			return array();
-		return array_slice((array) $value, $start, $length);
+		return array_slice((array) $value, (int) @$args[0], isset($args[1]) ? (int) $args[1] : null);
 	}
 
 	/**
@@ -575,8 +555,69 @@ class HistoneMap extends HistoneType {
 	 * @return boolean
 	 */
 	public static function hasKey($value, $args) {
-		$key = $args[0];
-		return array_key_exists($key, $value);
+		return array_key_exists($args[0], $value);
+	}
+
+	/**
+	 * 
+	 * @param array $args keys array
+	 */
+	public static function remove($value, $args) {
+		$map = array();
+		if (HistoneType::isMap($value)) {
+			foreach ($value as $key => $val) {
+				if (!in_array($key, (array) $args, true)) {
+					$map[$key] = $val;
+				}
+			}
+		}
+		return $map;
+	}
+
+	/**
+	 * 
+	 * @param array $value
+	 * @param array $args
+	 * @return array
+	 */
+	public static function resize($value, $args) {
+		$map = array();
+		$size = isset($args[0]) && is_numeric($args[0]) ? intval($args[0]) : count($value);
+		$fill = isset($args[1]) ? $args[1] : null;
+		$map = array_splice($value, 0, $size); //return deleted elements!!!
+		if (count($map) < $size) {
+			for ($i = count($map); $i < $size; ++$i) {
+				$map[$i] = $fill;
+			}
+		}
+		return $map;
+	}
+
+	/**
+	 * TODO: no realized
+	 * @param array $value
+	 * @param array $args
+	 * @return array
+	 */
+	public static function search($value, $args) {
+		return $value;
+	}
+
+	/**
+	 * 
+	 * @param array $value
+	 * @param array $args
+	 * @return array
+	 */
+	public static function set($value, $args) {
+		$map = $value;
+		if (isset($args[0]) && is_scalar($args[0]) && !is_bool($args[0])) {
+			if (!HistoneType::isUndefined($args[1]))
+				$map[$args[0]] = $args[1];
+			else if (isset($map[$args[0]]))
+				unset($map[$args[0]]);
+		}
+		return $map;
 	}
 
 }
@@ -675,19 +716,19 @@ class HistoneGlobal extends HistoneType {
 	 */
 	public static function uniqueId() {
 		return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
-				// 32 bits for "time_low"
-				mt_rand(0, 0xffff), mt_rand(0, 0xffff),
-				// 16 bits for "time_mid"
-				mt_rand(0, 0xffff),
-				// 16 bits for "time_hi_and_version",
-				// four most significant bits holds version number 4
-				mt_rand(0, 0x0fff) | 0x4000,
-				// 16 bits, 8 bits for "clk_seq_hi_res",
-				// 8 bits for "clk_seq_low",
-				// two most significant bits holds zero and one for variant DCE1.1
-				mt_rand(0, 0x3fff) | 0x8000,
-				// 48 bits for "node"
-				mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
+			// 32 bits for "time_low"
+				 mt_rand(0, 0xffff), mt_rand(0, 0xffff),
+			// 16 bits for "time_mid"
+								 mt_rand(0, 0xffff),
+			// 16 bits for "time_hi_and_version",
+			// four most significant bits holds version number 4
+				 mt_rand(0, 0x0fff) | 0x4000,
+			// 16 bits, 8 bits for "clk_seq_hi_res",
+			// 8 bits for "clk_seq_low",
+			// two most significant bits holds zero and one for variant DCE1.1
+			 mt_rand(0, 0x3fff) | 0x8000,
+			// 48 bits for "node"
+			mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
 		);
 	}
 
@@ -698,14 +739,24 @@ class HistoneGlobal extends HistoneType {
 	 * @return number
 	 */
 	public static function min($obj, $args) {
-		$count = count($args);
 		$minValue = new HistoneUndefined();
-		for ($c = 0; $c < $count; $c++) {
-			if (HistoneType::isNumber($args[$c]) and (
-				HistoneType::isUndefined($minValue) or
-				$args[$c] < $minValue
-				))
-				$minValue = $args[$c];
+		if (HistoneType::isMap($args) && !HistoneType::isUndefined($args)) {
+			foreach ($args as $arg) {
+				while (HistoneType::isMap($arg) && !HistoneType::isUndefined($arg)) {
+					$arg = self::min($obj, $arg);
+				}
+				if (HistoneType::isNumber($arg) and (
+					HistoneType::isUndefined($minValue) or
+					$arg < $minValue
+					)) {
+					$minValue = $arg;
+				}
+			}
+		} elseif (HistoneType::isNumber($args) and (
+			HistoneType::isUndefined($minValue) or
+			$args < $minValue
+			)) {
+			$minValue = $args;
 		}
 		return $minValue;
 	}
@@ -717,16 +768,27 @@ class HistoneGlobal extends HistoneType {
 	 * @return number
 	 */
 	public static function max($obj, $args) {
-		$count = count($args);
-		$minValue = new HistoneUndefined();
-		for ($c = 0; $c < $count; $c++) {
-			if (HistoneType::isNumber($args[$c]) and (
-				HistoneType::isUndefined($minValue) or
-				$args[$c] > $minValue
-				))
-				$minValue = $args[$c];
+		$maxValue = new HistoneUndefined();
+		if (HistoneType::isMap($args) && !HistoneType::isUndefined($args)) {
+			foreach ($args as $arg) {
+				while (HistoneType::isMap($arg) && !HistoneType::isUndefined($arg)) {
+					$arg = self::max($obj, $arg);
+				}
+
+				if (HistoneType::isNumber($arg) and (
+					HistoneType::isUndefined($maxValue) or
+					$arg > $maxValue
+					)) {
+					$maxValue = $arg;
+				}
+			}
+		} elseif (HistoneType::isNumber($args) and (
+			HistoneType::isUndefined($maxValue) or
+			$args > $maxValue
+			)) {
+			$maxValue = $args;
 		}
-		return $minValue;
+		return $maxValue;
 	}
 
 	/**
@@ -860,6 +922,29 @@ class HistoneGlobal extends HistoneType {
 				$result[] = $first--;
 		}
 		return $result;
+	}
+
+	/**
+	 * 
+	 * @param array $args
+	 * @return number
+	 */
+	public static function rand($obj, $args = array()) {
+		if (!isset($args[0]) || !is_numeric($args[0]))
+			$args[0] = 0;
+		if (!isset($args[1]) || !is_numeric($args[1]))
+			$args[1] = getrandmax();
+		return rand($args[0], $args[1]);
+	}
+
+	public static function require_internal($obj, $args = array(), $stack) {
+		if (isset($args[0]) && is_string($args[0]))
+			if (is_file(self::baseUri($obj, $stack) . '/' . $args[0])) {
+//				include_once self::baseUri($obj, $stack) . '/' . $args[0];
+				return self::include_internal($obj, $args, $stack);
+			}
+			else
+				return new HistoneUndefined();
 	}
 
 	/**

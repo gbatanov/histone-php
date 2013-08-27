@@ -36,7 +36,7 @@
 		<echo message="Making directory ./generated" />
 		<mkdir dir="${basedir}/generated" /> 
 		<mkdir dir="${basedir}/generated/generated-tests" /> 
-		<mkdir dir="${basedir}/generated/test-cases-xml" /> 
+		<mkdir dir="${basedir}/generated/test-cases" /> 
 	</target>
 
 	<!-- Target: copy-src-tests check acceptance json-based tests in target tests folder  -->
@@ -54,17 +54,6 @@
 		</condition>
 		<fail if="isCopyXmlErrorProp" message="Detected PHPUnitTest error!" /> 
 
-		<!--	<copy todir="${basedir}/generated/test-cases-xml" overwrite="true">
-			<fileset dir="${basedir}/src/test">
-				<include name="parser/*.*" />
-				<include name="evaluator/*.*" />
-				<include name="evaluator/testresources/json/*.*" />
-				<include name="evaluator/testresources/tpl/*.*" />
-				<include name="evaluator/testresources/tpl/subfolder/*.*" />
-				<include name="evaluator/testresources/txt/*.*" />
-			</fileset>
-		</copy>
-		-->
 	</target>
 
 	<!-- Target create PHPUnit tests -->
@@ -84,7 +73,7 @@
 
 	</target>
 
-	<!-- Target: test                                -->
+	<!-- Target: run-unit-tests      -->
 	<target name="run-unit-tests">
 		<echo message="Testing..." />
 		<delete file="${basedir}/generated/generated-tests/ParserAcceptanceTestSuites.xml" />

@@ -120,16 +120,6 @@ function copyTestFileList($resourceDir, $targetDir) {
 					$currPath .=$path . '/';
 				}
 			}
-			// Create XML from json
-//			$newF = json_decode($f, true);
-//			$newF = $newF[0];
-//			$newF = createXmlFromJson($f);
-//			$targetFile = preg_replace('/\.json$/', '.xml', trim($targetFile));
-//			$fx = fopen($targetFile, 'wb');
-//			if ($fx) {
-//				fwrite($fx, print_r($newF, 1));
-//				fclose($fx);
-//			}
 			copy($file, $targetFile);
 		}
 		if (isset($evaluator)) {
@@ -141,75 +131,12 @@ function copyTestFileList($resourceDir, $targetDir) {
 	}
 }
 
-/**
- * Make Xml code from json
- * 
- * @param string $f json encoded string
- * @return string xml encoded string
- */
-function createXmlFromJson($f) {
-	static $set = 0;
-	$newF = json_decode($f, true);
-	$newF = $newF[0];
-
-	$dom = new DOMDocument('1.0', 'UTF-8');
-	$dom->formatOutput = true;
-	$root = $dom->createElement('suites');
-	$root = $dom->appendChild($root);
-	$suite = $dom->createElement('suite');
-	$attr = $dom->createAttribute('name');
-	$attr->value = $newF['name'];
-	$attr = $suite->appendChild($attr);
-	$suite = $root->appendChild($suite);
-	foreach ($newF['cases'] as $case) {
-		$xcase = $dom->createElement('case');
-		$attr = $dom->createAttribute('set');
-		$attr->value = $set;
-		++$set;
-		$attr = $xcase->appendChild($attr);
-
-		if (is_array($case)) {
-			foreach ($case as $key => $value) {
-				if ($key == 'expectedAST' || $key == 'expectedResult')
-					$newKey = 'expected';
-				elseif ($key == 'expectedException')
-					$newKey = 'exception';
-				else
-					$newKey = $key;
-				if (!isset($value)) {
-					$el = $dom->createElement($newKey, "");
-				} elseif (is_string($value)) {
-					$el = $dom->createElement($newKey, htmlspecialchars($value));
-				} elseif (is_array($value)) {
-					if ($newKey == 'exception') {
-						$el = $dom->createElement('exception');
-						foreach ($value as $k => $v) {
-							$elex = $dom->createElement($k, htmlspecialchars($v));
-							$elex = $el->appendChild($elex);
-						}
-					}
-					else
-						$el = $dom->createElement($newKey, json_encode($value));
-				}
-				else
-					$el = $dom->createElement($newKey, json_encode($value));
-
-				$el = $xcase->appendChild($el);
-			}
-		}
-		$xcase = $suite->appendChild($xcase);
-	}
-
-
-	$newF = $dom->saveXML();
-	return $newF;
-}
 
 $WORK_DIR = implode('/', explode('/', str_replace('\\', '/', __DIR__), -2));
 /**
  * Directory where will be generated xml-based tests
  */
-$TEST_CASES_XML_FOLDER = $WORK_DIR . '/generated/test-cases-xml';
+$TEST_CASES_FOLDER = $WORK_DIR . '/generated/test-cases';
 /**
  * Directory  with json-based tests
  */
@@ -238,12 +165,12 @@ $resourceDir = $TEST_CASES_JSON_FOLDER . '/' . 'testresources';
 $filelist = array();
 $excludeDir = array('.', '..');
 getFileList($resourceDir);
-copyResourceFileList($TEST_CASES_JSON_FOLDER, $TEST_CASES_XML_FOLDER);
+copyResourceFileList($TEST_CASES_JSON_FOLDER, $TEST_CASES_FOLDER);
 
 $filelist = array();
 $excludeDir = array_merge($excludeDir, array('testresources', 'synthetic'));
 getFileList($TEST_CASES_JSON_FOLDER);
-copyTestFileList($TEST_CASES_JSON_FOLDER, $TEST_CASES_XML_FOLDER);
+copyTestFileList($TEST_CASES_JSON_FOLDER, $TEST_CASES_FOLDER);
 
 if ($feval)
 	fclose($feval);

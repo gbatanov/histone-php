@@ -25,8 +25,25 @@
 ini_set('log_errors', 'on');
 ini_set('error_log', 'php_errors.txt');
 
-require_once(realpath(dirname(__FILE__) . '/../main/Histone.class.php'));
+if (!defined('PHP_VERSION_ID')) {
+	$version = explode('.', PHP_VERSION);
+	define('PHP_VERSION_ID', ($version[0] * 10000 + $version[1] * 100 + $version[2]));
+}
 
+$a = null;
+$b = './hhh/hhh.tt';
+$c = array();
+echo json_encode($a);
+echo "<br>";
+if (PHP_VERSION_ID > 50400)
+	echo json_encode($b, JSON_UNESCAPED_SLASHES);
+else
+	echo str_replace("\/", "/", json_encode($b));
+echo "<br>";
+echo json_encode($c);
+echo "<br>";
+die();
+require_once(realpath(dirname(__FILE__) . '/../main/Histone.class.php'));
 /**
  * URIResolver
  * 
@@ -100,7 +117,7 @@ try {
 	  {{/for}}
 	  {{/for}}
 	  ";
- $templateStr ="hello {{}} world";
+	$templateStr = "hello {{}} world";
 	//
 	$templateDir = 'C:/work/histone-php/test-deprecated/';
 	$template = new Histone($templateDir);

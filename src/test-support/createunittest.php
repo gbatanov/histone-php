@@ -16,20 +16,20 @@
  *    limitations under the License.
  */
 $WORK_DIR = implode('/', explode('/', str_replace('\\', '/', __DIR__), -2));
-$TEST_CASES_XML_FOLDER = '/generated/test-cases-xml';
+$TEST_CASES_FOLDER = '/generated/test-cases';
 
 ini_set("pcre.backtrack_limit", "1000000000000"); // !!! default in PHP 100000
 ini_set('log_errors', 'on');
 ini_set('error_log', $WORK_DIR . '/generated/php_errors.txt');
 
 /* load xml-describe tests for evaluator */
-$modes = array('parser'/*, 'evaluator'*/);
+$modes = array(/* 'parser', */'evaluator');
 
 foreach ($modes as $mode) {
 	$index = 0;
 	$ok = false;
 	$filename = $WORK_DIR . '/src/test-support/' . $mode . '_set.json';
-	$dir = $WORK_DIR . $TEST_CASES_XML_FOLDER . '/' . $mode;
+	$dir = $WORK_DIR . $TEST_CASES_FOLDER . '/' . $mode;
 	$f = fopen($filename, 'rb');
 
 	if ($f) {
@@ -59,15 +59,18 @@ foreach ($modes as $mode) {
 							}
 							if (isset($case['context']))
 								$context = $case['context'];
-							if (isset($case->global)) {
-								$global = array();
-								$baseUrl = (isset($case['global']['name']) && (strval($case['global']['name']) == 'baseURI')) ? $case['global']['value'] : '.';
-								$global['baseURI'] = $baseUrl;
+
+							if (isset($case['property'])) {
+								if (isset($case['property']['node']) && $case['property']['node'] == 'global') {
+									$baseUrl = (isset($case['property']['name']) && (strval($case['property']['name']) == 'baseURI')) ? $case['property']['result'] : '.';
+									$global['baseURI'] = $baseUrl;
+								}
 							}
+
 							if (isset($case['function'])) {
 								$function = array();
 								$function['name'] = isset($case['function']['name']) ? $case['function']['name'] : null; //strval($case->function['name']);
-								$function['return'] = isset($case['function']['return']) ? $case['function']['return'] : null; //strval($case->function['return']);
+								$function['return'] = isset($case['function']['return']) ? $case['function']['return'] : isset($case['function']['result']) ? $case['function']['result'] : null; //strval($case->function['return']);
 								$function['body'] = isset($case['function']['body']) ? $case['function']['body'] : null; //strval($case->function);
 								if (isset($case['function']['node']))
 									$function['node'] = $case['function']['node'];
@@ -90,10 +93,8 @@ foreach ($modes as $mode) {
 								$estr.='\'\',';
 							}
 							if ($mode == 'evaluator') {
-								if ($context && is_string($context))
-									$estr.='urldecode(\'' . urlencode($context) . '\'),';
-								elseif ($context && is_array($context)) {
-									$a=$context;
+								if ($context) {
+									$estr.='urldecode(\'' . urlencode(json_encode($context)) . '\'),';
 								}
 								else
 									$estr.='\'\',';
