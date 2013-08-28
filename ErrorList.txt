@@ -1,0 +1,31 @@
+﻿Список найденных ошибок и отличий PHP реализации по состоянию на 28.08.2013
+(проверка продолжается)
+
+1. Трекер задач и дефектов
+	Jira: http://weblab.megafon.ru/issues/
+	
+	Ссылка нерабочая.
+
+2.	Какие инструменты нужны: http://www.phing.info/ (Phing 2.x)
+	Как собрать: phing clean test distrib
+
+	Можно использовать Ant (код, специфический для Phing, отсутствует)
+	ant clean test distrib
+
+3.	Формат и набор приемочных тестов отличается от того, 
+	что описано в документации.(global.rand,global.require, map.resize, map.search,
+	map.set, map.toQueryString)
+
+4. В парсере не работает импорт практически целиком.
+
+5. В эвалуаторе не проходят тесты:
+	data-uri.json
+	external-resources.json
+	loadJSON.json
+	global.require.json
+	global.resolveURI.json
+	map.search.json
+	map.toQueryString.json
+	nested-template-tags.json (Смешанный с парсером)
+	
+	
